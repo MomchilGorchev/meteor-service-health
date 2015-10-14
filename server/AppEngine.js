@@ -112,7 +112,7 @@ Meteor.startup(function(){
             for(var i = 0; i < allServices.length; i++){
                 try{
                     result = HTTP.call('GET', allServices[i].url);
-                    console.log(result);
+                    //console.log(result);
                 }
                 catch(e){
                     //console.log('');
