@@ -1,5 +1,9 @@
 /* Import the necessary components here */
 
+#main__content{
+  margin-top: 50px;
+}
+
 .modal.bottom-sheet{
   max-height:75%;
 }
@@ -21,11 +25,13 @@
   border-radius: 5px;
 }
 .search-bar{
-  width:100%;
-  max-width:500px;
-  float:left;
+  width: 30%;
+  max-width: 500px;
+  float: right;
   background: $button-teal;
   margin: 30px;
+  right: 1%;
+  position: absolute;
 }
 
 
