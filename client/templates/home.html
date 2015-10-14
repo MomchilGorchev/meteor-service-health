@@ -14,57 +14,12 @@
         </div>
     </nav>
     <div class="row">
-        <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#t1">Atlassian - <span class="service-count">{{epAtlassianCount}}</span></a></li>
-                <li class="tab col s3"><a  href="#t2">PowaTAG - <span class="service-count">{{epPowaTAGCount}}</span></a></li>
-                <li class="tab col s3"><a href="#t3">PowaWEB - <span class="service-count">{{epPowaWEBCount}}</span></a></li>
-                <li class="tab col s3"><a href="#t4">PowaAIM - <span class="service-count">{{epPowaAIMCount}}</span></a></li>
-                <li class="tab col s3"><a href="#t5">HK APIs - <span class="service-count">{{epHKCount}}</span></a></li>
-            </ul>
-        </div>
 
         <div id="t1" class="col s12">
-            {{#if equals epAtlassianCount 0}}
+            {{#if equals endpoints 0}}
                 <p class="no__service-placeholder">No services in this category...</p>
             {{else}}
-                {{#each epAtlassian}}
-                    {{> statusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t2" class="col s12">
-            {{#if equals epPowaTAGCount 0}}
-                <p class="no__service-placeholder">No services in this category...</p>
-            {{else}}
-                {{#each epPowaTAG}}
-                    {{> statusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t3" class="col s12">
-            {{#if equals epPowaWEBCount 0}}
-                <p class="no__service-placeholder">No services in this category...</p>
-            {{else}}
-                {{#each epPowaWEB}}
-                    {{> statusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t4" class="col s12">
-            {{#if equals epPowaAIMCount 0}}
-                <p class="no__service-placeholder">No services in this category...</p>
-            {{else}}
-                {{#each epPowaAIM}}
-                    {{> statusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t5" class="col s12">
-            {{#if equals epHKCount 0}}
-                <p class="no__service-placeholder">No services in this category...</p>
-            {{else}}
-                {{#each epHK}}
+                {{#each endpoints}}
                     {{> statusCard}}
                 {{/each}}
             {{/if}}
