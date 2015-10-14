@@ -1,0 +1,82 @@
+<template name="addServiceEndpoint">
+    <header>
+        <h4>Add Service Endpoint</h4>
+    </header>
+
+    <div class="row">
+        <div class="upload col s12 m6 l6">
+            <div class="split-wrapper">
+                <h5>Option 1 - upload a JSON file</h5>
+                <h6>It needs to have the following schema and needs to be named <span class="code">EP_DETAILS.json</span></h6>
+                <br/>
+                <h6>Please note: This process will not overwrite any existing services, it will simply add everything from the file to the
+                database.</h6>
+                <pre class="code">
+[
+  ...
+  {
+    url: 'https://admin.powa.com/cms/en/ControlPanel.html',
+    name: 'PowaWEB Production',
+    info: 'PowaWEB Production Instance',
+    category: 'PowaWEB',
+    lastStatusCode: 200,
+    status: 'green'
+  }
+  ...
+]
+                </pre>
+                {{> upload_bootstrap }}
+            </div>
+        </div>
+        <div class="add-service-form col s12 m6 l6">
+            <div class="split-wrapper">
+                <h5>Option 2 - add the service information manualy</h5>
+                <h6>Please fill all the fields</h6>
+                <form id="createNewService">
+                    <div class="row">
+                        <div class="input-field col s6">
+                            <i class="mdi-action-info prefix"></i>
+                            <input  id="service_name" type="text" class="validate">
+                            <label for="service_name">Service Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <select id="service_category" class="validate">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Atlassian">Atlassian</option>
+                                <option value="PowaTAG">PowaTAG</option>
+                                <option value="PowaWEB">PowaWEB</option>
+                                <option value="PowaAIM">PowaAIM</option>
+                                <option value="HK APIs">HK APIs</option>
+                            </select>
+                            <label for="service_category">Service Category</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="mdi-social-public prefix"></i>
+                            <input id="service_url" type="text" class="validate">
+                            <label for="service_url">Service URL</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="mdi-editor-mode-edit prefix"></i>
+                            <label for="service_info">Any additional information you would like to display about this service</label>
+                            <textarea id="service_info" class="materialize-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p><i class="material-icons">mode_comment</i> You don't need to add service status as it will be checked anyway</p>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">
+                        <i class="material-icons">cloud_upload</i>Submit
+                    </button>
+                    <button id="clearForm" class="btn waves-effect waves-light right" name="reset">
+                        <i class="material-icons">clear</i>Reset
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</template>

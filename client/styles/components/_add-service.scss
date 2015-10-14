@@ -1,0 +1,15 @@
+.split-wrapper{
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  .upload-control{
+    border-top: 1px dashed $button-teal;
+    border-bottom: 1px dashed $button-teal;
+    height: 40px;
+  }
+  .progress-label{
+    span{
+      color: $button-teal!important;
+    }
+  }
+}

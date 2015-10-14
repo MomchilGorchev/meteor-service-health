@@ -1,0 +1,159 @@
+/* Import the necessary components here */
+
+.modal.bottom-sheet{
+  max-height:75%;
+}
+.fs-large{
+  font-size: 2em;
+}
+
+.btn{
+  .material-icons{
+    position: relative;
+    top: 3px;
+    left: -10px;
+  }
+}
+
+.code{
+  background-color: rgb(242, 242, 236);
+  padding: 7px;
+  border-radius: 5px;
+}
+.search-bar{
+  width:100%;
+  max-width:500px;
+  float:left;
+  background: $button-teal;
+  margin: 30px;
+}
+
+
+.no__service-placeholder{
+  text-align:center;
+  margin: 30px;
+}
+
+//TODO Optimize this styles
+
+.tabs{
+  margin-bottom: 20px;
+  .tab{
+    a{
+      color: $header-blue;
+      &:hover{
+        color: lighten($header-blue, 20%);
+      }
+    }
+  }
+  .indicator{
+    background-color: $header-blue;
+  }
+}
+
+.service-card{
+  height:120px;
+  &.card-success{
+    background: $status-ok;
+  }
+  &.card-issue{
+    background: $status-issue;
+  }
+  &.card-fail{
+    background: $status-not-ok;
+  }
+  .card-image{
+    .endpoint__url{
+      position: absolute;
+      top: 10px;
+      left: 0;
+      color: white;
+      width: 100%;
+      text-align: center;
+      font-size: 2em;
+    }
+  }
+  .card-content{
+    color: white!important;
+    .status-display{
+      cursor: pointer;
+      position:absolute;
+      bottom:10%;
+      right:10%;
+      i{
+        font-size: 2.3em;
+      }
+      .color-code{
+        display:none;
+      }
+    }
+    .card-title{
+      font-size: 16px;
+      line-height: 25px;
+      .status__code{
+        font-weight:500;
+        font-size: 1.3rem;
+      }
+      .service__name{
+        font-size: 1.3rem;
+        font-weight: 400;
+        a{
+          color: white;
+          &:hover{
+            text-decoration: underline;
+          }
+        }
+      }
+      .card__endpoint-url{
+        font-weight:600;
+        color:$header-blue;
+      }
+    }
+    .timestamp{
+      font-style: italic;
+    }
+    .card__reveal-more{
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      &:hover{
+        color: darken(white, 20%);
+      }
+    }
+    .status__card-edit{
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      right: 30px;
+      color: white;
+      &:hover{
+        color: darken(white, 20%);
+      }
+    }
+  }
+  .card-reveal{
+    .card-title{
+      font-size:1rem;
+      .card__reveal-close{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        border-radius: 50%;
+        &:hover{
+          border: 1px solid black;
+        }
+      }
+    }
+  }
+}
+
+.delete__service{
+  margin-top: -70px;
+  button{
+    background: $status-not-ok;
+    &:hover{
+      background: lighten($status-not-ok, 10%);
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.main-navbar{
+  background-color: $header-blue;
+}
+
+h1{
+  font-family: $powa-font;
+}
+
+.brand-logo{
+  margin-left: 10px;
+  font-family: $powa-font;
+  img{
+    margin-top: 8px;
+  }
+}
+
+span.page-name{
+  position: relative;
+  top: -12px;
+  left:10px;
+}
+
+header{
+  padding:20px;
+  &.inner-header{
+    float:left;
+  }
+}
+
+.rotating{
+  animation: antiCW-rotating 0.8s linear infinite;
+}

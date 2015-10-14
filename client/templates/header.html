@@ -1,0 +1,31 @@
+<template name="header">
+    <nav class="main-navbar">
+
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo"><img src="logo-light.png" alt="Powa Logo" /><span class="page-name">Services Status Page </span></a>
+                    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
+                    <ul id="nav-mobile" class="right hide-on-med-and-down">
+                        <li><a class="waves-effect main-icon-menu" href="/" data-position="bottom" data-tooltip="Homepage"><i class="material-icons">home</i></a></li>
+                        <li class="refresh-list"><a class="waves-effect main-icon-menu" href="#" data-tooltip="Refresh list"><i class="material-icons">cached</i></a></li>
+                        <!--<li><a class="waves-effect main-icon-menu" href="#" data-tooltip="Set email alert"><i class="material-icons">alarm_add</i></a></li>-->
+                        <!--<li><a class="waves-effect main-icon-menu" href="#" data-tooltip="Settings"><i class="material-icons">more_vert</i></a></li>-->
+                        {{#if currentUser}}
+                            <li><a class="waves-effect main-icon-menu" href="/addServiceEndpoint" data-tooltip="Add endpoint"><i class="material-icons">add</i></a></li>
+                            <li><a class="waves-effect main-icon-menu" href="/editServiceEndpoint" data-tooltip="Edit endpoint"><i class="material-icons">mode_edit</i></a></li>
+                            <li class="logout"><a class="waves-effect main-icon-menu" href="#" data-tooltip="Logout"><i class="material-icons">exit_to_app</i></a></li>
+                        {{else}}
+                            <li class="login"><a class="waves-effect main-icon-menu" href="/login" data-tooltip="Login"><i class="material-icons">perm_identity</i></a></li>
+                        {{/if}}
+
+                    </ul>
+                    <ul class="side-nav" id="mobile-demo">
+                        <li><a class="waves-effect" href="/"><i class="mdi-action-home"></i> Dashboard</a></li>
+                        <li><a class="waves-effect" href="/addServiceEndpoint"><i class="mdi-content-add"></i> Add service</a></li>
+                        <li><a class="waves-effect" href="#"><i class="mdi-navigation-refresh"></i> Refresh</a></li>
+                        <li><a class="waves-effect" href="#"><i class="mdi-action-alarm"></i> Set alarm</a></li>
+                        <!--<li><a class="waves-effect" href="#"><i class="mdi-navigation-more-vert"></i> Settings</a></li>-->
+                    </ul>
+            </div>
+
+    </nav>
+</template>

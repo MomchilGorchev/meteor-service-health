@@ -1,0 +1,67 @@
+<template name="editModal">
+    <div class="modal bottom-sheet" id="edit-service-form">
+        <div class="modal-header">
+            <header>
+                <h4>Edit Service Endpoint</h4>
+                <h6>Change any field and click Save</h6>
+                <div class="delete__service right">
+                    <h6>Delete this service from the records</h6>
+                    <button class="delete__service-btn btn btn-warning waves-light"><i class="material-icons">warning</i> Delete</button></div>
+            </header>
+        </div><hr>
+        <div class="modal-content">
+            <div class="row">
+                <form class="col s12" id="editService">
+                    <div class="row">
+                        <div class=" col s6 m6 l6">
+                            <label for="service_name">Service Name</label>
+                            <input  id="service_name" type="text" class="validate">
+                        </div>
+                        <div class=" col s6 m6 l6">
+                            <label for="service_category">Service Category</label>
+                            <select id="service_category" class="validate">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="Atlassian">Atlassian</option>
+                                <option value="PowaTAG">PowaTAG</option>
+                                <option value="PowaWEB">PowaWEB</option>
+                                <option value="PowaAIM">PowaAIM</option>
+                                <option value="HK APIs">HK APIs</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col s12 m12 l8">
+                            <label for="service_url">Service URL</label>
+                            <input id="service_url" type="text" class="validate">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class=" col s12 m12 l8">
+                            <label for="service_info">Any additional information you would like to display about this service</label>
+                            <textarea id="service_info" class="materialize-textarea"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12 m12 l8">
+                            <p>Change status manually. Last reported status code: <span id="service-last-status"></span></p>
+                            <p>
+                                <input class="with-gap" name="service_status" type="radio" id="status1" value="green" />
+                                <label for="status1">Green - working</label>
+                                <input class="with-gap" name="service_status" type="radio" id="status2" value="orange"/>
+                                <label for="status2">Orange - has issues</label>
+                                <input class="with-gap" name="service_status" type="radio" id="status3" value="red" />
+                                <label for="status3">Red - not working</label>
+                            </p>
+                        </div>
+                    </div>
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Save
+                        <i class="mdi-file-cloud-upload left"></i>
+                    </button>
+                    <button id="closeModal" class="btn waves-effect waves-light right">Close
+                        <i class="mdi-content-clear left"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

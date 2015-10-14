@@ -1,0 +1,64 @@
+<template name="editServicesGrid">
+    <header>
+        <h4><i class="material-icons fs-large">mode_edit</i> Edit Service Information</h4>
+    </header>
+    <div class="row">
+        <div class="col s12">
+            <ul class="tabs">
+                <li class="tab col s3"><a class="active" href="#t1">Atlassian - <span class="service-count">{{epAtlassianCount}}</span></a></li>
+                <li class="tab col s3"><a  href="#t2">PowaTAG - <span class="service-count">{{epPowaTAGCount}}</span></a></li>
+                <li class="tab col s3"><a href="#t3">PowaWEB - <span class="service-count">{{epPowaWEBCount}}</span></a></li>
+                <li class="tab col s3"><a href="#t4">PowaAIM - <span class="service-count">{{epPowaAIMCount}}</span></a></li>
+                <li class="tab col s3"><a href="#t5">HK APIs - <span class="service-count">{{epHKCount}}</span></a></li>
+            </ul>
+        </div>
+
+        <div id="t1" class="col s12">
+            {{#if equals epAtlassianCount 0}}
+                <p>No services added yet...</p>
+            {{else}}
+                {{#each epAtlassian}}
+                    {{> editStatusCard}}
+                {{/each}}
+            {{/if}}
+        </div>
+        <div id="t2" class="col s12">
+            {{#if equals epPowaTAGCount 0}}
+                <p>No services added yet...</p>
+            {{else}}
+                {{#each epPowaTAG}}
+                    {{> editStatusCard}}
+                {{/each}}
+            {{/if}}
+        </div>
+        <div id="t3" class="col s12">
+            {{#if equals epPowaWEBCount 0}}
+                <p>No services added yet...</p>
+            {{else}}
+                {{#each epPowaWEB}}
+                    {{> editStatusCard}}
+                {{/each}}
+            {{/if}}
+        </div>
+        <div id="t4" class="col s12">
+            {{#if equals epPowaAIMCount 0}}
+                <p>No services added yet...</p>
+            {{else}}
+                {{#each epPowaAIM}}
+                    {{> editStatusCard}}
+                {{/each}}
+            {{/if}}
+        </div>
+        <div id="t5" class="col s12">
+            {{#if equals epHKCount 0}}
+                <p>No services added yet...</p>
+            {{else}}
+                {{#each epHK}}
+                    {{> editStatusCard}}
+                {{/each}}
+            {{/if}}
+        </div>
+    </div>
+
+
+</template>
