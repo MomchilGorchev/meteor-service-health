@@ -1,5 +1,5 @@
 /**
- * Created by momchillgorchev on 22/05/15.
+ * Created by momchillgorchev on 20/10/15.
  */
 
 Template.registerHelper('endpoints', function(){
@@ -8,4 +8,8 @@ Template.registerHelper('endpoints', function(){
 
 Template.registerHelper('endpointsCount', function(){
     return Endpoints.find().count();
+});
+
+Template.registerHelper('equals', function (a, b) {
+    return a === b;
 });

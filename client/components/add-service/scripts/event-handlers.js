@@ -1,5 +1,5 @@
 /**
- * Created by momchillgorchev on 22/05/15.
+ * Created by momchillgorchev on 20/10/15.
  */
 
 Template.addServiceEndpoint.events({
@@ -27,5 +27,3 @@ Template.addServiceEndpoint.events({
         }
     }
 });
-
-

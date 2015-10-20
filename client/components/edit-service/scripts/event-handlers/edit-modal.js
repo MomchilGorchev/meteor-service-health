@@ -1,3 +1,7 @@
+/**
+ * Created by momchillgorchev on 20/10/15.
+ */
+
 Template.editModal.events({
 
     'click .with-gap':function(e, t){
@@ -22,13 +26,13 @@ Template.editModal.events({
 
         }
         var data = {
-                id: form.closest('#edit-service-form').attr('data-itemid'),
-                name: form.find('#service_name').val(),
-                url: form.find('#service_url').val(),
-                info: form.find('#service_info').val(),
-                status: form.find('.with-gap.active').val()
+            id: form.closest('#edit-service-form').attr('data-itemid'),
+            name: form.find('#service_name').val(),
+            url: form.find('#service_url').val(),
+            info: form.find('#service_info').val(),
+            status: form.find('.with-gap.active').val()
 
-            };
+        };
 
         //issue: !!(data.status === 'red' || data.status === 'orange')
         console.log(data);

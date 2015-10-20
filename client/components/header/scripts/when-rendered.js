@@ -1,5 +1,5 @@
 /**
- * Created by momchillgorchev on 26/05/15.
+ * Created by momchillgorchev on 20/10/15.
  */
 
 Template.header.rendered = function(){

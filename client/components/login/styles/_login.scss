@@ -1,0 +1,23 @@
+.login-title{
+  margin-top: 50px;
+  .material-icons{
+    font-size: 2rem;
+  }
+  .text{
+    position:relative;
+    top: -5px;
+  }
+}
+
+#login-dropdown-list {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+
+#login-form{
+  width:100%;
+  max-width:800px;
+  margin: 0 auto;
+
+}

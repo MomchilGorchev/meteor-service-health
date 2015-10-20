@@ -1,3 +1,7 @@
+/**
+ * Created by momchillgorchev on 20/10/15.
+ */
+
 Template.editServiceEndpoint.events({
     'click .modal-trigger': function(e, t){
         //console.log(t);

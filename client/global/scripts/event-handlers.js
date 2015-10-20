@@ -1,3 +1,7 @@
+/**
+ * Created by momchillgorchev on 20/10/15.
+ */
+
 Template.home.events({
     'keyup #search': function(e, t){
         var filter = $(e.currentTarget).val();

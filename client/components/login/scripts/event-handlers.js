@@ -1,3 +1,7 @@
+/**
+ * Created by momchillgorchev on 20/10/15.
+ */
+
 Template.login.events({
     'click #click-to-login, keyup': function(e, t){
 
