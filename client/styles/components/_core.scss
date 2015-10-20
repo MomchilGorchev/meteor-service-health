@@ -57,6 +57,17 @@
   }
 }
 
+
+.card-wrapper{
+
+  &.card-moving{
+    transform: rotate(-1deg);
+    -moz-transform: rotate(-1deg);
+    -webkit-transform: rotate(-1deg);
+  }
+
+}
+
 .service-card{
   height:120px;
   &.card-success{
