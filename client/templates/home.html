@@ -19,9 +19,9 @@
             {{#if equals endpoints 0}}
                 <p class="no__service-placeholder">No services in this category...</p>
             {{else}}
-                {{#each endpoints}}
+                {{#sortable items=endpoints sortField=order ghostClass="card-placeholder" chosenClass="card-moving"}}
                     {{> statusCard}}
-                {{/each}}
+                {{/sortable}}
             {{/if}}
         </div>
     </div>
