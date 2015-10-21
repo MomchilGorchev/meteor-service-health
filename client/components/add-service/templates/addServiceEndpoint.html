@@ -4,23 +4,23 @@
     </header>
 
     <div class="row">
-        <div class="upload col s12 m6 l6">
+        <div class="upload col s12 option-section">
             <div class="split-wrapper">
                 <h5>Option 1 - upload a JSON file</h5>
-                <h6>It needs to have the following schema and needs to be named <span class="code">EP_DETAILS.json</span></h6>
+                <h6>The file needs to be called <span class="code">EP_DETAILS.json</span> and needs to have valid schema.</h6>
                 <br/>
-                <h6>Please note: This process will not overwrite any existing services, it will simply add everything from the file to the
+                <h6>NOTE: This process will not overwrite any existing records, it will simply add everything from the file to the
                 database.</h6>
                 <pre class="code">
 [
   ...
   {
-    url: 'https://admin.powa.com/cms/en/ControlPanel.html',
-    name: 'PowaWEB Production',
-    info: 'PowaWEB Production Instance',
-    category: 'PowaWEB',
-    lastStatusCode: 200,
-    status: 'green'
+    url: 'http://example.com',
+    name: 'My website',
+    info: 'This is my website info',
+    category: 'Personal', // Beta - dynamically added 'Category' filters
+    lastStatusCode: 200,  // optional
+    status: 'green'       // optional
   }
   ...
 ]
@@ -28,7 +28,7 @@
                 {{> upload_bootstrap }}
             </div>
         </div>
-        <div class="add-service-form col s12 m6 l6">
+        <div class="add-service-form col s12 option-section">
             <div class="split-wrapper">
                 <h5>Option 2 - add the service information manualy</h5>
                 <h6>Please fill all the fields</h6>

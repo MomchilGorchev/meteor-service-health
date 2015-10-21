@@ -1,3 +1,8 @@
+.option-section:not(:first-child){
+  margin-top: 50px;
+
+}
+
 .split-wrapper{
   width: 100%;
   max-width: 700px;
