@@ -3,7 +3,11 @@
  */
 
 Template.header.rendered = function(){
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sideNav({
+        menuWidth: 250, // Default is 240
+        edge: 'right', // Choose the horizontal origin
+        closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
+    });
     $(".dropdown-button").dropdown();
     $('.main-icon-menu').tooltip({
         delay: 0.5

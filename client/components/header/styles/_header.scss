@@ -24,8 +24,45 @@ header{
   &.inner-header{
     float:left;
   }
+
+
 }
 
 .rotating{
   animation: antiCW-rotating 0.8s linear infinite;
+}
+nav{
+  ul{
+    li{
+      &:hover, &:active{
+        background-color: transparent;
+      }
+    }
+  }
+}
+.main-navbar{
+
+  ul{
+    li.desktop-menu{
+      :hover{
+        background-color: transparent;
+      }
+    }
+  }
+
+  .nav-wrapper{
+    i{
+      display:inline-block;
+    }
+    .link-text{
+      margin-top: -70px;
+      margin-left: 40px;
+      display: block;
+    }
+  }
+
+  .button-collapse{
+    float:right;
+  }
+
 }
