@@ -7,13 +7,13 @@ if(Meteor.isServer) {
 
     Meteor.startup(function(){
 
-        if (Meteor.users.findOne({'emails.address': 'admin@powa.com'})) {
+        if (Meteor.users.findOne({'emails.address': 'admin@admin.com'})) {
             console.log('Admin account already activated...');
         } else {
             var users = [
                 {
-                    name: "Powa Admin",
-                    email: "admin@powa.com",
+                    name: "Admin User",
+                    email: "admin@admin.com",
                     roles: ['admin']
                 }
             ];
@@ -25,7 +25,7 @@ if(Meteor.isServer) {
 
                 id = Accounts.createUser({
                     email: user.email,
-                    password: "qwe123",
+                    password: "password",
                     profile: {name: user.name}
                 });
 
