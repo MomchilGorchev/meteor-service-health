@@ -1,5 +1,6 @@
 Sortable.collections = ['endpoints'];
 
+// TODO implement with methods
 Endpoints.allow({
     insert: function(){
         return true;
