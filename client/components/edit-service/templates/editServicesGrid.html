@@ -1,64 +1,29 @@
 <template name="editServicesGrid">
-    <header>
-        <h4><i class="material-icons fs-large">mode_edit</i> Edit Service Information</h4>
+    <header class="inner-header">
+        <h4> Edit Service Information</h4>
     </header>
+    <nav class="search-bar">
+        <div class="nav-wrapper">
+            <form>
+                <div class="input-field">
+                    <input id="search" type="search" required>
+                    <label for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </form>
+        </div>
+    </nav>
     <div class="row">
-        <div class="col s12">
-            <ul class="tabs">
-                <li class="tab col s3"><a class="active" href="#t1">Atlassian - <span class="service-count">{{epAtlassianCount}}</span></a></li>
-                <li class="tab col s3"><a  href="#t2">PowaTAG - <span class="service-count">{{epPowaTAGCount}}</span></a></li>
-                <li class="tab col s3"><a href="#t3">PowaWEB - <span class="service-count">{{epPowaWEBCount}}</span></a></li>
-                <li class="tab col s3"><a href="#t4">PowaAIM - <span class="service-count">{{epPowaAIMCount}}</span></a></li>
-                <li class="tab col s3"><a href="#t5">HK APIs - <span class="service-count">{{epHKCount}}</span></a></li>
-            </ul>
-        </div>
 
-        <div id="t1" class="col s12">
-            {{#if equals epAtlassianCount 0}}
-                <p>No services added yet...</p>
+        <div id="main__content" class="col s12">
+            {{#if equals endpoints 0}}
+                <p class="no__service-placeholder">No services in this category...</p>
             {{else}}
-                {{#each epAtlassian}}
+                {{#sortable items=endpoints sortField=order chosenClass="card-moving"}}
                     {{> editStatusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t2" class="col s12">
-            {{#if equals epPowaTAGCount 0}}
-                <p>No services added yet...</p>
-            {{else}}
-                {{#each epPowaTAG}}
-                    {{> editStatusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t3" class="col s12">
-            {{#if equals epPowaWEBCount 0}}
-                <p>No services added yet...</p>
-            {{else}}
-                {{#each epPowaWEB}}
-                    {{> editStatusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t4" class="col s12">
-            {{#if equals epPowaAIMCount 0}}
-                <p>No services added yet...</p>
-            {{else}}
-                {{#each epPowaAIM}}
-                    {{> editStatusCard}}
-                {{/each}}
-            {{/if}}
-        </div>
-        <div id="t5" class="col s12">
-            {{#if equals epHKCount 0}}
-                <p>No services added yet...</p>
-            {{else}}
-                {{#each epHK}}
-                    {{> editStatusCard}}
-                {{/each}}
+                {{/sortable}}
             {{/if}}
         </div>
     </div>
-
 
 </template>

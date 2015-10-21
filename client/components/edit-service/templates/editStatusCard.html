@@ -1,5 +1,5 @@
 <template name="editStatusCard">
-    <div class="col s12">
+    <div class="col s4">
         <div data-itemid="{{_id}}" data-itemcategory="{{category}}" class="card service-card
             {{#if equals status 'red'}}
                 card-fail
@@ -24,7 +24,7 @@
                      <span class="color-code">{{status}}</span>
                  </span>
                 <div class="card-title activator">
-                    <span class="service__name activator"><a href="{{url}}" class="service__link" target="_blank">{{name}}</a></span><br />
+                    <span class="service__name activator"><a href="{{url}}" class="service__link" target="_blank">#{{order}} - {{name}}</a></span><br />
                     <span class="status {{#if equals lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
                         LATEST STATUS <span class="status__code">{{lastStatusCode}}</span>
                     </span><br />
