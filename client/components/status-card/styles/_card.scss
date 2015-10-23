@@ -131,11 +131,22 @@
         font-weight:600;
         color:$header-blue;
       }
+
     }
     .timestamp{
       font-style: italic;
     }
     .card__reveal-more{
+      border-radius: 50%;
+      position: absolute;
+      top: 5px;
+      right: 30px;
+      &:hover{
+        color: darken(white, 20%);
+      }
+    }
+    .dnd__handle{
+
       border-radius: 50%;
       position: absolute;
       top: 5px;

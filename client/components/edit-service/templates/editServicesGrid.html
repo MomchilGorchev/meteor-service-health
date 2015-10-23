@@ -19,7 +19,7 @@
             {{#if equals endpoints 0}}
                 <p class="no__service-placeholder">No services in this category...</p>
             {{else}}
-                {{#sortable items=endpoints sortField=order chosenClass="card-moving"}}
+                {{#sortable items=endpoints handle=".dnd__handle" sortField=order chosenClass="card-moving"}}
                     {{> editStatusCard}}
                 {{/sortable}}
             {{/if}}
