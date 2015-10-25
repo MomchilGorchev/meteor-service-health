@@ -15,10 +15,10 @@
     </nav>
     <div class="row">
         <div id="main__content" class="col s12">
+            <div class="quick__info">Total: {{endpointsCount}}</div>
             {{#if equals endpointsCount 0}}
                 <p class="no__service-placeholder">No services in this category...</p>
             {{else}}
-                <div class="quick__info">Total: {{endpointsCount}}</div>
                 {{#sortable items=endpoints handle=".dnd__handle" sortField=order chosenClass="card-moving"}}
                     {{> statusCard}}
                 {{/sortable}}

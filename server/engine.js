@@ -14,32 +14,35 @@ Meteor.startup(function(){
         checkCreateDirectories: false //create the directories for you
     });
 
+    /**
+     * Read JSON data into collection
+     * require const filename: EP_DETAILS.json
+     */
     (function readJSONFile(){
         var JSONData = '';
         try{
-            JSONData = JSON.parse(Assets.getText("EP_DETAILS.json"));
-            console.log('Loading JSON file...');
+            JSONData = JSON.parse(Assets.getText(core.JSON_FILENAME));
+            //console.log('Loading JSON file...');
 
             for(var i = 0; i < JSONData.length; i++){
                 var current = JSONData[i];
 
                 var endPoint = Endpoints.find({url: current.url}, {}).fetch();
                 if(!endPoint.length){
-                    console.log('Adding [ '+ current.name + ' ] to the database...');
+                    //console.log('Adding [ '+ current.name + ' ] to the database...');
                     Endpoints.insert(current);
                 }
                 else {
-                    console.log('Service '+ current.name + ' already added... Moving on...');
+                    //console.log('Service '+ current.name + ' already added... Moving on...');
                 }
             }
 
         } catch(e){
             console.log(e);
         }
-
     }());
 
-    var validUrl = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
+    //var validUrl =
 
     return Meteor.methods({
 
@@ -61,7 +64,7 @@ Meteor.startup(function(){
 
         addEndpoint: function(service){
             if(service){
-                if(service.url.match(validUrl) !== null){
+                if(service.url.match(core.VALID_URL) !== null){
                     service.status = null;
                     return Endpoints.insert(service);
                 } else {
@@ -105,6 +108,7 @@ Meteor.startup(function(){
         },
 
         checkServicesStatus: function(){
+            this.unblock();
             var allServices = Endpoints.find().fetch();
             //console.log('Refreshing service status...');
             var result = {}, error = false;
@@ -115,7 +119,7 @@ Meteor.startup(function(){
                     //console.log(result);
                 }
                 catch(e){
-                    //console.log('');
+                    console.log(e);
                     var statusCode =JSON.stringify(e);
                     var sc = statusCode.match(/[0-9]\w+/).splice(0, 3).toString();
                     console.log(sc);
@@ -132,7 +136,7 @@ Meteor.startup(function(){
                     lastStatusCode: result.statusCode,
                     status: allServices.status === 'orange' ? 'orange' : 'green'
                 };
-                //console.log('handleServiceStatus called with:', service);
+                console.log('handleServiceStatus called with:', service);
                 Meteor.call('handleServiceStatus', service, function(res, err){
                     //err ? console.log(err) : console.log(res);
                 });
