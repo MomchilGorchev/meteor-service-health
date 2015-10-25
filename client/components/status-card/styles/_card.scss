@@ -74,6 +74,11 @@
 
 }
 
+.service__link{
+  position: relative;
+  padding-left:30px;
+}
+
 .service-card{
   height:120px;
   &.card-success{
@@ -100,9 +105,10 @@
     color: white!important;
     .status-display{
       cursor: pointer;
-      position:absolute;
-      bottom:5px;
-      right:10px;
+      font-size: 0.6em;
+      vertical-align: middle;
+      position: absolute;
+      left: 0;
       i{
         font-size: 2.3em;
       }
@@ -135,6 +141,20 @@
     }
     .timestamp{
       font-style: italic;
+      .card-more-info{
+
+        color: white;
+        text-decoration: underline;
+        padding: 3px 0 3px 15px;
+        font-size:0.8em;
+
+        &:hover{
+
+            color: darken(white, 10%);
+
+        }
+
+      }
     }
     .card__reveal-more{
       border-radius: 50%;

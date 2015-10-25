@@ -134,7 +134,8 @@ Meteor.startup(function(){
                     info: allServices[i].info || 'N/A',
                     category: allServices[i].category,
                     lastStatusCode: result.statusCode,
-                    status: allServices[i].status === 'orange' || result.statusCode !== 200 ? 'orange' : 'green'
+                    status: allServices[i].status === 'orange'
+                            || result.statusCode !== 200 ? 'orange' : result.statusCode === '501' ? 'red' : 'green'
                 };
                 console.log('handleServiceStatus called with:', service);
                 Meteor.call('handleServiceStatus', service, function(res, err){
