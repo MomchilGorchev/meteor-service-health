@@ -111,11 +111,14 @@ Meteor.startup(function(){
             this.unblock();
             var allServices = Endpoints.find().fetch();
             //console.log('Refreshing service status...');
-            var result = {}, error = false;
+            var result = {},
+                error = false,
+                actualStatus = null;
             //var fut = new Future();
             for(var i = 0; i < allServices.length; i++){
+                var current = current;
                 try{
-                    result = HTTP.call('GET', allServices[i].url);
+                    result = HTTP.call('GET', current.url);
                     //console.log(result);
                 }
                 catch(e){
@@ -128,14 +131,22 @@ Meteor.startup(function(){
 
                     // TODO Implement send email here
                 }
+
+                if(current.status === 'orange' || result.statusCode !== 200){
+                    actualStatus = 'orange';
+                } else if(result.statusCode === '501'){
+                        actualStatus = 'red';
+                } else {
+                    actualStatus = 'green';
+                }
+
                 var service = {
-                    url: allServices[i].url,
-                    name: allServices[i].name,
-                    info: allServices[i].info || 'N/A',
-                    category: allServices[i].category,
+                    url: current.url,
+                    name: current.name,
+                    info: current.info || 'N/A',
+                    category: current.category,
                     lastStatusCode: result.statusCode,
-                    status: allServices[i].status === 'orange'
-                            || result.statusCode !== 200 ? 'orange' : result.statusCode === '501' ? 'red' : 'green'
+                    status: actualStatus
                 };
                 console.log('handleServiceStatus called with:', service);
                 Meteor.call('handleServiceStatus', service, function(res, err){
