@@ -22,7 +22,7 @@ Meteor.startup(function(){
         var JSONData = '';
         try{
             JSONData = JSON.parse(Assets.getText(core.JSON_FILENAME));
-            //console.log('Loading JSON file...');
+            console.log('Loading JSON file...');
 
             for(var i = 0; i < JSONData.length; i++){
                 var current = JSONData[i];
@@ -121,7 +121,7 @@ Meteor.startup(function(){
                 catch(e){
                     console.log(e);
                     var statusCode =JSON.stringify(e);
-                    var sc = statusCode.match(/[0-9]\w+/).splice(0, 3).toString();
+                    var sc = '501';
                     console.log(sc);
                     result.statusCode = sc;
                     error = true;
@@ -134,7 +134,7 @@ Meteor.startup(function(){
                     info: allServices[i].info || 'N/A',
                     category: allServices[i].category,
                     lastStatusCode: result.statusCode,
-                    status: allServices.status === 'orange' ? 'orange' : 'green'
+                    status: allServices[i].status === 'orange' || result.statusCode !== 200 ? 'orange' : 'green'
                 };
                 console.log('handleServiceStatus called with:', service);
                 Meteor.call('handleServiceStatus', service, function(res, err){
