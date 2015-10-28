@@ -12,19 +12,19 @@ Meteor.startup(function(){
     (function readJSONFile(){
         var JSONData = '';
         try{
+            // Try to read file
             JSONData = JSON.parse(Assets.getText(core.JSON_FILENAME));
             console.log('Loading JSON file...');
 
+            // Iterate over
             for(var i = 0; i < JSONData.length; i++){
                 var current = JSONData[i];
 
+                // Select by URL (preventing doubled entries)
                 var endPoint = Endpoints.find({url: current.url}, {}).fetch();
                 if(!endPoint.length){
-                    //console.log('Adding [ '+ current.name + ' ] to the database...');
+                    // Insert
                     Endpoints.insert(current);
-                }
-                else {
-                    //console.log('Service '+ current.name + ' already added... Moving on...');
                 }
             }
 
