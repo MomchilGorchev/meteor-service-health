@@ -21,6 +21,9 @@ Template.addServiceEndpoint.events({
             Materialize.toast('You need to fill all the fields!', 3000);
         } else {
             Meteor.call('addEndpoint', newService, function(err, res){
+
+                console.log(res);
+
                 err ? Materialize.toast('Error: '+ err.message , 3000)
                     : Materialize.toast('Service '+ newService.name + ' successfully added!', 3000);
             });

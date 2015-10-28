@@ -32,5 +32,21 @@ if(Meteor.isServer) {
                 //console.log('Done! Account ready to use.');
             });
         }
+
+        Meteor.call('checkServicesStatus');
+
+        Meteor.setInterval(function(){
+            Meteor.call('checkServicesStatus');
+        }, 1000 * 60);
+
+        FS = Npm.require('fs');
+        Future = Npm.require('fibers/future');
+
+        UploadServer.init({
+            tmpDir: process.env.PWD + '/uploads/tmp',
+            uploadDir: process.env.PWD + '/private/',
+            checkCreateDirectories: false //create the directories for you
+        });
+
     });
 }
