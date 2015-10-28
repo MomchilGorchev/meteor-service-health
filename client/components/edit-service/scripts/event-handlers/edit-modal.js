@@ -36,7 +36,7 @@ Template.editModal.events({
 
         //issue: !!(data.status === 'red' || data.status === 'orange')
         console.log(data);
-        Meteor.call('editService', data, function(err, res){
+        Meteor.call('updateEndpointInfo', data, function(err, res){
             err ? Materialize.toast('Error: '+ err.message , 3000)
                 : Materialize.toast('Service '+ data.name + ' successfully saved!', 3000);
         });

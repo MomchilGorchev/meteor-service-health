@@ -67,88 +67,18 @@ Meteor.startup(function(){
             return id ? Endpoints.remove({_id: id}) : false;
         },
 
-        handleServiceStatus: function(service){
-            //console.log(service);
-            var endPoint = Endpoints.find({url: service.url}, {}).fetch();
-
-            if(endPoint.length){
-
-                Endpoints.update(
-                    {
-                        url: service.url
-                    },
-                    {
-                        $set: {
-                            lastStatusCode: service.lastStatusCode,
-                            status: service.status
-                        }
-                    }
-                );
-            } else {
-                Endpoints.insert({
-                    url: service.url,
-                    name: service.name,
-                    lastStatusCode: service.lastStatusCode,
-                    info: service.info,
-                    category: service.category,
-                    status: service.status
-                });
-            }
-        },
-
-        checkServicesStatus: function(){
-            this.unblock();
-            var allServices = Endpoints.find().fetch();
-            //console.log('Refreshing service status...');
-            var result = {},
-                error = false,
-                actualStatus = null;
-            //var fut = new Future();
-            for(var i = 0; i < allServices.length; i++){
-                var current = allServices[i];
-                try{
-                    result = HTTP.call('GET', current.url);
-                    //console.log(result);
-                }
-                catch(e){
-                    console.log(e);
-                    var statusCode =JSON.stringify(e);
-                    var sc = '501';
-                    console.log(sc);
-                    result.statusCode = sc;
-                    error = true;
-
-                    // TODO Implement send email here
-                }
-
-                if(current.status === 'orange' || result.statusCode !== 200){
-                    actualStatus = 'orange';
-                } else if(result.statusCode === '501'){
-                    actualStatus = 'red';
-                } else {
-                    actualStatus = 'green';
-                }
-
-                var service = {
-                    url: current.url,
-                    name: current.name,
-                    info: current.info || 'N/A',
-                    category: current.category,
-                    lastStatusCode: result.statusCode,
-                    status: actualStatus
-                };
-                //console.log('handleServiceStatus called with:', service);
-                Meteor.call('handleServiceStatus', service, function(res, err){
-                    //err ? console.log(err) : console.log(res);
-                });
-            }
-            return !error;
-        },
-
-        editService: function(data){
+        /**
+         * Update DB entry with data passed from the client
+         * @param data
+         * @returns {boolean}
+         */
+        updateEndpointInfo: function(data){
+            // This will be an existing service every time
+            // But its a good measure as this method call
+            // is coming from the client
             var service = Endpoints.find({_id: data.id}, {}).fetch();
             if(service.length){
-                //console.log('updating');
+                // Select by _id and update
                 Endpoints.update(
                     {
                         _id: data.id
@@ -165,6 +95,90 @@ Meteor.startup(function(){
                 return true;
             }
             return false;
+        },
+
+        /**
+         * Updates endpoint status
+         * @param service - endpoint to update
+         */
+        updateEndpointStatus: function(service){
+
+            if(service){
+                try{
+                    // Select by URL and update
+                    Endpoints.update(
+                        {
+                            url: service.url
+                        },
+                        {
+                            $set: {
+                                lastStatusCode: service.lastStatusCode,
+                                status: service.status
+                            }
+                        }
+                    );
+
+                } catch(e){
+                    throw new Meteor.Error(500, 'Internal Server Error');
+                }
+            }
+        },
+
+        /**
+         * Run HTTP call for each entry in the DB
+         * @returns {boolean}
+         */
+        checkServicesStatus: function(){
+
+            this.unblock();
+            // Get the DB data
+            var allServices = Endpoints.find().fetch();
+            var result = {},
+                error = false,
+                actualStatus = null;
+
+            // Iterate over all entries
+            for(var i = 0; i < allServices.length; i++){
+                var current = allServices[i];
+                // 'GET' the URL
+                try{
+                    result = HTTP.call('GET', current.url);
+                    //console.log(result);
+                }
+                catch(e){
+
+                    // Host is unreachable
+                    console.log(e);
+                    //var statusCode = JSON.stringify(e);
+                    // TODO handle all error codes
+                    result.statusCode = '501';
+                    error = true;
+
+                    // TODO Implement send email here
+                }
+
+                // Keep the orange status
+                if(current.status === 'orange' || result.statusCode !== 200){
+                    actualStatus = 'orange';
+                } else if(result.statusCode === '501'){
+                    actualStatus = 'red';
+                } else {
+                    actualStatus = 'green';
+                }
+
+                // Update with new response data
+                current.lastStatusCode = result.statusCode;
+                current.status = actualStatus;
+
+                // [DEBUG]
+                //console.log('updateEndpointStatus called with:', service);
+
+                // Update the DB
+                Meteor.call('updateEndpointStatus', current, function(res, err){
+                    //err ? console.log(err) : console.log(res);
+                });
+            }
+            return !error;
         }
     });
 
