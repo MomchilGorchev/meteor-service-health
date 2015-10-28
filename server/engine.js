@@ -116,7 +116,7 @@ Meteor.startup(function(){
                 actualStatus = null;
             //var fut = new Future();
             for(var i = 0; i < allServices.length; i++){
-                var current = current;
+                var current = allServices[i];
                 try{
                     result = HTTP.call('GET', current.url);
                     //console.log(result);
