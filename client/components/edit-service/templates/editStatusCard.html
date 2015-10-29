@@ -44,7 +44,17 @@
             </div>
             <div class="card-reveal">
                 <span class="card-title grey-text text-darken-4">{{url}} <i class="card__reveal-close material-icons">clear</i></span>
-                <p>{{info}}</p>
+                <p>
+                    {{#if equals status 'red'}}
+                        This host is unreachable or there is no internet connection
+                    {{else}}
+                        {{#if equals status 'orange'}}
+                            There was some issues with this URL the last time it was called
+                        {{else}}
+                            {{info}}
+                        {{/if}}
+                    {{/if}}
+                </p>
             </div>
         </div>
     </div>
