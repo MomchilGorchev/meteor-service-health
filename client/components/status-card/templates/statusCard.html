@@ -1,10 +1,10 @@
 <template name="statusCard">
     <div class="card-wrapper">
-        <div data-itemid="{{_id}}" class="card service-card
-            {{#if equals status 'red'}}
+        <div data-itemid="{{../_id}}" class="card service-card
+            {{#if equals ../status 'red'}}
                 card-fail
             {{else}}
-                {{#if equals status 'green'}}
+                {{#if equals ../status 'green'}}
                     card-success
                 {{else}}
                     card-issue
@@ -13,24 +13,24 @@
             <div class="card-content">
                 <div class="card-title activator">
                     <span class="service__name activator">
-                        <a href="{{url}}" class="service__link" target="_blank">
+                        <a href="{{../url}}" class="service__link" target="_blank">
                             <span class="status-display activator">
-                                {{#if equals status 'red'}}
+                                {{#if equals ../status 'red'}}
                                     <i class="small material-icons">error</i>
                                 {{else}}
-                                    {{#if equals status 'green'}}
+                                    {{#if equals ../status 'green'}}
                                         <i class="small material-icons">done</i>
                                     {{else}}
                                         <i class="small material-icons">warning</i>
                                     {{/if}}
                                 {{/if}}
                             </span>
-                            {{name}}
+                            {{../name}}
                         </a>
                     </span>
                     <br />
-                    <span class="status {{#if equals ep.lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
-                        LATEST STATUS <span class="status__code">{{lastStatusCode}}</span>
+                    <span class="status {{#if equals ../lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
+                        LATEST STATUS <span class="status__code">{{../lastStatusCode}}</span>
                     </span><br />
                     <span class="timestamp">less than minute ago
                         <a class="card-more-info activator"> More info</a>
@@ -46,15 +46,15 @@
             </div>
 
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{url}} <i class="card__reveal-close material-icons">clear</i></span>
+                <span class="card-title grey-text text-darken-4">{{../url}} <i class="card__reveal-close material-icons">clear</i></span>
                 <p>
-                    {{#if equals status 'red'}}
+                    {{#if equals ../status 'red'}}
                         This host is unreachable or there is no internet connection
                     {{else}}
-                        {{#if equals status 'orange'}}
+                        {{#if equals ../status 'orange'}}
                             There was some issues with this URL the last time it was called
                         {{else}}
-                            {{info}}
+                            {{../info}}
                         {{/if}}
                     {{/if}}
                 </p>
