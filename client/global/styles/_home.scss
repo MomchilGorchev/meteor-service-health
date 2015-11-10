@@ -28,11 +28,12 @@ body{
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 
-  .card-wrapper{
+  .card__wrapper{
 
     flex-grow: 1;
     width: 31%;
     margin: 0.5%;
+    opacity:0;
 
   }
 

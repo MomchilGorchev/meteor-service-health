@@ -23,7 +23,9 @@
                     <p class="no__service-placeholder">No services in this category...</p>
                 {{else}}
                     {{#sortable items=endpoints handle=".dnd__handle" sortField=order chosenClass="card-moving"}}
-                        {{> statusCard editMode=true}}
+                        {{#animate type="fadeIn" delay="50"}}
+                            {{> statusCard editMode=true}}
+                        {{/animate}}
                     {{/sortable}}
                 {{/if}}
             </div>

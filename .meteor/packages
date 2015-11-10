@@ -36,3 +36,4 @@ spacebars
 check
 ecmascript
 materialize:materialize@=0.97.0
+webtempest:animate
