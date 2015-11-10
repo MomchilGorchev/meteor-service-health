@@ -1,16 +1,35 @@
 <template name="header">
     <nav class="main-navbar">
-
             <div class="nav-wrapper">
                 <a href="/" class="brand-logo"><span class="page-name">Services Status Page </span></a>
                     <a href="#" data-activates="menu-content" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li class="desktop-menu"><a class="waves-effect main-icon-menu" href="/" data-position="bottom" data-tooltip="Homepage"><i class="material-icons">home</i></a></li>
-                        <li class="refresh-list desktop-menu"><a class="waves-effect main-icon-menu" href="#" data-tooltip="Refresh list"><i class="material-icons">cached</i></a></li>
+                        <li class="desktop-menu">
+                            <a class="waves-effect main-icon-menu" href="/" data-position="bottom" data-tooltip="Homepage">
+                                <i class="material-icons">home</i>
+                            </a>
+                        </li>
+                        <li class="refresh-list desktop-menu">
+                            <a class="waves-effect main-icon-menu" href="#" data-tooltip="Refresh list">
+                                <i class="material-icons">cached</i>
+                            </a>
+                        </li>
                         {{#if currentUser}}
-                            <li class="desktop-menu"><a class="waves-effect main-icon-menu" href="/addServiceEndpoint" data-tooltip="Add endpoint"><i class="material-icons">add</i></a></li>
-                            <li class="desktop-menu"><a class="waves-effect main-icon-menu" href="/editServiceEndpoint" data-tooltip="Edit endpoint"><i class="material-icons">mode_edit</i></a></li>
-                            <li class="logout desktop-menu"><a class="waves-effect main-icon-menu" href="#" data-tooltip="Logout"><i class="material-icons">exit_to_app</i></a></li>
+                            <li class="desktop-menu">
+                                <a class="waves-effect main-icon-menu" href="/addServiceEndpoint" data-tooltip="Add endpoint">
+                                    <i class="material-icons">add</i>
+                                </a>
+                            </li>
+                            <li class="desktop-menu">
+                                <a class="waves-effect main-icon-menu" href="/editServiceEndpoint" data-tooltip="Edit endpoint">
+                                    <i class="material-icons">mode_edit</i>
+                                </a>
+                            </li>
+                            <li class="logout desktop-menu">
+                                <a class="waves-effect main-icon-menu" href="#" data-tooltip="Logout">
+                                    <i class="material-icons">exit_to_app</i>
+                                </a>
+                            </li>
                         {{else}}
                             <li class="login desktop-menu"><a class="waves-effect main-icon-menu" href="/login" data-tooltip="Login"><i class="material-icons">perm_identity</i></a></li>
                         {{/if}}
@@ -24,21 +43,27 @@
                             </a>
                         </li>
                         <li>
+                            <a class="refresh-list waves-effect" href="#">
+                                <i class="mdi-navigation-refresh"></i>
+                                <span class="link-text">Refresh</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="waves-effect" href="/addServiceEndpoint">
                                 <i class="mdi-content-add"></i>
                                 <span class="link-text">Add service</span>
                             </a>
                         </li>
                         <li>
-                            <a class="waves-effect" href="#">
-                                <i class="mdi-navigation-refresh"></i>
-                                <span class="link-text">Refresh</span>
+                            <a class="waves-effect" href="/editServiceEndpoint">
+                                <i class="material-icons">mode_edit</i>
+                                <span class="link-text">Edit service</span>
                             </a>
                         </li>
                         <li>
                             <a class="waves-effect" href="#">
-                                <i class="mdi-action-alarm"></i>
-                                <span class="link-text">Set alarm</span>
+                                <i class="material-icons">exit_to_app</i>
+                                <span class="link-text">Log out</span>
                             </a>
                         </li>
 
