@@ -29,7 +29,7 @@
                         </a>
                     </span>
                     <br />
-                    <span class="status {{#if equals lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
+                    <span class="status {{#if equals ep.lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
                         LATEST STATUS <span class="status__code">{{lastStatusCode}}</span>
                     </span><br />
                     <span class="timestamp">less than minute ago
@@ -38,6 +38,11 @@
                     <i class="dnd__handle  material-icons">shuffle</i>
                     <br />
                 </div>
+                {{#if editMode}}
+                    {{#if currentUser}}
+                        <a class="modal-trigger status__card-edit" href="#edit-service-form"><i class="card__reveal-more material-icons">mode_edit</i></a>
+                    {{/if}}
+                {{/if}}
             </div>
 
             <div class="card-reveal">
