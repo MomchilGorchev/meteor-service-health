@@ -3,8 +3,7 @@
  */
 
 Template.registerHelper('endpoints', function(){
-    //console.log(Endpoints.find({}, {sort: {order: -1}}));
-    return Endpoints.find();
+    return Endpoints.find({}, {sort: {order: -1}});
 });
 
 Template.registerHelper('endpointsCount', function(){
