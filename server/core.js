@@ -20,16 +20,16 @@ function Core(){
 }
 // Instantiate
 core = new Core;
-
-// TODO implement with methods
-Endpoints.allow({
-    insert: function(){
-        return true;
-    },
-    update: function(){
-        return true;
-    },
-    remove: function(){
-        return true;
-    }
-});
+//
+//// TODO implement with methods
+//Endpoints.allow({
+//    insert: function(){
+//        return true;
+//    },
+//    update: function(){
+//        return true;
+//    },
+//    remove: function(){
+//        return true;
+//    }
+//});

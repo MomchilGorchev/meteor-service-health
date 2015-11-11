@@ -1,5 +1,5 @@
 <template name="statusCard">
-    <div class="card__wrapper">
+    <div class="card__wrapper" data-order="{{../order}}">
         <div data-itemid="{{../_id}}" class="card service-card
             {{#if equals ../status 'red'}}
                 card-fail

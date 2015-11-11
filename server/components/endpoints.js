@@ -45,6 +45,7 @@ Meteor.startup(function(){
                     var existingEntries = Endpoints.find().count();
                     service.order = existingEntries + 1;
                     // And insert to DB
+                    console.log('Before insert', service);
                     return Endpoints.insert(service);
                 } else {
                     // Throw an error for not valid URL
