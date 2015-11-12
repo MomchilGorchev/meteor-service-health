@@ -60,3 +60,9 @@ This is application is meant to be used mainly by developers that are implementi
 
 #### Developer information
 This app is still in progress and it is not deployed anywhere yet but it will be soon. If you want to have a look and start playing with it, install MeteorJS, clone the repository and run it locally
+
+
+#### License
+Licensed under The MIT License.
+
+Please see the [LICENSE](https://github.com/MomchilGorchev/meteor-service-health/blob/master/LICENSE.md) file
