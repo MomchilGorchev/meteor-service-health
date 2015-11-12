@@ -11,6 +11,7 @@ This is application is meant to be used mainly by developers that are implementi
 - Auto calling of the services every minute
 - Ability to quickly filter the service list
 - Ability to manually set status, e.g - "In maintenance" or similar
+- Mobile device optimised
 - Password protected
 
 
