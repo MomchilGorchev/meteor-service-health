@@ -2,9 +2,11 @@
 MeteorJS app to keep track of services/endpoints availability
 
 #### Description
+***
 This is application is meant to be used mainly by developers that are implementing APIs/API calls or any work that is related to Service Oriented Architecture. The Meteor's server layer provides the ability to call all endpoints without worring about the Cross-Origin policy. It is also initiating the external calls into a asynchronous manner, so the UI doesn't get freezed while the backend is waiting for the services response.
 
 #### Features
+***
 - Simple UI using the Material Design pattern - materialize.css@0.97.2
 - Full CRUD possibilities on the DB entries from the UI
 - Upload a JSON file or create endpoints one by one
@@ -16,6 +18,7 @@ This is application is meant to be used mainly by developers that are implementi
 
 
 #### To-Do
+***
 - Set alarm if service reports status different than 200
 - Be able to dynamically create categories
 - Lazy load/Lazy service call - Paginate the service list and call only the services that are visible on the page.
@@ -25,6 +28,7 @@ This is application is meant to be used mainly by developers that are implementi
 
 
 #### Package list
+***
 ##### _In the time of writing_
 
 - _accounts-password_        1.1.4  Password support for accounts
@@ -59,10 +63,12 @@ This is application is meant to be used mainly by developers that are implementi
 
 
 #### Developer information
+***
 This app is still in progress and it is not deployed anywhere yet but it will be soon. If you want to have a look and start playing with it, install MeteorJS, clone the repository and run it locally
 
 
 #### License
+***
 Licensed under The MIT License.
 
 Please see the [LICENSE](https://github.com/MomchilGorchev/meteor-service-health/blob/master/LICENSE.md) file
