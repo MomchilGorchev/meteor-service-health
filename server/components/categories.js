@@ -17,7 +17,7 @@ Meteor.startup(function() {
 
                 log(categories[i]);
 
-
+                // TODO - save to collection
 
             }
 

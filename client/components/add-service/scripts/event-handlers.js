@@ -90,36 +90,43 @@ Template.addServiceEndpoint.events({
     //
     //},
 
+    /**
+     * Save - for new categories
+     * @param e
+     * @param t
+     */
     'click #save_category_list': function(e, t){
 
+        // Cache elements
         var trigger = e.currentTarget,
             parentCol = trigger.parentNode,
             parentRow = parentCol.parentNode,
             textArea = parentRow.querySelector('#new_categories');
 
-        log(textArea);
+        //log(textArea);
 
+        // Validate the inut
         if(!textArea.value || textArea.value.length < 2){
             Materialize.toast('Please specify at least one category', 3000);
         } else {
 
+            // Read the list from the text area
             var catList = textArea.value.split(/[ ,]+/),
                 checkBoxes = {
                     addToCurrent: parentCol.querySelector('#add_to_current').checked,
                     saveForLater: parentCol.querySelector('#save_for_later').checked
                 };
 
-            log(catList);
-
+            //log(catList);
             //log(checkBoxes);
 
+            // If add to current is selected
             if(checkBoxes.addToCurrent){
 
                 // TEMP - TODO implement nice display of the categories
                 var catDisplay = document.createElement('p');
                 catDisplay.innerHTML = '<p>'+ textArea.value +'</p>';
                 parentRow.appendChild(catDisplay);
-
             }
 
             // If Save checkbox is checked
@@ -130,10 +137,7 @@ Template.addServiceEndpoint.events({
                    err ? Materialize.toast('Error: '+ err.message , 3000)
                        : Materialize.toast('Categories saved!', 3000);
                });
-
             }
-
         }
-
     }
 });
