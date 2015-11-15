@@ -13,9 +13,6 @@ accounts-password
 accounts-ui-unstyled
 tomi:upload-server
 tomi:upload-jquery
-velocity:core
-sanjo:jasmine
-velocity:html-reporter
 tinytest
 rubaxa:sortable
 meteortoys:allthings
