@@ -77,5 +77,27 @@ Template.addServiceEndpoint.events({
                 '</div>';
             parentRow.insertAdjacentHTML('afterend', newField);
         }
+    },
+
+    // If i decide to implement 'turn-into-a-label' functionaliry
+    // when comma is pressed
+    //'keyup #new_categories': function(e, t){
+    //
+    //    console.log(e.keyCode);
+    //    // keyCode 188 = comma
+    //
+    //},
+
+    'click #save_category_list': function(e, t){
+
+        var trigger = e.currentTarget,
+            parentCol = trigger.closest('.col'),
+            checkBoxes = {
+                addToCurrent: parentCol.querySelector('#add_to_current'),
+                saveForLater: parentCol.querySelector('#save_for_later')
+            };
+
+        log(checkBoxes);
+
     }
 });
