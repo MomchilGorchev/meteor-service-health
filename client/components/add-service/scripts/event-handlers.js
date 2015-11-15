@@ -55,14 +55,23 @@ Template.addServiceEndpoint.events({
             // Add the markup to the DOM
             var newField =
                 '<div class="row">'+
-                    '<div class="input-field col s10">'+
+                    '<div class="input-field col s6">'+
                         '<i class="material-icons prefix">assignment</i>'+
                         '<label for="new_categories">Comma separated list of categories</label>'+
-                        '<textarea id="new_categories" class="materialize-textarea"></textarea>'+
+                        '<textarea id="new_categories" rows="5" class="materialize-textarea"></textarea>'+
                     '</div>'+
-                    '<div class="input-field col s2">'+
-                        '<button class="btn waves-effect waves-light" type="submit" name="action">'+
-                            '<i class="material-icons">cloud_upload</i>'+
+                    '<div class="input-field col s6">'+
+                        '<p>'+
+                            '<input type="checkbox" id="add_to_current" checked="checked" />'+
+                            '<label for="add_to_current">Add to the current</label>'+
+                        '</p>'+
+                        '<p>'+
+                            '<input type="checkbox" id="save_for_later" checked="checked" />'+
+                            '<label for="save_for_later">Save for later use</label>'+
+                        '</p>' +
+                        '<br />'+
+                        '<button id="save_category_list" class="btn waves-effect waves-light grey darken-1" type="button">'+
+                            'Save'+
                         '</button>'+
                     '</div>'+
                 '</div>';
