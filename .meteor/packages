@@ -9,7 +9,6 @@ iron:router
 http
 
 
-bjwiley2:server-watch
 accounts-password
 accounts-ui-unstyled
 tomi:upload-server
