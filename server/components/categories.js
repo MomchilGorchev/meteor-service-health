@@ -17,7 +17,17 @@ Meteor.startup(function() {
 
                 log(categories[i]);
 
-                // TODO - save to collection
+                var newC = {
+                    name: categories[i],
+                    created: Date.now(),
+                    owner: Meteor.userId()
+                };
+
+                log(newC);
+
+                if(Categories.find({name: newC.name}).count() === 0){
+                    Categories.insert(newC);
+                }
 
             }
 

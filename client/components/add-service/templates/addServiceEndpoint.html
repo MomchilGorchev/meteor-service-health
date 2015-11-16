@@ -42,8 +42,9 @@
                         <div class="input-field col s6">
                             <select id="service_category" class="validate">
                                 <option value="" disabled selected>Choose your option</option>
-                                <option value="private">Private</option>
-                                <option value="public">Public</option>
+                                {{#each catData}}
+                                    <option value="{{name}}">{{name}}</option>
+                                {{/each}}
                                 <option value="create">Create category</option>
                             </select>
                             <label for="service_category">Service Category</label>

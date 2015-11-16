@@ -33,3 +33,16 @@ core = new Core;
 //        return true;
 //    }
 //});
+
+
+if(Meteor.isServer){
+
+    Meteor.publish('endpoints', function(){
+        return Endpoints.find();
+    });
+
+    Meteor.publish('categories', function(){
+        return Categories.find({owner: this.userId});
+    });
+
+}

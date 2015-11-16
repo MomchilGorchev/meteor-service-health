@@ -156,6 +156,7 @@ Meteor.startup(function(){
                     error = true;
 
                     // TODO Implement send email here
+                    // If alert is set for this service
                 }
 
                 // Keep the orange status

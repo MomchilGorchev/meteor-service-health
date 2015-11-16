@@ -101,7 +101,8 @@ Template.addServiceEndpoint.events({
         var trigger = e.currentTarget,
             parentCol = trigger.parentNode,
             parentRow = parentCol.parentNode,
-            textArea = parentRow.querySelector('#new_categories');
+            textArea = parentRow.querySelector('#new_categories'),
+            selectDropdown = t.find('#service_category');
 
         //log(textArea);
 
@@ -136,6 +137,7 @@ Template.addServiceEndpoint.events({
                    // Show message toast based on the response
                    err ? Materialize.toast('Error: '+ err.message , 3000)
                        : Materialize.toast('Categories saved!', 3000);
+                         $(selectDropdown).material_select();
                });
             }
         }
