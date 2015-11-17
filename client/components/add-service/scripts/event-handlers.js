@@ -137,6 +137,8 @@ Template.addServiceEndpoint.events({
                    // Show message toast based on the response
                    err ? Materialize.toast('Error: '+ err.message , 3000)
                        : Materialize.toast('Categories saved!', 3000);
+                        // Temp - re-init the select, not good as the arrow gets appended again
+                        // Needs another way of displaying
                          $(selectDropdown).material_select();
                });
             }
