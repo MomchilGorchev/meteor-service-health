@@ -30,7 +30,7 @@
                     </span>
                     <br />
                     <span class="status {{#if equals ../lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
-                        LATEST STATUS <span class="status__code">{{../lastStatusCode}}</span>
+                        LATEST STATUS <span class="status__code activator">{{../lastStatusCode}}</span>
                     </span><br />
                     <span class="timestamp">less than minute ago
                         <a class="card-more-info activator"> More info</a>
@@ -46,7 +46,10 @@
             </div>
 
             <div class="card-reveal">
-                <span class="card-title grey-text text-darken-4">{{../url}} <i class="card__reveal-close material-icons">clear</i></span>
+                <span class="card-title grey-text text-darken-4">
+                    <a class="inline" href="{{../url}}" target="_blank">{{../url}}</a>
+                    <i class="card__reveal-close material-icons">clear</i>
+                </span>
                 <p>
                     {{#if equals ../status 'red'}}
                         This host is unreachable or there is no internet connection

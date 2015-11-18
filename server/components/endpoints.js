@@ -161,7 +161,7 @@ Meteor.startup(function(){
                     // Or look for 'updated manually' flag (not implemented)
                     if(current.status === 'orange' || result.statusCode !== 200){
                         actualStatus = 'orange';
-                    } else if(result.statusCode === '501'){
+                    } else if(result.statusCode === '503'){
                         actualStatus = 'red';
                     } else {
                         actualStatus = 'green';
@@ -183,7 +183,7 @@ Meteor.startup(function(){
                     //error = true;
 
                     current.status = 'red';
-                    current.lastStatusCode = '501'
+                    current.lastStatusCode = '503';
 
                     // TODO Implement send email here
                     // If alert is set for this service
