@@ -131,7 +131,7 @@ Meteor.startup(function(){
          */
         checkServicesStatus: function(){
 
-            //this.unblock();
+            this.unblock();
             // Get the DB data
             var allServices = Endpoints.find().fetch(),
                 error = false,
@@ -144,53 +144,41 @@ Meteor.startup(function(){
                 log('Calling '+ current.url);
                 // 'GET' the URL
                 // TODO - implement it to work
-                try{
-                    result = HTTP.get(current.url, {},
-                        function(error, response){
-                            if(error){
-                                log(error);
-                            } else {
-                                log(response);
 
-                                // Keep the orange status
-                                if(current.status === 'orange' || result.statusCode !== 200){
-                                    actualStatus = 'orange';
-                                } else if(result.statusCode === '501'){
-                                    actualStatus = 'red';
-                                } else {
-                                    actualStatus = 'green';
-                                }
+                result = HTTP.get(current.url, {});
+                console.log(result.statusCode);
 
-                                // Update with new response data
-                                current.lastStatusCode = result.statusCode;
-                                current.status = actualStatus;
-
-                                // [DEBUG]
-                                //console.log('updateEndpointStatus called with:', service);
-
-                                // Update the DB
-                                Meteor.call('updateEndpointStatus', current, function(res, err){
-                                    //err ? console.log(err) : console.log(res);
-                                });
-                            }
-                        }
-                    );
-                    //console.log(result);
-
-
+                // Keep the orange status
+                if(current.status === 'orange' || result.statusCode !== 200){
+                    actualStatus = 'orange';
+                } else if(result.statusCode === '501'){
+                    actualStatus = 'red';
+                } else {
+                    actualStatus = 'green';
                 }
-                catch(e){
 
-                    // Host is unreachable
-                    console.log(e);
-                    //var statusCode = JSON.stringify(e);
-                    // TODO handle all error codes
-                    result.statusCode = '501';
-                    error = true;
+                // Update with new response data
+                current.lastStatusCode = result.statusCode;
+                current.status = actualStatus;
 
-                    // TODO Implement send email here
-                    // If alert is set for this service
-                }
+                // [DEBUG]
+                //console.log('updateEndpointStatus called with:', service);
+
+                // Update the DB
+                Meteor.call('updateEndpointStatus', current, function(res, err){
+                    //err ? console.log(err) : console.log(res);
+                });
+
+                // Host is unreachable
+                //console.log(e);
+                ////var statusCode = JSON.stringify(e);
+                //// TODO handle all error codes
+                //result.statusCode = '501';
+                //error = true;
+
+                // TODO Implement send email here
+                // If alert is set for this service
+
             }
             return !error;
         }
