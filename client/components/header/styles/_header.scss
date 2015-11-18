@@ -1,3 +1,13 @@
+// ----------------------------------
+// HEADER RULES
+// ----------------------------------
+
+.shc__logo{
+
+  height: 47px;
+
+}
+
 .main-navbar{
   background-color: $header-blue;
 }
@@ -16,7 +26,9 @@ h1{
 
 span.page-name{
   position: relative;
-  left:10px;
+  left:-10px;
+  top:-4px;
+  font-size:0.7em;
 }
 
 header{
@@ -63,6 +75,7 @@ nav{
   .nav-wrapper{
     i{
       display:inline-block;
+      padding-top: 10px;
     }
     .link-text{
       margin-top: -70px;
