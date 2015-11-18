@@ -38,6 +38,10 @@ Template.registerHelper('endpointsCount', function(){
 
 });
 
+Template.registerHelper('currentlyReloading', function(){
+    return Session.get('reloading');
+});
+
 Template.registerHelper('equals', function (a, b) {
     return a === b;
 });

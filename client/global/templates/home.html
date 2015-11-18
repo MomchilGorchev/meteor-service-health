@@ -34,6 +34,9 @@
                     <span class="status status--green">Up: {{endpointsCount.green}}</span>
                     <span class="status status--red">Down: {{endpointsCount.red}}</span>
                     <span class="status status--orange">Intermittent: {{endpointsCount.orange}}</span>
+                    {{#if currentlyReloading}}
+                        <span class="status__reloading"><i class="material-icons rotating">cached</i></span>
+                    {{/if}}
                 </div>
             </div>
             <div class="row cards__holder">

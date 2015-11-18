@@ -38,11 +38,6 @@ Meteor.startup(function(){
     // Call all services
     Meteor.call('checkServicesStatus');
 
-    // Assign a call every minute
-    Meteor.setInterval(function(){
-        Meteor.call('checkServicesStatus');
-    }, 1000 * 60);
-
     // Cache some npm packages
     FS = Npm.require('fs');
     Future = Npm.require('fibers/future');

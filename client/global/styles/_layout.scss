@@ -48,6 +48,15 @@ body{
     color: $status-issue;
   }
 
+  &__reloading{
+    position: relative;
+    left: 10px;
+    i {
+      position: absolute;
+      top: -5px;
+    }
+  }
+
 }
 
 
