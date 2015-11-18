@@ -1,3 +1,6 @@
+// ----------------------------
+// GLOBAL VARIABLES
+// ----------------------------
 
 @import url(http://static.powaweb.io/branding/fonts/din.css);
 /* CSS declarations go here */
@@ -8,3 +11,12 @@ $status-issue: #f48543;
 $status-not-ok:#D95D5D;
 
 $button-teal: rgb(38, 166, 154);
+
+
+//breakpoints
+$breakpoint-up: 1200px !default;
+$breakpoint-down: 1199px !default;
+$breakpoint-st: 992px !default; // st == standard ?
+$breakpoint-tbl: 610px !default;
+//NOTE: extra breakpoint if needed
+$breakpoint-ex: 480px !default;

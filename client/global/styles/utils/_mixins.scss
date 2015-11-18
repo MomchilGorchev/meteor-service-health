@@ -1,0 +1,27 @@
+// --------------------------
+// GLOBAL MIXINS
+// --------------------------
+
+
+//use: @include breakpoint(up) { ... };
+@mixin breakpoint($class) {
+  @if $class == up {
+    @media (min-width: $breakpoint-up) { @content; }
+  }
+  @else if $class == down {
+    @media (max-width: $breakpoint-down) { @content; }
+  }
+  @else if $class == st {
+    @media (max-width: $breakpoint-st) { @content; }
+  }
+  @else if $class == tbl {
+    @media (max-width: $breakpoint-tbl) { @content; }
+  }
+  @else if $class == ex {
+    @media (max-width: $breakpoint-ex) { @content; }
+  }
+
+  @else {
+    @warn "Breakpoint mixin supports: up, down, st, ex";
+  }
+}
