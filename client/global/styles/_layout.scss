@@ -7,6 +7,8 @@
 $ringWidth: 100px;
 $ringColor: #cc4e58;
 
+$green: #63A97A;
+
 @mixin ring($size, $color){
 
   -webkit-border-radius: 50%;
@@ -31,6 +33,10 @@ body{
 
 }
 
+
+.green_status{
+  color: $green;
+}
 
 
 .ring{

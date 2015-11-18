@@ -145,12 +145,12 @@ Meteor.startup(function(){
             for(var i = 0, count = allServices.length; i < count; i++){
                 var current = allServices[i];
                 var result = {};
-                log('Calling '+ current.url);
+                //log('Calling '+ current.url);
                 // 'GET' the URL
                 // TODO - implement it to work
 
                 result = HTTP.get(current.url, {});
-                console.log(result.statusCode);
+                //console.log(result.statusCode);
 
                 // Keep the orange status
                 if(current.status === 'orange' || result.statusCode !== 200){
