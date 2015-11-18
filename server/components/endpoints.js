@@ -35,6 +35,10 @@ Meteor.startup(function(){
          * @param service - object containing the new service data
          * @returns {*} - _id of the newly created entry
          */
+
+        // TODO - Implement check if that service already exist and dont add it if yes
+        // TODO - also implement immediate service check once its added
+        // TODO - also investigate why is all that empty space in the service name
         addEndpoint: function(service){
             if(service){
                 // Validate the service URL
