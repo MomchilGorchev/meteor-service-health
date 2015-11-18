@@ -16,7 +16,11 @@
     <div class="row">
         <div id="main__content" class="col s12">
             <div class="row">
-                <div class="quick__info">Total: {{endpointsCount}}</div>
+                <div class="quick__info">Total: {{endpointsCount.total}}
+                    <span class="status status--green">Up: {{endpointsCount.green}}</span>
+                    <span class="status status--red">Down: {{endpointsCount.red}}</span>
+                    <span class="status status--orange">Intermittent: {{endpointsCount.orange}}</span>
+                </div>
             </div>
             <div class="row cards__holder">
                 {{#if equals endpoints 0}}
