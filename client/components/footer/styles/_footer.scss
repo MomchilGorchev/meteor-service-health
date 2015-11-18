@@ -8,4 +8,18 @@ footer{
   height: 100px;
   background: #2980B9;
   color: white;
+  padding-top:15px;
+
+  & .footer__text{
+    a{
+
+      color: darken(white, 20%);
+
+      &:hover{
+        text-decoration: underline;
+      }
+
+    }
+
+  }
 }
