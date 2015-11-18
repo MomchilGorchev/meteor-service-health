@@ -142,46 +142,59 @@ Meteor.startup(function(){
                 actualStatus = null;
 
             // Iterate over all entries
+            // This needs to be updated when pagination is implemented
+            // Right now it doesn't scale
             for(var i = 0, count = allServices.length; i < count; i++){
                 var current = allServices[i];
                 var result = {};
+
+                // [DEBUG]
                 //log('Calling '+ current.url);
-                // 'GET' the URL
-                // TODO - implement it to work
 
-                result = HTTP.get(current.url, {});
-                //console.log(result.statusCode);
+                // Try to reach the destination URL
+                try{
+                    // Plain GET request, needs to be updated when
+                    // Specifying a method is implemented
+                    result = HTTP.get(current.url, {});
 
-                // Keep the orange status
-                if(current.status === 'orange' || result.statusCode !== 200){
-                    actualStatus = 'orange';
-                } else if(result.statusCode === '501'){
-                    actualStatus = 'red';
-                } else {
-                    actualStatus = 'green';
+                    // Keep the orange status
+                    // Or look for 'updated manually' flag (not implemented)
+                    if(current.status === 'orange' || result.statusCode !== 200){
+                        actualStatus = 'orange';
+                    } else if(result.statusCode === '501'){
+                        actualStatus = 'red';
+                    } else {
+                        actualStatus = 'green';
+                    }
+
+                    // [DEBUG]
+                    log('Status color code after ping: '+ current.status);
+
+                    // Update with new response data
+                    current.lastStatusCode = result.statusCode;
+                    current.status = actualStatus;
+
+                } catch(e){
+
+                    // [DEBUG]
+                    log(e);
+                    //// TODO handle all error codes
+                    //result.statusCode = '501';
+                    //error = true;
+
+                    current.status = 'red';
+                    current.lastStatusCode = '501'
+
+                    // TODO Implement send email here
+                    // If alert is set for this service
+
                 }
-
-                // Update with new response data
-                current.lastStatusCode = result.statusCode;
-                current.status = actualStatus;
 
                 // [DEBUG]
                 //console.log('updateEndpointStatus called with:', service);
 
                 // Update the DB
-                Meteor.call('updateEndpointStatus', current, function(res, err){
-                    //err ? console.log(err) : console.log(res);
-                });
-
-                // Host is unreachable
-                //console.log(e);
-                ////var statusCode = JSON.stringify(e);
-                //// TODO handle all error codes
-                //result.statusCode = '501';
-                //error = true;
-
-                // TODO Implement send email here
-                // If alert is set for this service
+                Meteor.call('updateEndpointStatus', current);
 
             }
             return !error;
