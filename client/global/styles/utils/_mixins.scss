@@ -3,6 +3,18 @@
 // --------------------------
 
 
+
+// Creates a spinner-like circle
+@mixin ring($size, $color){
+
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: $size;
+  height: $size;
+  border-top: 2px solid $color;
+}
+
 //use: @include breakpoint(up) { ... };
 @mixin breakpoint($class) {
   @if $class == up {
