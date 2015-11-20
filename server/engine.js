@@ -20,13 +20,15 @@ Meteor.startup(function(){
             for(var i = 0; i < JSONData.length; i++){
                 var current = JSONData[i];
 
-                // Select by URL (preventing doubled entries)
-                var endPoint = Endpoints.find({url: current.url}, {}).fetch();
-                if(!endPoint.length){
-                    // Insert
-                    Endpoints.insert(current);
-                }
+                // Add every record to the DB
+                // addEndpoint method checks for duplicates and validate the data
+                Meteor.call('addEndpoint', current, function(err, res){
+                    log(err ? err : res);
+                });
             }
+
+            // Init check
+            Meteor.call('checkServicesStatus');
 
         } catch(e){
             console.log(e);

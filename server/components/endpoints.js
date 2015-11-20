@@ -43,14 +43,23 @@ Meteor.startup(function(){
             if(service){
                 // Validate the service URL
                 if(service.url.match(core.VALID_URL) !== null){
-                    // Reset status
-                    service.status = null;
-                    // Find the next available id
-                    var existingEntries = Endpoints.find().count();
-                    service.order = existingEntries + 1;
-                    // And insert to DB
-                    console.log('Before insert', service);
-                    return Endpoints.insert(service);
+
+
+                    var existingRecord = Endpoints.find({url: service.url}, {}).fetch();
+                    if(!existingRecord.length){
+
+                        // Reset status
+                        service.status = null;
+                        // Find the next available id
+                        var existingEntries = Endpoints.find().count();
+                        service.order = existingEntries + 1;
+                        // And insert to DB
+                        // log('Before insert', service);
+                        return Endpoints.insert(service);
+                    } else {
+                        //throw new Meteor.Error(409, 'Service URL already exist');
+                    }
+
                 } else {
                     // Throw an error for not valid URL
                     throw new Meteor.Error(500, 'Not a valid URL: ['+ service.url +']');
@@ -135,6 +144,7 @@ Meteor.startup(function(){
          */
         checkServicesStatus: function(){
 
+            // Allow other messages to use the DDP
             this.unblock();
             // Get the DB data
             var allServices = Endpoints.find().fetch(),
@@ -154,7 +164,7 @@ Meteor.startup(function(){
                 // Try to reach the destination URL
                 try{
                     // Plain GET request, needs to be updated when
-                    // Specifying a method is implemented
+                    // specifying a method is implemented
                     result = HTTP.get(current.url, {});
 
                     // Keep the orange status
