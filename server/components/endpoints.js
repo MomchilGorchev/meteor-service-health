@@ -120,7 +120,7 @@ Meteor.startup(function(){
             if(service){
                 try{
                     // Select by URL and update
-                    Endpoints.update(
+                    return Endpoints.update(
                         {
                             url: service.url
                         },
@@ -139,37 +139,34 @@ Meteor.startup(function(){
         },
 
         /**
-         * Run HTTP call for each entry in the DB
-         * @returns {boolean}
+         * Ping single service to check the status
+         * Built to be reusable from the client and internal server processes
+         * @param service - Object containing the service details
+         * @returns {any} - Returns the result of updateEndpointStatus method
          */
-        checkServicesStatus: function(){
+        checkSingleService: function(service){
 
-            // Allow other messages to use the DDP
-            this.unblock();
-            // Get the DB data
-            var allServices = Endpoints.find().fetch(),
-                error = false,
-                actualStatus = null;
+            // Validate the input
+            // This is necessary as this method is used by the client as well
+            check(service, Object);
 
-            // Iterate over all entries
-            // This needs to be updated when pagination is implemented
-            // Right now it doesn't scale
-            for(var i = 0, count = allServices.length; i < count; i++){
-                var current = allServices[i];
-                var result = {};
+            // Request the db entry and compare urls
+            // This is necessary as this method is used by the client as well
+            var dbEntry = Endpoints.findOne({_id: service._id}),
+                result, actualStatus;
 
-                // [DEBUG]
-                //log('Calling '+ current.url);
+            // If everything match
+            if(service.url === dbEntry.url){
 
-                // Try to reach the destination URL
+                // Init check call
                 try{
                     // Plain GET request, needs to be updated when
                     // specifying a method is implemented
-                    result = HTTP.get(current.url, {});
+                    result = HTTP.get(service.url, {});
 
                     // Keep the orange status
                     // Or look for 'updated manually' flag (not implemented)
-                    if(current.status === 'orange' || result.statusCode !== 200){
+                    if(dbEntry.status === 'orange' || result.statusCode !== 200){
                         actualStatus = 'orange';
                     } else if(result.statusCode === '503'){
                         actualStatus = 'red';
@@ -178,12 +175,13 @@ Meteor.startup(function(){
                     }
 
                     // [DEBUG]
-                    log('Status color code after ping: '+ current.status);
+                    log('Status color code after ping: '+ dbEntry.status);
 
                     // Update with new response data
-                    current.lastStatusCode = result.statusCode;
-                    current.status = actualStatus;
+                    dbEntry.lastStatusCode = result.statusCode;
+                    dbEntry.status = actualStatus;
 
+                // Catch any exceptions
                 } catch(e){
 
                     // [DEBUG]
@@ -192,8 +190,8 @@ Meteor.startup(function(){
                     //result.statusCode = '501';
                     //error = true;
 
-                    current.status = 'red';
-                    current.lastStatusCode = '503';
+                    dbEntry.status = 'red';
+                    dbEntry.lastStatusCode = '503';
 
                     // TODO Implement send email here
                     // If alert is set for this service
@@ -204,8 +202,38 @@ Meteor.startup(function(){
                 //console.log('updateEndpointStatus called with:', service);
 
                 // Update the DB
-                Meteor.call('updateEndpointStatus', current);
+                return Meteor.call('updateEndpointStatus', dbEntry);
 
+            }
+
+        },
+
+
+        /**
+         * Run HTTP call for each entry in the DB
+         * @returns {boolean}
+         */
+        checkServicesStatus: function(){
+
+            // Allow other messages to use the DDP
+            this.unblock();
+            // Get the DB data
+            var allServices = Endpoints.find().fetch(),
+                error = false;
+
+            // Iterate over all entries
+            // This needs to be updated when pagination is implemented
+            // Right now it doesn't scale
+            for(var i = 0, count = allServices.length; i < count; i++){
+                var current = allServices[i];
+
+                // [DEBUG]
+                //log('Calling '+ current.url);
+
+                // Call method to check single service
+                Meteor.call('checkSingleService', current, function(err, res){
+                    //log(err ? err : res);
+                });
             }
             return !error;
         }
