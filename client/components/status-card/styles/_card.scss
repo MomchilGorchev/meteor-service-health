@@ -105,6 +105,22 @@
 
 }
 
+.card__controls{
+  position: absolute;
+  top:-7px;
+  right: 5px;
+  a{
+    color: white;
+    &:hover{
+      color: darken(white, 15%);
+    }
+  }
+  li{
+    display:inline-block;
+    margin-left:5px;
+  }
+}
+
 .service__link{
   position: relative;
 }
@@ -184,35 +200,6 @@
 
         }
 
-      }
-    }
-    .card__reveal-more{
-      border-radius: 50%;
-      position: absolute;
-      top: 5px;
-      right: 30px;
-      &:hover{
-        color: darken(white, 20%);
-      }
-    }
-    .dnd__handle{
-
-      border-radius: 50%;
-      position: absolute;
-      top: 5px;
-      right: 5px;
-      &:hover{
-        color: darken(white, 20%);
-      }
-    }
-    .status__card-edit{
-      border-radius: 50%;
-      position: absolute;
-      top: 0;
-      right: 30px;
-      color: white;
-      &:hover{
-        color: darken(white, 20%);
       }
     }
   }

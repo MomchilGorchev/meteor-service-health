@@ -11,6 +11,27 @@
                 {{/if}}
             {{/if}}">
             <div class="card-content">
+                <ul class="card__controls">
+                    {{#if editMode}}
+                        {{#if currentUser}}
+                            <li>
+                                <a class="modal-trigger card__control" href="#edit-service-form">
+                                    <i class="card__reveal-more material-icons">mode_edit</i>
+                                </a>
+                            </li>
+                        {{/if}}
+                    {{/if}}
+                    <li>
+                        <a href="#" class="card__control card__reload">
+                            <i class="material-icons">cached</i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="card__control dnd__handle">
+                            <i class="material-icons">shuffle</i>
+                        </a>
+                    </li>
+                </ul>
                 <div class="card-title activator">
                     <span class="service__name activator">
                         <a href="{{../url}}" class="service__link" target="_blank">
@@ -24,14 +45,8 @@
                     <span class="timestamp">less than minute ago
                         <a class="card-more-info activator"> More info</a>
                     </span>
-                    <i class="dnd__handle  material-icons">shuffle</i>
                     <br />
                 </div>
-                {{#if editMode}}
-                    {{#if currentUser}}
-                        <a class="modal-trigger status__card-edit" href="#edit-service-form"><i class="card__reveal-more material-icons">mode_edit</i></a>
-                    {{/if}}
-                {{/if}}
             </div>
 
             <div class="card-reveal">
