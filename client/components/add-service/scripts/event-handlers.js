@@ -58,7 +58,7 @@ Template.addServiceEndpoint.events({
                     '<div id="new_category_row" class="row">'+
                         '<div class="input-field col s6">'+
                             '<i class="material-icons prefix">assignment</i>'+
-                            '<label for="new_categories">Comma separated list of categories</label>'+
+                            '<label for="new_categories" class="textarea-label">Comma separated list of categories</label>'+
                             '<textarea id="new_categories" rows="5" class="materialize-textarea"></textarea>'+
                         '</div>'+
                         '<div class="input-field col s6">'+

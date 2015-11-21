@@ -18,3 +18,41 @@
     }
   }
 }
+
+#createNewService{
+
+  .input-field{
+
+    .select-wrapper{
+      option{
+        padding-left:5px;
+      }
+    }
+
+    input, textarea{
+      background: #F3F3F3;
+      border-radius: 3px;
+    }
+
+    label{
+      margin-left:3.5rem;
+      &.active{
+        -webkit-transform: translateY(-150%);
+        -moz-transform: translateY(-150%);
+        -ms-transform: translateY(-150%);
+        -o-transform: translateY(-150%);
+        transform: translateY(-150%);
+      }
+
+      &.textarea-label.active{
+        color: $button-teal;
+      }
+
+      &.select-label{
+
+        margin-left:0.5rem;
+      }
+    }
+
+  }
+}
