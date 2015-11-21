@@ -34,9 +34,7 @@
                 </ul>
                 <div class="card__title activator">
                     <span class="service__name activator">
-                        <a href="{{../url}}" class="service__link" target="_blank">
-                            {{../name}}
-                        </a>
+                        <a href="{{../url}}" class="service__link" target="_blank">{{../name}}</a>
                     </span>
                     <br />
                     <span class="service__status {{#if equals ../lastStatusCode 200}} status__ok {{else}} status__not-ok {{/if}} activator">
@@ -54,17 +52,7 @@
                     <a class="inline" href="{{../url}}" target="_blank">{{../url}}</a>
                     <i class="card__reveal--close material-icons">clear</i>
                 </span>
-                <p>
-                    {{#if equals ../status 'red'}}
-                        This host is unreachable or there is no internet connection
-                    {{else}}
-                        {{#if equals ../status 'orange'}}
-                            There was some issues with this URL the last time it was called
-                        {{else}}
-                            {{../info}}
-                        {{/if}}
-                    {{/if}}
-                </p>
+                <p>{{#if equals ../status 'red'}}This host is unreachable or there is no internet connection{{else}}{{#if equals ../status 'orange'}}There was some issues with this URL the last time it was called{{else}}{{../info}}{{/if}}{{/if}}</p>
             </div>
         </div>
     </div>
