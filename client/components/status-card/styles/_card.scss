@@ -143,6 +143,11 @@
       &__name{
         font-size: 1.3rem;
         font-weight: 400;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 50%;
+        display: inline-block;
+        overflow: hidden;
         a{
           color: white;
           &:hover{
