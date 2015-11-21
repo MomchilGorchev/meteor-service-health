@@ -35,6 +35,28 @@ header{
   padding:20px;
   &.inner-header{
     float:left;
+    @include breakpoint(tbl){
+      float:none;
+      text-align: center;
+    }
+  }
+}
+
+.search-bar{
+  width: 30%;
+  max-width: 500px;
+  float: right;
+  background: $button-teal;
+  margin: 30px;
+  right: 1%;
+  position: absolute;
+  @include breakpoint(tbl){
+    float:none;
+    position: static;
+    width: 100%;
+    .search-label{
+      top:15px;
+    }
   }
 }
 
