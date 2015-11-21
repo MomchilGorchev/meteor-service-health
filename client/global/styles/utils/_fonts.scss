@@ -1,0 +1,24 @@
+// ---------------------
+// FONTS RULES
+// --------------------
+
+
+@import url(https://fonts.googleapis.com/css?family=Spinnaker|Jura:400,300);
+
+$header-font: Jura, 'sans-serif';
+$content-font: Spinnaker, 'sans-serif';
+
+// Loop to set rules for all h* tags
+@for $i from 1 through 6 {
+  // Global
+  h#{$i}{
+    font-family: $header-font;
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+}
+
+p, label, article, aside, a, li, button, option, span{
+  font-family: $content-font;
+  font-weight:300;
+}
