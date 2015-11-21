@@ -35,9 +35,6 @@ Meteor.startup(function(){
     }
     // <--- TEMP
 
-    // Call all services
-    Meteor.call('checkServicesStatus');
-
     // Cache some npm packages
     FS = Npm.require('fs');
     Future = Npm.require('fibers/future');

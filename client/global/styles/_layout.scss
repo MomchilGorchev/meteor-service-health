@@ -13,11 +13,11 @@ html, body{
 
 body{
 
-  display:flex;
-  flex-direction: column;
-  justify-content: space-between;
+  @include display-flex(column);
 
 }
+
+
 
 
 .status{
