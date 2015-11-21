@@ -1,5 +1,63 @@
-/* Import the necessary components here */
+// -----------------------------------
+// CARDS GRIND AND SINGLE CARD STYLES
+// -----------------------------------
 
+// Rules used once
+#main__content{
+  margin-top: 50px;
+}
+.modal.bottom-sheet{
+  max-height:75%;
+}
+.fs-large{
+  font-size: 2em;
+}
+.btn{
+  .material-icons{
+    position: relative;
+    top: 3px;
+    left: -10px;
+  }
+}
+.code{
+  background-color: rgb(242, 242, 236);
+  padding: 7px;
+  border-radius: 5px;
+}
+.no__service-placeholder{
+  text-align:center;
+  margin: 30px;
+}
+.delete__service{
+  margin-top: -70px;
+  button{
+    background: $status-not-ok;
+    &:hover{
+      background: lighten($status-not-ok, 10%);
+    }
+  }
+}
+
+// Tabs styles
+// Not being used
+//
+//.tabs{
+//  margin-bottom: 20px;
+//  .tab{
+//    a{
+//      color: $header-blue;
+//      &:hover{
+//        color: lighten($header-blue, 20%);
+//      }
+//    }
+//  }
+//  .indicator{
+//    background-color: $header-blue;
+//  }
+//}
+
+
+// GRID
 .cards__holder{
   display: -ms-Flexbox;
   -ms-box-orient: horizontal;
@@ -14,7 +72,13 @@
   -ms-flex-flow: row wrap;
   flex-flow: row wrap;
 
-  .card__wrapper{
+}
+
+// SINGLE CARD
+.card{
+  height:120px;
+
+  &__wrapper{
 
     flex-grow: 1;
     width: 31%;
@@ -22,154 +86,71 @@
     //opacity:0;
 
     @include breakpoint(st){
-        width: 48.5%;
+      width: 48.5%;
     }
 
     @include breakpoint(tbl){
       width: 99%;
     }
+
+    &.card-moving{
+      transform: rotate(-1deg);
+      -moz-transform: rotate(-1deg);
+      -webkit-transform: rotate(-1deg);
+      padding:0;
+
+      .card{
+        -webkit-box-shadow: 0 0 10px 0 black;
+        -moz-box-shadow: 0 0 10px 0 black;
+        box-shadow: 0 0 10px 0 black;    }
+    }
   }
-}
 
-#main__content{
-  margin-top: 50px;
-}
-
-.modal.bottom-sheet{
-  max-height:75%;
-}
-.fs-large{
-  font-size: 2em;
-}
-
-.btn{
-  .material-icons{
-    position: relative;
-    top: 3px;
-    left: -10px;
-  }
-}
-
-.code{
-  background-color: rgb(242, 242, 236);
-  padding: 7px;
-  border-radius: 5px;
-}
-.search-bar{
-  width: 30%;
-  max-width: 500px;
-  float: right;
-  background: $button-teal;
-  margin: 30px;
-  right: 1%;
-  position: absolute;
-}
-
-
-.no__service-placeholder{
-  text-align:center;
-  margin: 30px;
-}
-
-//TODO Optimize this styles
-
-.tabs{
-  margin-bottom: 20px;
-  .tab{
+  &__controls{
+    position: absolute;
+    top:-7px;
+    right: 5px;
     a{
-      color: $header-blue;
-      &:hover{
-        color: lighten($header-blue, 20%);
-      }
-    }
-  }
-  .indicator{
-    background-color: $header-blue;
-  }
-}
-
-
-.card-wrapper{
-
-  &.card-moving{
-    transform: rotate(-1deg);
-    -moz-transform: rotate(-1deg);
-    -webkit-transform: rotate(-1deg);
-    padding:0;
-
-    .card{
-      -webkit-box-shadow: 0 0 10px 0 black;
-      -moz-box-shadow: 0 0 10px 0 black;
-      box-shadow: 0 0 10px 0 black;    }
-  }
-
-}
-
-.card__controls{
-  position: absolute;
-  top:-7px;
-  right: 5px;
-  a{
-    color: white;
-    &:hover{
-      color: darken(white, 15%);
-    }
-  }
-  li{
-    display:inline-block;
-    margin-left:5px;
-  }
-}
-
-.service__link{
-  position: relative;
-}
-
-.service-card{
-  height:120px;
-  &.card-success{
-    background: $status-ok;
-  }
-  &.card-issue{
-    background: $status-issue;
-  }
-  &.card-fail{
-    background: $status-not-ok;
-  }
-  .card-image{
-    .endpoint__url{
-      position: absolute;
-      top: 10px;
-      left: 0;
       color: white;
-      width: 100%;
-      text-align: center;
-      font-size: 2em;
+      &:hover{
+        color: darken(white, 15%);
+      }
+    }
+    li{
+      display:inline-block;
+      margin-left:5px;
     }
   }
-  .card-content{
+
+  &__content{
+    padding:20px;
     color: white!important;
-    .status-display{
-      cursor: pointer;
-      font-size: 0.6em;
-      vertical-align: middle;
-      position: absolute;
-      left: 0;
-      i{
-        font-size: 2.3em;
+    .service{
+      &__timestamp{
+        font-style: italic;
+        &__more-info{
+
+          color: white;
+          text-decoration: underline;
+          padding: 3px 0 3px 15px;
+          font-size:0.8em;
+
+          &:hover{
+
+            color: darken(white, 10%);
+
+          }
+
+        }
       }
-      .color-code{
-        display:none;
-      }
-    }
-    .card-title{
-      font-size: 16px;
-      line-height: 25px;
-      .status__code{
+      &__status__code{
         font-weight:500;
         font-size: 1.3rem;
       }
-      .service__name{
+      &__link{
+        position: relative;
+      }
+      &__name{
         font-size: 1.3rem;
         font-weight: 400;
         a{
@@ -179,34 +160,14 @@
           }
         }
       }
-      .card__endpoint-url{
-        font-weight:600;
-        color:$header-blue;
-      }
-
-    }
-    .timestamp{
-      font-style: italic;
-      .card-more-info{
-
-        color: white;
-        text-decoration: underline;
-        padding: 3px 0 3px 15px;
-        font-size:0.8em;
-
-        &:hover{
-
-            color: darken(white, 10%);
-
-        }
-
-      }
     }
   }
-  .card-reveal{
-    .card-title{
-      font-size:1rem;
-      .card__reveal-close{
+
+  &__reveal{
+      .card-title{
+        font-size:1rem;
+      }
+      &--close{
         position: absolute;
         top: 5px;
         right: 5px;
@@ -215,16 +176,19 @@
           border: 1px solid black;
         }
       }
-    }
   }
-}
 
-.delete__service{
-  margin-top: -70px;
-  button{
+  &--success{
+    background: $status-ok;
+  }
+  &--issue{
+    background: $status-issue;
+  }
+  &--fail{
     background: $status-not-ok;
-    &:hover{
-      background: lighten($status-not-ok, 10%);
-    }
+  }
+  &__title{
+    font-size: 16px;
+    line-height: 25px;
   }
 }
