@@ -34,15 +34,3 @@ Template.header.rendered = function(){
 //        err ? console.log(err) : console.log(res);
 //    });
 //};
-
-Template.addServiceEndpoint.rendered = function(){
-    $('select').material_select();
-};
-
-Template.editServiceEndpoint.rendered = function(){
-    $('select').material_select();
-};
-
-Template.editServicesGrid.rendered = function(){
-    $('ul.tabs').tabs();
-};

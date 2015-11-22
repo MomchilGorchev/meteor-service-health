@@ -36,21 +36,24 @@ Template.addServiceEndpoint.events({
         }
     },
 
+    'mouseover .create-category-option': function(e, t){
+        log(e);
+    },
+
+
     /**
      * Insert new input filed when "Create category" is selected
      * from the category select menu
      * @param e
      * @param t
      */
-    'change #service_category': function(e, t){
+    'click #category__add-new': function(e, t){
 
         // Cache elements
         var el = e.currentTarget,
-            value = el.value,
             parentRow = el.closest('.row');
 
-        // If create selected
-        if(value === 'create'){
+
             // If that element is not appended already
             if(!t.find('#new_category_row')){
                 // Add the markup to the DOM
@@ -78,7 +81,7 @@ Template.addServiceEndpoint.events({
                     '</div>';
                 parentRow.insertAdjacentHTML('afterend', newField);
             }
-        }
+
     },
 
     // If i decide to implement 'turn-into-a-label' functionaliry
@@ -139,7 +142,8 @@ Template.addServiceEndpoint.events({
                        : Materialize.toast('Categories saved!', 3000);
                         // Temp - re-init the select, not good as the arrow gets appended again
                         // Needs another way of displaying
-                         $(selectDropdown).material_select();
+                        $(selectDropdown).material_select('destroy');
+                        $(selectDropdown).material_select();
                });
             }
         }

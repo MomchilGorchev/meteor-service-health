@@ -34,38 +34,55 @@
                 <h6>Please fill all the fields</h6>
                 <form id="createNewService">
                     <div class="row">
-                        <div class="input-field col s6">
-                            <i class="mdi-action-info prefix"></i>
-                            <input  id="service_name" type="text" class="validate">
-                            <label for="service_name">Service Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <select id="service_category" class="validate">
-                                <option value="" disabled selected>Choose your option</option>
-                                {{#each catData}}
-                                    <option value="{{name}}">{{name}}</option>
-                                {{/each}}
-                                <option value="create">Create category</option>
-                            </select>
-                            <label for="service_category" class="select-label">Service Category</label>
-                        </div>
-                    </div>
-                    <div class="row">
                         <div class="input-field col s12">
-                            <i class="mdi-social-public prefix"></i>
+                            <i class="material-icons prefix">public</i>
                             <input id="service_url" type="text" class="validate">
                             <label for="service_url">Service URL</label>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="input-field col s6">
+                            <i class="material-icons prefix">mode_comment</i>
+                            <input  id="service_name" type="text" class="validate">
+                            <label for="service_name">Service Name</label>
+                        </div>
+                        {{!--
+                        <div class="input-field col s6">
+                            <select id="service_category" class="validate">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="create"><span class="create-category-option">Create category</span></option>
+                                {{#each catData}}
+                                    <option value="{{name}}">{{name}}</option>
+                                {{/each}}
+                            </select>
+                            <label for="service_category" class="select-label">Service Category</label>
+                        </div>
+                        --}}
+                    </div>
+                    <div class="row">
                         <div class="input-field col s12">
-                            <i class="mdi-editor-mode-edit prefix"></i>
+                            <i class="material-icons prefix">insert_comment</i>
+                            <div class="categories__outerwrap">
+                                {{#each catData}}
+                                    <span>
+                                        <input type="checkbox" id="{{name}}" class="category__checkbox" />
+                                        <label for="{{name}}">{{name}}</label>
+                                    </span>
+                                {{/each}}
+                            </div>
+                            <a href="#" id="category__add-new">+ Add new Category</a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <i class="material-icons prefix">content_paste</i>
                             <label for="service_info" class="textarea-label">Any additional information you would like to display about this service</label>
                             <textarea id="service_info" class="materialize-textarea"></textarea>
                         </div>
                     </div>
                     <div class="row">
-                        <p><i class="material-icons">mode_comment</i> The new endpoint will be checked and added to the grid right away</p>
+                        <p><i class="material-icons prefix">info_outline</i> The new endpoint will be checked and added to the grid right away</p>
                     </div>
                     <button class="btn waves-effect waves-light" type="submit" name="action">
                         <i class="material-icons">cloud_upload</i>Submit
