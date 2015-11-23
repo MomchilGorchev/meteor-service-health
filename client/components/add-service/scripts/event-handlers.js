@@ -64,7 +64,7 @@ Template.addServiceEndpoint.events({
                             '<label for="new_categories" class="textarea-label">Comma separated list of categories</label>'+
                             '<textarea id="new_categories" rows="5" class="materialize-textarea"></textarea>'+
                         '</div>'+
-                        '<div class="input-field col s6">'+
+                        '<div id="checkboxes-holder" class="input-field col s6">'+
                             '<p>'+
                                 '<input type="checkbox" id="add_to_current" checked="checked" />'+
                                 '<label for="add_to_current">Add to the current</label>'+

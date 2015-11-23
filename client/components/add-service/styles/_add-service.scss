@@ -19,6 +19,39 @@
   }
 }
 
+#new_category_row{
+
+  border: 1px dashed;
+
+  .input-field{
+
+    p{
+      margin: 0;
+
+      label{
+        margin-left: 0;
+      }
+
+      &:first-child{
+        margin-top: -15px;
+      }
+    }
+    button{
+      margin: 12px 0 0 15px;
+    }
+
+    &#checkboxes-holder{
+      padding-left: 40px;
+    }
+
+  }
+}
+
+#category__add-new{
+  margin: 20px 50px;
+  display: inline-block;
+}
+
 #createNewService{
 
   .input-field{
@@ -32,6 +65,13 @@
     input, textarea{
       background: #F3F3F3;
       border-radius: 3px;
+      padding-left: 15px;
+      padding-right: 15px;
+      max-width: 90%;
+    }
+
+    textarea{
+      min-height:70px;
     }
 
     label{
@@ -42,6 +82,10 @@
         -ms-transform: translateY(-150%);
         -o-transform: translateY(-150%);
         transform: translateY(-150%);
+      }
+
+      &.static{
+        position: static;
       }
 
       &.textarea-label.active{
