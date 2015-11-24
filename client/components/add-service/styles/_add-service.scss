@@ -47,8 +47,18 @@
   }
 }
 
+#categories-selected{
+  margin: 20px 50px 0;
+  label.static.no-input{
+    margin-left:0;
+  }
+  span{
+    margin:0 10px;
+  }
+}
+
 #category__add-new{
-  margin: 20px 50px;
+  margin: 10px 50px;
   display: inline-block;
 }
 

@@ -46,18 +46,6 @@
                             <input  id="service_name" type="text" class="validate">
                             <label for="service_name">Service Name</label>
                         </div>
-                        {{!--
-                        <div class="input-field col s6">
-                            <select id="service_category" class="validate">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="create"><span class="create-category-option">Create category</span></option>
-                                {{#each catData}}
-                                    <option value="{{name}}">{{name}}</option>
-                                {{/each}}
-                            </select>
-                            <label for="service_category" class="select-label">Service Category</label>
-                        </div>
-                        --}}
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
@@ -70,6 +58,9 @@
                                         <label for="{{name}}">{{name}}</label>
                                     </span>
                                 {{/each}}
+                            </div>
+                            <div id="categories-selected" class="categories__selected">
+                                <label class="static no-input">Selected: </label><span class="selected__list"><em>none</em></span>
                             </div>
                             <a href="#" id="category__add-new">+ Add new Category</a>
                         </div>

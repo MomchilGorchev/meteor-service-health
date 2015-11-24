@@ -77,12 +77,25 @@ Template.addServiceEndpoint.events({
                             '<button id="save_category_list" class="btn waves-effect waves-light grey darken-1" type="button">'+
                                 'Save'+
                             '</button>'+
+                            '<button id="reset_category_list" class="btn waves-effect waves-light orange darken-1" type="button">'+
+                                'Reset'+
+                            '</button>'+
                         '</div>'+
                     '</div>';
                 parentRow.insertAdjacentHTML('afterend', newField);
             }
 
     },
+
+    'click #reset_category_list': function(e, t){
+
+        $(e.currentTarget)
+            .closest('#new_category_row')
+            .find('#new_categories')
+            .val('');
+    },
+
+    //'change .category__checkbox': function(e, t){}
 
     // If i decide to implement 'turn-into-a-label' functionaliry
     // when comma is pressed
@@ -105,17 +118,19 @@ Template.addServiceEndpoint.events({
             parentCol = trigger.parentNode,
             parentRow = parentCol.parentNode,
             textArea = parentRow.querySelector('#new_categories'),
-            selectDropdown = t.find('#service_category');
+            value = textArea.value,
+            selectDropdown = t.find('#service_category'),
+            masterForm = t.find('#createNewService');
 
         //log(textArea);
 
         // Validate the inut
-        if(!textArea.value || textArea.value.length < 2){
+        if(!value || value.length < 2){
             Materialize.toast('Please specify at least one category', 3000);
         } else {
 
             // Read the list from the text area
-            var catList = textArea.value.split(/[ ,]+/),
+            var catList = value.split(/[ ,]+/),
                 checkBoxes = {
                     addToCurrent: parentCol.querySelector('#add_to_current').checked,
                     saveForLater: parentCol.querySelector('#save_for_later').checked
@@ -127,10 +142,11 @@ Template.addServiceEndpoint.events({
             // If add to current is selected
             if(checkBoxes.addToCurrent){
 
-                // TEMP - TODO implement nice display of the categories
-                var catDisplay = document.createElement('p');
-                catDisplay.innerHTML = '<p>'+ textArea.value +'</p>';
-                parentRow.appendChild(catDisplay);
+                // Select elements
+                var displayBox = masterForm.querySelector('#categories-selected'),
+                    displaySlot = displayBox.querySelector('.selected__list');
+                // And insert the list in the DOM
+                displaySlot.innerHTML = '<em>'+ value +'</em>';
             }
 
             // If Save checkbox is checked
