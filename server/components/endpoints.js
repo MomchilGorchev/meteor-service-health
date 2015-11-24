@@ -45,8 +45,8 @@ Meteor.startup(function(){
                 if(service.url.match(core.VALID_URL) !== null){
 
                     // Check for existing entry with that URL
-                    var existingRecord = Endpoints.find({url: service.url}, {}).fetch();
-                    if(!existingRecord.length){
+                    var existingRecord = Endpoints.findOne({url: service.url});
+                    if(existingRecord === undefined){
 
                         // Reset status
                         service.status = null;
@@ -236,6 +236,11 @@ Meteor.startup(function(){
                 });
             }
             return !error;
+        },
+
+
+        dropDB: function(){
+            return Endpoints.remove({});
         }
     });
 
