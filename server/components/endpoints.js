@@ -44,7 +44,7 @@ Meteor.startup(function(){
                 // Validate the service URL
                 if(service.url.match(core.VALID_URL) !== null){
 
-
+                    // Check for existing entry with that URL
                     var existingRecord = Endpoints.find({url: service.url}, {}).fetch();
                     if(!existingRecord.length){
 
@@ -57,7 +57,7 @@ Meteor.startup(function(){
                         // log('Before insert', service);
                         return Endpoints.insert(service);
                     } else {
-                        //throw new Meteor.Error(409, 'Service URL already exist');
+                        throw new Meteor.Error(409, 'Service URL already exist');
                     }
 
                 } else {

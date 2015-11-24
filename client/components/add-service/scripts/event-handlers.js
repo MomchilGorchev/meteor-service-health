@@ -18,13 +18,19 @@ Template.addServiceEndpoint.events({
             name: container.find('#service_name').val(),
             url: container.find('#service_url').val(),
             info: container.find('#service_info').val(),
-            category: container.find('#service_category').val(),
+            categories: container.find('#selected-list').html(),
             lastStatusCode: null,
             status: null
         };
 
-        // Simple validation
-        if(newService.name.length < 1 || newService.url.length < 1 || newService.category.length < 1){
+        // Transform to array, trim the spaces and empty elements;
+        newService.categories = newService.categories.split(/[ ,]+/)
+            .filter(function(n){ return n.length > 0 });
+
+        console.log(newService);
+
+        //// Simple validation
+        if(newService.name.length < 1 || newService.url.length < 1 || newService.categories.length < 1){
             Materialize.toast('You need to fill all the fields!', 3000);
         } else {
             // If all good, call the server
@@ -35,11 +41,6 @@ Template.addServiceEndpoint.events({
             });
         }
     },
-
-    'mouseover .create-category-option': function(e, t){
-        log(e);
-    },
-
 
     /**
      * Insert new input filed when "Create category" is selected
@@ -87,6 +88,9 @@ Template.addServiceEndpoint.events({
 
     },
 
+    /**
+     * Reset new category form
+     */
     'click #reset_category_list': function(e, t){
 
         $(e.currentTarget)
@@ -95,7 +99,22 @@ Template.addServiceEndpoint.events({
             .val('');
     },
 
-    //'change .category__checkbox': function(e, t){}
+    /**
+     * Add the category to the selected list when checkbox is checked
+     */
+    'change .category__checkbox': function(e, t){
+
+        var trigger = e.currentTarget,
+            categoryName = trigger.parentNode.querySelector('label').innerHTML;
+
+        //TODO implement check if the elements is already selected
+
+        // Select elements
+        var displayBox = document.querySelector('#categories-selected'),
+            displaySlot = displayBox.querySelector('.selected__list');
+        // And insert the list in the DOM
+        displaySlot.innerHTML += ' '+ categoryName+',';
+    },
 
     // If i decide to implement 'turn-into-a-label' functionaliry
     // when comma is pressed
@@ -146,7 +165,7 @@ Template.addServiceEndpoint.events({
                 var displayBox = masterForm.querySelector('#categories-selected'),
                     displaySlot = displayBox.querySelector('.selected__list');
                 // And insert the list in the DOM
-                displaySlot.innerHTML = '<em>'+ value +'</em>';
+                displaySlot.innerHTML += value;
             }
 
             // If Save checkbox is checked
