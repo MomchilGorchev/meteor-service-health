@@ -40,22 +40,5 @@ Template.editModal.events({
             err ? Materialize.toast('Error: '+ err.message , 3000)
                 : Materialize.toast('Service '+ data.name + ' successfully saved!', 3000);
         });
-    },
-
-    'click .delete__service-btn': function(e,t){
-        var trigger = $(e.currentTarget),
-            modal = trigger.closest('.modal'),
-            serviceID = modal.attr('data-itemid'),
-            serviceName = modal.find('#service_name').val();
-
-        if(confirm('Are you sure you want to delete this service?')){
-            Meteor.call('deleteEndpoint', serviceID, function(err, res){
-                if(err){
-                    Materialize.toast('[Error] operation unsuccessful', 3000);
-                } else {
-                    Materialize.toast('Service ['+ serviceName +'] deleted!', 3000);
-                }
-            });
-        }
     }
 });

@@ -28,15 +28,7 @@
   text-align:center;
   margin: 30px;
 }
-.delete__service{
-  margin-top: -70px;
-  button{
-    background: $status-not-ok;
-    &:hover{
-      background: lighten($status-not-ok, 10%);
-    }
-  }
-}
+
 
 // Tabs styles
 // Not being used
