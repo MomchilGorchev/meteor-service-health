@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="row cards__holder">
-                {{#if equals endpoints 0}}
-                    <p class="no__service-placeholder">No services in this category...</p>
+                {{#if equals endpointsCount.total 0}}
+                    <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
                 {{else}}
                     {{#sortable items=endpoints handle=".dnd__handle" sortField="order" chosenClass="card-moving"}}
                         {{> statusCard editMode=true}}
@@ -22,13 +22,14 @@
             </div>
         </div>
     </div>
-
-    <div class="row split-wrapper">
-        <h5>Delete all endpoints</h5>
-        <button id="reset-db" class="btn waves-effect waves-light left red" name="reset">
-            <i class="material-icons">delete</i>DROP DB
-        </button>
-    </div>
+    {{#unless equals endpointsCount.total 0}}
+        <div class="row split-wrapper">
+            <h5>Delete all endpoints</h5>
+            <button id="reset-db" class="btn waves-effect waves-light left red" name="reset">
+                <i class="material-icons">delete</i>DROP DB
+            </button>
+        </div>
+    {{/unless}}
     <br />
 
 </template>

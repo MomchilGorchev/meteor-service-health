@@ -2,19 +2,6 @@
 
     {{> titleAndSearch}}
 
-    {{! Comments can be one line
-    <!--<div class="ring">-->
-
-        <!--<div class="ring ring--middle">-->
-
-            <!--<div class="ring ring--inner">-->
-
-            <!--</div>-->
-
-        <!--</div>-->
-
-    <!--</div>-->}}
-
     <div class="row">
         <div id="main__content" class="col s12">
             <div class="row">
@@ -28,8 +15,8 @@
                 </div>
             </div>
             <div class="row cards__holder">
-                {{#if equals endpointsCount 0}}
-                    <p class="no__service-placeholder">No services in this category...</p>
+                {{#if equals endpointsCount.total 0}}
+                    <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
                 {{else}}
                     {{#sortable items=endpoints handle=".dnd__handle" sortField="order" chosenClass="card-moving"}}
                         {{> statusCard editMode=false}}
