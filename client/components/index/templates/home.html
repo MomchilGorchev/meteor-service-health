@@ -14,13 +14,13 @@
                     {{/if}}
                 </div>
             </div>
-            <div class="row cards__holder">
+            <div id="index-cards-holder" class="row cards__holder">
                 {{#if equals endpointsCount.total 0}}
                     <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
                 {{else}}
-                    {{#sortable items=endpoints handle=".dnd__handle" sortField="order" chosenClass="card-moving"}}
+                    {{#each endpoints}}
                         {{> statusCard editMode=false}}
-                    {{/sortable}}
+                    {{/each}}
                 {{/if}}
             </div>
         </div>

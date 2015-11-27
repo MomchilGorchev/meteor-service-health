@@ -14,7 +14,6 @@ accounts-ui-unstyled
 tomi:upload-server
 tomi:upload-jquery
 tinytest
-rubaxa:sortable
 meteortoys:allthings
 standard-minifiers
 meteor-base
@@ -33,3 +32,4 @@ check
 ecmascript
 materialize:materialize@=0.97.0
 meteorhacks:aggregate
+ahref:dragula

@@ -10,14 +10,18 @@
                     <span class="status status--red">Down: {{endpointsCount.red}}</span>
                     <span class="status status--orange">Intermittent: {{endpointsCount.orange}}</span>
                 </div>
+                <div id="save__order" class="save__order hidden">
+                    <span class="save__order__info">Save new order ?</span>
+                    <button class="btn">Yes</button>
+                </div>
             </div>
             <div class="row cards__holder">
                 {{#if equals endpointsCount.total 0}}
                     <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
                 {{else}}
-                    {{#sortable items=endpoints handle=".dnd__handle" sortField="order" chosenClass="card-moving"}}
+                    {{#each endpoints}}
                         {{> statusCard editMode=true}}
-                    {{/sortable}}
+                    {{/each}}
                 {{/if}}
             </div>
         </div>

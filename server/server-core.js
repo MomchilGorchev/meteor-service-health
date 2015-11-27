@@ -1,12 +1,7 @@
 /**
  * Server core config
  * @type {string[]}
- */
-
-// Enable sortable on the endpoints collection
-Sortable.collections = ['endpoints'];
-
-/**
+ *
  * Application core functionality module
  * To be extended
  * @constructor
