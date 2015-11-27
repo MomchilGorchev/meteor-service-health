@@ -20,7 +20,8 @@ Template.editModal.events({
     'submit #editService': function(e, t){
         e.preventDefault();
         console.log(e);
-        var form = $(e.currentTarget);
+        var form = $(e.currentTarget),
+            modal = form.closest('#edit-service-form');
 
         if(form.find('.with-gap.active').val() === 'orange' || form.find('.with-gap.active').val() === 'red'){
 
@@ -40,5 +41,7 @@ Template.editModal.events({
             err ? Materialize.toast('Error: '+ err.message , 3000)
                 : Materialize.toast('Service '+ data.name + ' successfully saved!', 3000);
         });
+
+        modal.closeModal();
     }
 });
