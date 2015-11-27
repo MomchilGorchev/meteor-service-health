@@ -48,7 +48,8 @@ Template.statusCard.events({
         // Cache elements
         var trigger = $(e.currentTarget),
             parent = trigger.closest('.card'),
-            cardId = parent.attr('data-itemid');
+            cardId = parent.attr('data-itemid'),
+            serviceName = parent.find('.service__link').html();
 
         // Confirm with the user
         if(confirm('Are you sure you want to delete this service?')){
@@ -57,7 +58,7 @@ Template.statusCard.events({
                 if(err){
                     Materialize.toast('[Error] operation unsuccessful', 3000);
                 } else {
-                    Materialize.toast('Service ['+ serviceName +'] deleted!', 3000);
+                    Materialize.toast('[ '+ serviceName +' ] deleted!', 3000);
                 }
             });
         }
