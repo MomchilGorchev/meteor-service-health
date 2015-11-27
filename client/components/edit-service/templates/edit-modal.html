@@ -16,14 +16,14 @@
                         </div>
                         <div class=" col s6 m6 l6">
                             <label for="service_category">Service Category</label>
-                            <select id="service_category" class="validate">
-                                <option value="" disabled selected>Choose your option</option>
-                                <option value="Atlassian">Atlassian</option>
-                                <option value="PowaTAG">PowaTAG</option>
-                                <option value="PowaWEB">PowaWEB</option>
-                                <option value="PowaAIM">PowaAIM</option>
-                                <option value="HK APIs">HK APIs</option>
-                            </select>
+                            <div class="categories__outerwrap">
+                                {{#each catData}}
+                                    <span>
+                                        <input type="checkbox" id="{{name}}" class="category__checkbox" />
+                                        <label for="{{name}}">{{name}}</label>
+                                    </span>
+                                {{/each}}
+                            </div>
                         </div>
                     </div>
                     <div class="row">
