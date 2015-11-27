@@ -175,7 +175,7 @@ Meteor.startup(function(){
                     }
 
                     // [DEBUG]
-                    log('Status color code after ping: '+ dbEntry.status);
+                    //log('Status color code after ping: '+ dbEntry.status);
 
                     // Update with new response data
                     dbEntry.lastStatusCode = result.statusCode;

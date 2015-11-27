@@ -66,15 +66,6 @@ Template.addServiceEndpoint.events({
                             '<textarea id="new_categories" rows="5" class="materialize-textarea"></textarea>'+
                         '</div>'+
                         '<div id="checkboxes-holder" class="input-field col s6">'+
-                            '<p>'+
-                                '<input type="checkbox" id="add_to_current" checked="checked" />'+
-                                '<label for="add_to_current">Add to the current</label>'+
-                            '</p>'+
-                            '<p>'+
-                                '<input type="checkbox" id="save_for_later" checked="checked" />'+
-                                '<label for="save_for_later">Save for later use</label>'+
-                            '</p>' +
-                            '<br />'+
                             '<button id="save_category_list" class="btn waves-effect waves-light grey darken-1" type="button">'+
                                 'Save'+
                             '</button>'+
@@ -89,17 +80,6 @@ Template.addServiceEndpoint.events({
     },
 
     /**
-     * Reset new category form
-     */
-    'click #reset_category_list': function(e, t){
-
-        $(e.currentTarget)
-            .closest('#new_category_row')
-            .find('#new_categories')
-            .val('');
-    },
-
-    /**
      * Add the category to the selected list when checkbox is checked
      */
     'change .category__checkbox': function(e, t){
@@ -107,13 +87,21 @@ Template.addServiceEndpoint.events({
         var trigger = e.currentTarget,
             categoryName = trigger.parentNode.querySelector('label').innerHTML;
 
-        //TODO implement check if the elements is already selected
 
         // Select elements
         var displayBox = document.querySelector('#categories-selected'),
-            displaySlot = displayBox.querySelector('.selected__list');
-        // And insert the list in the DOM
-        displaySlot.innerHTML += ' '+ categoryName+',';
+            displaySlot = displayBox.querySelector('.selected__list'),
+            alreadyAdded = displaySlot.innerHTML;
+
+        // Check if the service is not selected already
+        if(alreadyAdded.indexOf(categoryName) === -1){
+            // If not add its name to the list
+            displaySlot.innerHTML += ' '+ categoryName +' ';
+        } else {
+            // Else erase it from the list
+            displaySlot.innerHTML = alreadyAdded.replace(categoryName, '');
+        }
+
     },
 
     // If i decide to implement 'turn-into-a-label' functionaliry
@@ -138,8 +126,7 @@ Template.addServiceEndpoint.events({
             parentRow = parentCol.parentNode,
             textArea = parentRow.querySelector('#new_categories'),
             value = textArea.value,
-            selectDropdown = t.find('#service_category'),
-            masterForm = t.find('#createNewService');
+            selectDropdown = t.find('#service_category');
 
         //log(textArea);
 
@@ -149,38 +136,26 @@ Template.addServiceEndpoint.events({
         } else {
 
             // Read the list from the text area
-            var catList = value.split(/[ ,]+/),
-                checkBoxes = {
-                    addToCurrent: parentCol.querySelector('#add_to_current').checked,
-                    saveForLater: parentCol.querySelector('#save_for_later').checked
-                };
+            var catList = value.split(/[ ,]+/);
 
-            //log(catList);
-            //log(checkBoxes);
+           Meteor.call('saveNewCategories', catList, function(err, res){
+               // Show message toast based on the response
+               err ? Materialize.toast('Error: '+ err.message , 3000)
+                   : Materialize.toast('Categories saved!', 3000);
+                     $('#reset_category_list').trigger('click');
+           });
 
-            // If add to current is selected
-            if(checkBoxes.addToCurrent){
-
-                // Select elements
-                var displayBox = masterForm.querySelector('#categories-selected'),
-                    displaySlot = displayBox.querySelector('.selected__list');
-                // And insert the list in the DOM
-                displaySlot.innerHTML += value;
-            }
-
-            // If Save checkbox is checked
-            // send the list to be saved in the DB
-            if(checkBoxes.saveForLater){
-               Meteor.call('saveNewCategories', catList, function(err, res){
-                   // Show message toast based on the response
-                   err ? Materialize.toast('Error: '+ err.message , 3000)
-                       : Materialize.toast('Categories saved!', 3000);
-                        // Temp - re-init the select, not good as the arrow gets appended again
-                        // Needs another way of displaying
-                        $(selectDropdown).material_select('destroy');
-                        $(selectDropdown).material_select();
-               });
-            }
         }
-    }
+    },
+
+    /**
+     * Reset new category form
+     */
+    'click #reset_category_list': function(e, t){
+
+        $(e.currentTarget)
+            .closest('#new_category_row')
+            .find('#new_categories')
+            .val('');
+    },
 });
