@@ -28,6 +28,9 @@
   text-align:center;
   margin: 30px;
 }
+.handle--cell, .handle{
+  cursor: move;
+}
 
 
 // Tabs styles
@@ -75,10 +78,10 @@
       width: 99%;
     }
 
-    &.card-moving{
-      transform: rotate(-1deg);
-      -moz-transform: rotate(-1deg);
-      -webkit-transform: rotate(-1deg);
+    &.gu-mirror{
+      transform: rotate(-2deg);
+      -moz-transform: rotate(-2deg);
+      -webkit-transform: rotate(-2deg);
       padding:0;
 
       .card{
