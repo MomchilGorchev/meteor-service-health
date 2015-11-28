@@ -1,3 +1,31 @@
 // --------------------------
 // EDIT SERVICE STYLES
 // --------------------------
+
+#main__content{
+
+  div.fixed-action-btn{
+
+    position: static;
+    display: inline-block;
+    margin-top: -40px;
+    opacity: 0;
+
+    &.enabled{
+      opacity:1;
+      //@include vend
+    }
+
+
+    ul{
+
+      position: inherit;
+      margin:-38px 40px 0 221px;
+
+      li{
+        display: inline-block;
+      }
+    }
+
+  }
+}

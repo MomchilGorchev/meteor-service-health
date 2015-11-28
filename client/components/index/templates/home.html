@@ -5,14 +5,22 @@
     <div class="row">
         <div id="main__content" class="col s12">
             <div class="row">
-                <div class="quick__info">Total: {{endpointsCount.total}}
+                <div class="quick__info col s12 m4 sl4">Total: {{endpointsCount.total}}
                     <span class="status status--green">Up: {{endpointsCount.green}}</span>
                     <span class="status status--red">Down: {{endpointsCount.red}}</span>
                     <span class="status status--orange">Intermittent: {{endpointsCount.orange}}</span>
-                    {{#if currentlyReloading}}
-                        <span class="status__reloading"><i class="material-icons rotating">cached</i></span>
-                    {{/if}}
                 </div>
+                {{#if currentUser}}
+                    <div id="save__order" class="fixed-action-btn horizontal click-to-toggle">
+                        <a class="btn btn-flat">
+                            Save new order?
+                        </a>
+                        <ul>
+                            <li><a id="yes-save" class="btn-floating green">YES</a></li>
+                            <li><a id="no-save" class="btn-floating red">NO</a></li>
+                        </ul>
+                    </div>
+                {{/if}}
             </div>
             <div id="index-cards-holder" class="row cards__holder">
                 {{#if equals endpointsCount.total 0}}
