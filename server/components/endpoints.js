@@ -35,10 +35,6 @@ Meteor.startup(function(){
          * @param service - object containing the new service data
          * @returns {*} - _id of the newly created entry
          */
-
-        // TODO - Implement check if that service already exist and dont add it if yes
-        // TODO - also implement immediate service check once its added
-        // TODO - also investigate why is all that empty space in the service name
         addEndpoint: function(service){
             if(service){
                 // Validate the service URL
@@ -120,10 +116,7 @@ Meteor.startup(function(){
             if(service){
                 try{
                     // Select by URL and update
-                    return Endpoints.update(
-                        {
-                            url: service.url
-                        },
+                    return Endpoints.update({url: service.url},
                         {
                             $set: {
                                 lastStatusCode: service.lastStatusCode,
@@ -136,6 +129,35 @@ Meteor.startup(function(){
                     throw new Meteor.Error(500, 'Internal Server Error');
                 }
             }
+        },
+
+        /**
+         * Set new order to endpoints after client side rearrange (drag and drop)
+         * @param endpoints -
+         * Array of objects containing the ID to be updated
+         * and the new order numerical value
+         */
+        updateEndpointsOrder: function(endpoints){
+
+            // Check input
+            check(endpoints, Array);
+
+            // Iterate and update
+            for(var i = 0, count = endpoints.length; i < count; i++){
+
+                var current = endpoints[i];
+
+                // Select by ID and update the order field
+                Endpoints.update({_id: current.itemId},
+                    {
+                        $set: {
+                            order: current.newOrder
+                        }
+                    }
+                );
+            }
+
+            return true;
         },
 
         /**
@@ -207,7 +229,6 @@ Meteor.startup(function(){
             }
 
         },
-
 
         /**
          * Run HTTP call for each entry in the DB
