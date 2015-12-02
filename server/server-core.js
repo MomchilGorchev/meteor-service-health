@@ -15,19 +15,6 @@ function Core(){
 }
 // Instantiate
 core = new Core;
-//
-//// TODO implement with methods
-//Endpoints.allow({
-//    insert: function(){
-//        return true;
-//    },
-//    update: function(){
-//        return true;
-//    },
-//    remove: function(){
-//        return true;
-//    }
-//});
 
 
 if(Meteor.isServer){
@@ -41,3 +28,9 @@ if(Meteor.isServer){
     });
 
 }
+
+// TODO Specify method when creating endpoint
+// FIX the issue with file upload on Heroku
+// Remove the autologin
+// Update README
+// Change layout of 'Save new order' functionality
