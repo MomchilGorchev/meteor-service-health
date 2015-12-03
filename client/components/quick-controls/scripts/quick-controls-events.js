@@ -22,6 +22,9 @@ Template.quickControls.events({
     'click #yes-save': function(e, t){
         e.preventDefault();
 
+        var trigger = $(e.currentTarget),
+            parent = trigger.closest('#save__order');
+
         // Cache elements
         var cards = $('.card'),
             newOrderList = [];
@@ -43,8 +46,15 @@ Template.quickControls.events({
 
         // Call the service with the prepared data
         Meteor.call('updateEndpointsOrder', newOrderList, function(err, res){
-            err ? Materialize.toast('Error: '+ err.message , 3000)
-                : Materialize.toast('Services order saved!' , 3000);
+
+            // Display the result in a toast and hide the buttons
+            if(err || res.error){
+                Materialize.toast('Error: '+ err.message , 3000);
+                parent.removeClass('enabled');
+            } else {
+                Materialize.toast('Services order saved!' , 3000);
+                parent.removeClass('enabled');
+            }
         });
     }
 
