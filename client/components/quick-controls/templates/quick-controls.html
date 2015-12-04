@@ -15,6 +15,13 @@
                     <li><a id="no-save" class="btn-floating red">NO</a></li>
                 </ul>
             </div>
+        {{else}}
+            <div id="save__order" class="fixed-action-btn horizontal click-to-toggle">
+                <p>
+                    <i class="card__reveal-more material-icons">info</i>
+                    You need to login to save the new order.
+                </p>
+            </div>
         {{/if}}
     </div>
 </template>
