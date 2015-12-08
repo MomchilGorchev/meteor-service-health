@@ -19,6 +19,7 @@ Template.addServiceEndpoint.events({
             url: container.find('#service_url').val(),
             info: container.find('#service_info').val(),
             categories: container.find('#selected-list').html(),
+            method: container.find('[type="radio"].checked').val(),
             lastStatusCode: null,
             status: null
         };
@@ -149,6 +150,24 @@ Template.addServiceEndpoint.events({
     },
 
     /**
+     * Radio buttons clicks handle
+     * One would assume the functionality is built-in
+     * inside the framework, but not...
+     */
+    'click [type="radio"]': function(e, t){
+
+        var trigger = $(e.currentTarget);
+
+        // Ignore clicks on the alredy selected item
+        if(!trigger.hasClass('checked')){
+            var radios = t.$('[type="radio"]');
+
+            // Toggle class of all radio btns
+            radios.toggleClass('checked');
+        }
+    },
+
+    /**
      * Reset new category form
      */
     'click #reset_category_list': function(e, t){
@@ -157,5 +176,5 @@ Template.addServiceEndpoint.events({
             .closest('#new_category_row')
             .find('#new_categories')
             .val('');
-    },
+    }
 });

@@ -51,7 +51,16 @@ Meteor.startup(function(){
                         service.order = existingEntries + 1;
                         // And insert to DB
                         // log('Before insert', service);
-                        return Endpoints.insert(service);
+                        var newEntry = Endpoints.insert(service);
+                        if(newEntry){
+                            service._id = newEntry;
+                            Meteor.call('checkSingleService', service, function(err, res){
+                                return !err;
+                            });
+
+                            return true;
+                        }
+
                     } else {
                         throw new Meteor.Error(409, 'Service URL already exist');
                     }
@@ -184,7 +193,7 @@ Meteor.startup(function(){
                 try{
                     // Plain GET request, needs to be updated when
                     // specifying a method is implemented
-                    result = HTTP.get(service.url, {});
+                    result = HTTP[service.method](service.url, {});
 
                     // Keep the orange status
                     // Or look for 'updated manually' flag (not implemented)
