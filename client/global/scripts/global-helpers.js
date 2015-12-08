@@ -4,7 +4,9 @@
 
 Template.registerHelper('endpoints', function(){
     return Endpoints.find({}, {sort: {order: -1}});
-    // return Endpoints.find({}, {sort: {order: -1}, limit: 9});
+
+
+    //return Endpoints.find({}, {sort: {order: -1}, limit: 9});
 
     // TODO implement pagination with $gt/$lt queries
 

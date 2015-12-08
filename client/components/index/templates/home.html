@@ -3,6 +3,7 @@
     {{> titleAndSearch}}
 
     <div class="row">
+
         <div id="main__content" class="col s12">
 
             {{> quickControls}}
@@ -11,6 +12,7 @@
                 {{#if equals endpointsCount.total 0}}
                     <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
                 {{else}}
+
                     {{#each endpoints}}
                         {{> statusCard editMode=false}}
                     {{/each}}
