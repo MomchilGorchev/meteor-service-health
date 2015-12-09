@@ -19,7 +19,7 @@ Template.addServiceEndpoint.events({
             url: container.find('#service_url').val(),
             info: container.find('#service_info').val(),
             categories: container.find('#selected-list').html(),
-            method: container.find('[type="radio"].checked').val() || 'get',
+            method: container.find('[type="radio"].checked').val().toLowerCase() || 'get',
             lastStatusCode: null,
             status: null
         };
