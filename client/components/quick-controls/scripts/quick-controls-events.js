@@ -60,13 +60,13 @@ Template.quickControls.events({
 
     'click .pagination__control:not(".disabled")': function(e, t){
 
-        log('ops');
+        // Cache all elements needed
         var trigger = $(e.currentTarget),
             parent = $('#index-cards-holder'),
-            cards = parent.find('.card__wrapper').toArray();
-
-        var first = +$(cards[0]).attr('data-order'), newFirst;
-        var last = +$(cards.pop()).attr('data-order'), newLast;
+            cards = parent.find('.card__wrapper').toArray(),
+            first = +$(cards[0]).attr('data-order'),
+            last = +$(cards.pop()).attr('data-order'),
+            newFirst, newLast;
 
         //console.log('first -> ', first);
         //console.log('last -> ', last);
@@ -92,6 +92,7 @@ Template.quickControls.events({
                 Session.set('firstPage', true);
             }
 
+        // Going forward
         } else {
 
             // Get fresh DB count
@@ -114,12 +115,8 @@ Template.quickControls.events({
             if(newLast === eps){
                 Session.set('lastPage', true);
             }
-
         }
-
-
     }
-
 });
 
 
