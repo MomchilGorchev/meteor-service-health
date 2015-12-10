@@ -3,12 +3,26 @@
  */
 
 Template.registerHelper('endpoints', function(){
-    return Endpoints.find({}, {sort: {order: -1}});
+    //return Endpoints.find({}, {sort: {order: -1}});
 
 
-    //return Endpoints.find({}, {sort: {order: -1}, limit: 9});
+    // Return results based on the Session variables
+    // This enables pagination
+    return Endpoints.find(
+        {
+            order: {
+                $gt: Session.get('paginationFirstIndex'),
+                $lt: Session.get('paginationLastIndex') + 1
+            }
+        },
+        {
+            sort: {
+                order: Session.get('sorting')                       // This can be used as filter
+            },
+            limit: Session.get('paginationItemsPerPage')                // The items per page
+        }
+    );
 
-    // TODO implement pagination with $gt/$lt queries
 
 });
 
