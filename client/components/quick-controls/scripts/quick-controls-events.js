@@ -56,6 +56,82 @@ Template.quickControls.events({
                 parent.removeClass('enabled');
             }
         });
+    },
+
+    'click .pagination__control:not(".disabled")': function(e, t){
+
+        log('ops');
+        var trigger = $(e.currentTarget),
+            parent = $('#index-cards-holder'),
+            cards = parent.find('.card__wrapper').toArray();
+
+        var first = +$(cards[0]).attr('data-order'), newFirst;
+        var last = +$(cards.pop()).attr('data-order'), newLast;
+
+        //console.log('first -> ', first);
+        //console.log('last -> ', last);
+
+        // Going back
+        if(trigger.hasClass('prev')){
+
+            // We are sure we are not on the last page
+            // as we going backwards
+            Session.set('lastPage', false);
+
+            // Do the math
+            newFirst = first - 1 - Session.get('paginationItemsPerPage');
+            newLast = first - 1;
+
+            // And set the right indexes
+            Session.set('paginationFirstIndex', newFirst);
+            Session.set('paginationLastIndex', newLast);
+
+            // If we are on the first page
+            // set the flag to disable the left arrow
+            if(newFirst === 0){
+                Session.set('firstPage', true);
+            }
+
+        } else {
+
+            // Get fresh DB count
+            var eps = Endpoints.find().count();
+
+            // We know we are not on the first page
+            // as we going forward
+            Session.set('firstPage', false);
+
+            // Do the math
+            newFirst = last;
+            newLast = last + Session.get('paginationItemsPerPage');
+
+            // Do the math and set the right indexes
+            Session.set('paginationFirstIndex', newFirst);
+            Session.set('paginationLastIndex', newLast);
+
+            // If we reached the last page
+            // set the flag to disable right arrow
+            log(eps);
+            if(newLast === eps){
+
+                Session.set('lastPage', true);
+            }
+
+        }
+
+
     }
 
 });
+
+
+
+
+
+
+
+
+
+
+
+
