@@ -27,12 +27,17 @@
         <!--PAGINATION-->
         <ul class="pagination">
             <li>
-                <a href="#" class="pagination__control left">
+
+
+
+                <a href="#" class="pagination__control prev btn-flat
+                {{#if isFirstPage}} disabled {{else}} {{/if}}">
                     <i class="material-icons">keyboard_arrow_left</i>
                 </a>
             </li>
             <li>
-                <a href="#" class="pagination__control right">
+                <a href="#" class="pagination__control next btn-flat
+                {{#if isLastPage}} disabled {{else}} {{/if}}">
                     <i class="material-icons">keyboard_arrow_right</i>
                 </a>
             </li>
