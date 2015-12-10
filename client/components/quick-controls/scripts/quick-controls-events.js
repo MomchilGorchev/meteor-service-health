@@ -111,9 +111,7 @@ Template.quickControls.events({
 
             // If we reached the last page
             // set the flag to disable right arrow
-            log(eps);
             if(newLast === eps){
-
                 Session.set('lastPage', true);
             }
 

@@ -7,12 +7,12 @@ Template.registerHelper('endpoints', function(){
 
 
     // Return results based on the Session variables
-    // This enables pagination
+    // This enables pagination and easy implementing of filters/controls
     return Endpoints.find(
         {
             order: {
-                $gt: Session.get('paginationFirstIndex'),
-                $lt: Session.get('paginationLastIndex') + 1
+                $gt: Session.get('paginationFirstIndex'),           // Looks at session var to make the query
+                $lt: Session.get('paginationLastIndex') + 1         // Looks at session var to make the query
             }
         },
         {
@@ -23,6 +23,8 @@ Template.registerHelper('endpoints', function(){
         }
     );
 
+    // TODO implement pages display
+    // TODO Abstract pagination in a separate template
 
 });
 
