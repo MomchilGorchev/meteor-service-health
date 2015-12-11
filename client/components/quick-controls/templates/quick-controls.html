@@ -25,21 +25,29 @@
         {{/if}}
 
         {{#unless equals endpointsCount.total 0}}
-            <!--PAGINATION-->
-            <ul class="pagination">
-                <li>
-                    <a href="#" class="pagination__control prev btn-flat
-                    {{#if isFirstPage}} disabled {{else}} {{/if}}">
-                        <i class="material-icons">keyboard_arrow_left</i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" class="pagination__control next btn-flat
-                    {{#if isLastPage}} disabled {{else}} {{/if}}">
-                        <i class="material-icons">keyboard_arrow_right</i>
-                    </a>
-                </li>
-            </ul>
+
+            {{#unless equals endpointsCount.total paginationItemsPerPage}}
+
+                {{#unless greaterThan paginationItemsPerPage endpointsCount.total}}
+                    <!--PAGINATION-->
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" class="pagination__control prev btn-flat
+                            {{#if isFirstPage}} disabled {{else}} {{/if}}">
+                                <i class="material-icons">keyboard_arrow_left</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="pagination__control next btn-flat
+                            {{#if isLastPage}} disabled {{else}} {{/if}}">
+                                <i class="material-icons">keyboard_arrow_right</i>
+                            </a>
+                        </li>
+                    </ul>
+                {{/unless}}
+
+            {{/unless}}
+
         {{/unless}}
 
     </div>

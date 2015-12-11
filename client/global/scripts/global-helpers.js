@@ -19,7 +19,7 @@ Template.registerHelper('endpoints', function(){
             sort: {
                 order: Session.get('sorting')                       // This can be used as filter
             },
-            limit: Session.get('paginationItemsPerPage')                // The items per page
+            limit: Session.get('paginationItemsPerPage')            // The items per page
         }
     );
 
@@ -60,6 +60,10 @@ Template.registerHelper('endpointsCount', function(){
 
 });
 
+Template.registerHelper('paginationItemsPerPage', function(){
+    return Session.get('paginationItemsPerPage');
+});
+
 Template.registerHelper('catData', function(){
     return Categories.find();
 });
@@ -70,5 +74,13 @@ Template.registerHelper('currentlyReloading', function(){
 
 Template.registerHelper('equals', function (a, b) {
     return a === b;
+});
+
+Template.registerHelper('greaterThan', function (a, b) {
+    return a > b;
+});
+
+Template.registerHelper('lessThan', function (a, b) {
+    return a < b;
 });
 
