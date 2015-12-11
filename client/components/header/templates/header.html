@@ -8,9 +8,13 @@
                     <a href="#" data-activates="menu-content" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
                         <li>
-                            <input id="search" type="search" required>
-                            <label class="search-label" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
+                            <a id="search__toggle" class="waves-effect main-icon-menu search__toggle" href="#" data-tooltip="Search list">
+                                <i class="material-icons">search</i>
+                            </a>
+                            <div class="search__field">
+                                <input id="search" type="search" class="search__input" placeholder="Search" required>
+                                <label class="search-label" for="search"></label>
+                            </div>
                         </li>
                         <li class="desktop-menu">
                             <a class="waves-effect main-icon-menu" href="/" data-position="bottom" data-tooltip="Homepage">

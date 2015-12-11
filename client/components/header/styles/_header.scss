@@ -2,6 +2,9 @@
 // HEADER RULES
 // ----------------------------------
 
+
+$search-bg: #359BB9;
+
 .shc__logo{
 
   height: 47px;
@@ -105,6 +108,30 @@ nav{
 
   .button-collapse{
     float:right;
+  }
+
+}
+
+.search{
+
+  &__field{
+
+    display: inline-block;
+    width:0;
+    opacity: 0;
+
+    &--expanded{
+
+      width: auto;
+      opacity: 1;
+
+    }
+
+  }
+
+  &__input{
+    background: $search-bg;
+
   }
 
 }

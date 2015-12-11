@@ -18,10 +18,8 @@ Template.header.events({
 
             icon.removeClass('rotating');
         });
-    }
-});
+    },
 
-Template.titleAndSearch.events({
     'keyup #search': function(e, t){
         var filter = $(e.currentTarget).val();
         var items = $('.card');
@@ -33,5 +31,19 @@ Template.titleAndSearch.events({
                 current.show();
             }
         });
+    },
+
+    'click #search__toggle': function(e, t){
+        e.preventDefault();
+
+        var trigger = $(e.currentTarget),
+            parent = trigger.closest('li'),
+            input = parent.find('.search__field');
+
+        log(input);
+
+        input.toggleClass('search__field--expanded');
+
+
     }
 });

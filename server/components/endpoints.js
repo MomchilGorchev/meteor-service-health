@@ -249,7 +249,7 @@ Meteor.startup(function(){
             // Allow other messages to use the DDP
             this.unblock();
             // Get the DB data
-            var allServices = Endpoints.find().fetch(),
+            var allServices = Endpoints.find({owner: Meteor.userId()}).fetch(),
                 error = false;
 
             // Iterate over all entries
