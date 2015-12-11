@@ -20,7 +20,7 @@ core = new Core;
 if(Meteor.isServer){
 
     Meteor.publish('endpoints', function(){
-        return Endpoints.find();
+        return Endpoints.find({owner: this.userId});
     });
 
     Meteor.publish('categories', function(){
