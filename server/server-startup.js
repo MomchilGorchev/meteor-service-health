@@ -42,7 +42,7 @@ Meteor.startup(function(){
     // Configure fileupload on the server
     UploadServer.init({
         tmpDir: process.env.PWD + '/uploads/tmp',
-        uploadDir: process.env.PWD + '/private/',
+        uploadDir: process.env.PWD + '/private/', //TODO Concatenate the userId as a subfolder
         checkCreateDirectories: false //create the directories for you
     });
 

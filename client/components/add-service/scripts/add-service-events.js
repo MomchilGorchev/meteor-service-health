@@ -30,8 +30,8 @@ Template.addServiceEndpoint.events({
 
         console.log(newService);
 
-        //// Simple validation
-        if(newService.name.length < 1 || newService.url.length < 1 || newService.categories.length < 1){
+        //   Simple validation
+        if(newService.name.length < 1 || newService.url.length < 1){
             Materialize.toast('You need to fill all the fields!', 3000);
         } else {
             // If all good, call the server
