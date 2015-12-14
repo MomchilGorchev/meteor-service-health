@@ -39,11 +39,32 @@ Meteor.startup(function(){
     FS = Npm.require('fs');
     Future = Npm.require('fibers/future');
 
+
+    var uid = Meteor.call('getUserId');
+    log(uid);
+
     // Configure fileupload on the server
     UploadServer.init({
         tmpDir: process.env.PWD + '/uploads/tmp',
         uploadDir: process.env.PWD + '/private/', //TODO Concatenate the userId as a subfolder
-        checkCreateDirectories: false //create the directories for you
+        checkCreateDirectories: false //create the directories for you,
+
+        // TODO Look for a way to get the file contents or userId here
+
+        //getDirectory: function(fileInfo, formData) {
+        //    // create a sub-directory in the uploadDir based on the content type (e.g. 'images')
+        //    log(this.userId);
+        //    //return formData.contentType;
+        //},
+        //finished: function(fileInfo, formFields) {
+        //    // perform a disk operation
+        //    log('fileInfo is ', fileInfo);
+        //    log('formFields is ', formFields);
+        //},
+        //validateFile: function(file, req) {
+        //    return file.type = 'application/json';
+        //}
+
     });
 
 });
