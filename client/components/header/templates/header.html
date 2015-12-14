@@ -7,26 +7,22 @@
                 </a>
                     <a href="#" data-activates="menu-content" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
                     <ul id="nav-mobile" class="right hide-on-med-and-down">
-                        <li>
-                            <a id="search__toggle" class="waves-effect main-icon-menu search__toggle" href="#" data-tooltip="Search list">
-                                <i class="material-icons">search</i>
-                            </a>
-                            <div class="search__field">
-                                <input id="search" type="search" class="search__input" placeholder="Search" required>
-                                <label class="search-label" for="search"></label>
-                            </div>
-                        </li>
-                        <li class="desktop-menu">
-                            <a class="waves-effect main-icon-menu" href="/" data-position="bottom" data-tooltip="Homepage">
-                                <i class="material-icons">home</i>
-                            </a>
-                        </li>
-                        <li class="refresh-list desktop-menu">
-                            <a class="waves-effect main-icon-menu" href="#" data-tooltip="Refresh list">
-                                <i class="material-icons">cached</i>
-                            </a>
-                        </li>
                         {{#if currentUser}}
+                            <li>
+                                <a id="search__toggle" class="waves-effect main-icon-menu search__toggle" href="#" data-tooltip="Search list">
+                                    <i class="material-icons">search</i>
+                                </a>
+                                <div class="search__field">
+                                    <input id="search" type="search" class="search__input" placeholder="Search" required>
+                                    <label class="search-label" for="search"></label>
+                                </div>
+                            </li>
+                            <li class="refresh-list desktop-menu">
+                                <a class="waves-effect main-icon-menu" href="#" data-tooltip="Refresh list">
+                                    <i class="material-icons">cached</i>
+                                </a>
+                            </li>
+
                             <li class="desktop-menu">
                                 <a class="waves-effect main-icon-menu" href="/addServiceEndpoint" data-tooltip="Add endpoint">
                                     <i class="material-icons">add</i>
@@ -48,41 +44,49 @@
 
                     </ul>
                     <ul class="side-nav" id="menu-content">
-                        <li>
-                            <input id="search" type="search" required>
-                            <label class="search-label" for="search"><i class="material-icons">search</i></label>
-                            <i class="material-icons">close</i>
-                        </li>
-                        <li>
-                            <a class="waves-effect" href="/">
-                                <i class="mdi-action-home"></i>
-                                <span class="link-text">Dashboard</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="refresh-list waves-effect" href="#">
-                                <i class="mdi-navigation-refresh"></i>
-                                <span class="link-text">Refresh</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="waves-effect" href="/addServiceEndpoint">
-                                <i class="mdi-content-add"></i>
-                                <span class="link-text">Add service</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="waves-effect" href="/editServiceEndpoint">
-                                <i class="material-icons">mode_edit</i>
-                                <span class="link-text">Edit service</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="waves-effect" href="#">
-                                <i class="material-icons">exit_to_app</i>
-                                <span class="link-text">Log out</span>
-                            </a>
-                        </li>
+                        {{#if currentUser}}
+
+                            {{!-- TODO implement search for mobile devices --}}
+                            <li>
+                                <input id="search" type="search" required>
+                                <label class="search-label" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </li>
+                            <li>
+                                <a class="refresh-list waves-effect" href="#">
+                                    <i class="mdi-navigation-refresh"></i>
+                                    <span class="link-text">Refresh</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" href="/addServiceEndpoint">
+                                    <i class="mdi-content-add"></i>
+                                    <span class="link-text">Add service</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" href="/editServiceEndpoint">
+                                    <i class="material-icons">mode_edit</i>
+                                    <span class="link-text">Edit service</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="waves-effect" href="#">
+                                    <i class="material-icons">exit_to_app</i>
+                                    <span class="link-text">Log out</span>
+                                </a>
+                            </li>
+
+                        {{else}}
+
+                            <li>
+                                <a class="waves-effect" href="/login">
+                                    <i class="material-icons">perm_identity</i>
+                                    <span class="link-text">Log in</span>
+                                </a>
+                            </li>
+
+                        {{/if}}
 
                         <!--<li><a class="waves-effect" href="#"><i class="mdi-navigation-more-vert"></i> Settings</a></li>-->
                     </ul>
