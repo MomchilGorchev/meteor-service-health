@@ -158,7 +158,7 @@ Template.addServiceEndpoint.events({
 
         var trigger = $(e.currentTarget);
 
-        // Ignore clicks on the alredy selected item
+        // Ignore clicks on the already selected item
         if(!trigger.hasClass('checked')){
             var radios = t.$('[type="radio"]');
 
