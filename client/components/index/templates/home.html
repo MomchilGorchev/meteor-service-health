@@ -1,24 +1,34 @@
 <template name="home">
 
-    {{> titleAndSearch}}
+    {{#if currentUser}}
 
-    <div class="row">
+        {{> pageTitle title="Enspoints"}}
 
-        <div id="main__content" class="col s12">
+        <div class="row">
 
-            {{> quickControls}}
+            <div id="main__content" class="col s12">
 
-            <div id="index-cards-holder" class="row cards__holder">
-                {{#if equals endpointsCount.total 0}}
-                    <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
-                {{else}}
+                {{> quickControls}}
 
-                    {{#each endpoints}}
-                        {{> statusCard editMode=false}}
-                    {{/each}}
-                {{/if}}
+                <div id="index-cards-holder" class="row cards__holder">
+                    {{#if equals endpointsCount.total 0}}
+                        <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
+                    {{else}}
+
+                        {{#each endpoints}}
+                            {{> statusCard editMode=false}}
+                        {{/each}}
+                    {{/if}}
+                </div>
             </div>
         </div>
-    </div>
+
+    {{else}}
+
+        {{>pageTitle title="Please login"}}
+
+    {{/if}}
+
+
 
 </template>
