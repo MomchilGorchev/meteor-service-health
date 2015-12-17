@@ -20,3 +20,8 @@ $breakpoint-st: 992px !default; // st == standard ?
 $breakpoint-tbl: 610px !default;
 //NOTE: extra breakpoint if needed
 $breakpoint-ex: 480px !default;
+
+
+.red{
+  color: $status-not-ok;
+}
