@@ -46,7 +46,7 @@ Meteor.startup(function(){
 
         getUserId: function(){
 
-            log(Meteor.userId());
+            return Meteor.userId();
         }
 
     });
