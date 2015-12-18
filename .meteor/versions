@@ -15,6 +15,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
+dbarrett:dropzonejs@4.0.2
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
 ddp-client@1.2.1
@@ -55,7 +56,9 @@ materialize:materialize@0.97.0
 meteor@1.1.10
 meteor-base@1.0.1
 meteorhacks:aggregate@1.3.0
+meteorhacks:async@1.0.0
 meteorhacks:collection-utils@1.2.0
+meteorhacks:npm@1.5.0
 meteortoys:allthings@2.2.0
 meteortoys:authenticate@2.1.0
 meteortoys:autopub@2.1.0
@@ -81,6 +84,7 @@ mongo-livedata@1.0.9
 msavin:jetsetter@1.5.2
 msavin:mongol@1.6.1
 npm-bcrypt@0.7.8_2
+npm-container@1.2.0
 npm-mongo@1.4.39_1
 observe-sequence@1.0.7
 ordered-dict@1.0.4
@@ -102,8 +106,6 @@ standard-minifiers@1.0.2
 templating@1.1.5
 templating-tools@1.0.0
 tinytest@1.0.6
-tomi:upload-jquery@2.2.1
-tomi:upload-server@1.3.3
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4

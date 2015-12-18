@@ -11,8 +11,6 @@ http
 
 accounts-password
 accounts-ui-unstyled
-tomi:upload-server
-tomi:upload-jquery
 tinytest
 meteortoys:allthings
 standard-minifiers
@@ -33,3 +31,8 @@ ecmascript
 materialize:materialize@=0.97.0
 meteorhacks:aggregate
 ahref:dragula
+meteorhacks:npm
+dbarrett:dropzonejs
+
+
+npm-container
