@@ -8,6 +8,9 @@
                 <h5>Option 1 - upload a JSON file</h5>
                 <h6>The file needs to be called <span class="code">EP_DETAILS.json</span> and needs to have valid schema.</h6>
                 <h6 class="temp-info">COMING SOON</h6>
+
+                {{> dropzone url=currentUserIdDir id='dropzoneDiv' maxFiles=1 method="POST"}}
+
                 {{!-- <br/>
                 <h6>NOTE: This process will not overwrite any existing records, it will simply add everything from the file to the
                 database.</h6>

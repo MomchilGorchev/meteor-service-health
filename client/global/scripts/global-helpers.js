@@ -60,6 +60,13 @@ Template.registerHelper('endpointsCount', function(){
 
 });
 
+Template.registerHelper('currentUserIdDir', function(){
+
+    var b = '/upload/'+ Meteor.userId();
+    console.log(b);
+    return b;
+});
+
 Template.registerHelper('paginationItemsPerPage', function(){
     return Session.get('paginationItemsPerPage');
 });
