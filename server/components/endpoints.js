@@ -127,7 +127,7 @@ Meteor.startup(function(){
             if(service){
                 try{
                     // Select by URL and update
-                    return Endpoints.update({url: service.url},
+                    return Endpoints.update({url: service.url, owner: Meteor.userId()},
                         {
                             $set: {
                                 lastStatusCode: service.lastStatusCode,
@@ -159,7 +159,7 @@ Meteor.startup(function(){
                 var current = endpoints[i];
 
                 // Select by ID and update the order field
-                Endpoints.update({_id: current.itemId},
+                Endpoints.update({_id: current.itemId, owner: Meteor.userId()},
                     {
                         $set: {
                             order: current.newOrder
@@ -185,7 +185,7 @@ Meteor.startup(function(){
 
             // Request the db entry and compare urls
             // This is necessary as this method is used by the client as well
-            var dbEntry = Endpoints.findOne({_id: service._id}),
+            var dbEntry = Endpoints.findOne({_id: service._id, owner: Meteor.userId()}),
                 result, actualStatus;
 
             // If everything match
@@ -193,8 +193,7 @@ Meteor.startup(function(){
 
                 // Init check call
                 try{
-                    // Plain GET request, needs to be updated when
-                    // specifying a method is implemented
+                    // Plain request
                     result = HTTP[service.method](service.url, {});
 
                     // Keep the orange status
