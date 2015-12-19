@@ -9,6 +9,7 @@ $header-blue:#2980B9;
 $status-ok:  #63a97a;
 $status-issue: #f48543;
 $status-not-ok: #D95D5D;
+$text-subtle-gray: #a4b5bc;
 
 $button-teal: rgb(38, 166, 154);
 
@@ -20,8 +21,3 @@ $breakpoint-st: 992px !default; // st == standard ?
 $breakpoint-tbl: 610px !default;
 //NOTE: extra breakpoint if needed
 $breakpoint-ex: 480px !default;
-
-
-.temp-info{
-  color: $status-not-ok;
-}
