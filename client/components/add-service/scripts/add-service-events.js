@@ -34,8 +34,14 @@ Template.addServiceEndpoint.events({
         if(newService.name.length < 1 || newService.url.length < 1){
             Materialize.toast('You need to fill all the fields!', 3000);
         } else {
-            // If all good, call the server
-            Meteor.call('addEndpoint', newService, function(err, res){
+            // If all good, include the current user ID
+            var requestData = {
+                owner: Meteor.userId(),
+                data: newService
+            };
+
+            // And call the server
+            Meteor.call('addEndpoint', requestData, function(err, res){
                 // Display message based on the response
                 err ? Materialize.toast('Error: '+ err.message , 3000)
                     : Materialize.toast('Service '+ newService.name + ' successfully added!', 3000);

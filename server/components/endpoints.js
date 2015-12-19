@@ -35,13 +35,14 @@ Meteor.startup(function(){
          * @param service - object containing the new service data
          * @returns {*} - _id of the newly created entry
          */
-        addEndpoint: function(service){
-            if(service){
+        addEndpoint: function(requestData){
+            if(requestData){
+                var service = requestData.data;
                 // Validate the service URL
                 if(service.url.match(core.VALID_URL) !== null){
 
                     // Check for existing entry with that URL
-                    var existingRecord = Endpoints.findOne({url: service.url});
+                    var existingRecord = Endpoints.findOne({url: service.url, owner: requestData.owner});
                     if(existingRecord === undefined){
 
                         // Reset status

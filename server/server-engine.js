@@ -22,16 +22,22 @@ Meteor.startup(function(){
                 // Try to read file
                 // TODO implement functionality to read only files belonging to the logged in user
                 // Call on rendered;
-                JSONData = JSON.parse(Assets.getText('userfiles/'+ userId +'-'+ core.JSON_FILENAME)); //Get the current user folder
+                JSONData = JSON.parse(Assets.getText('.userfiles/'+ userId +'-'+ core.JSON_FILENAME)); //Get the current user folder
                 console.log('Loading JSON file...');
 
                 // Iterate over
                 for(var i = 0; i < JSONData.length; i++){
                     var current = JSONData[i];
 
+                    // Pass the owner userID as well
+                    var requestData = {
+                        owner: userId,
+                        data: current
+                    };
+
                     // Add every record to the DB
                     // addEndpoint method checks for duplicates and validate the data
-                    Meteor.call('addEndpoint', current, function(err, res){
+                    Meteor.call('addEndpoint', requestData, function(err, res){
                         log(err ? err : res);
                     });
                 }
