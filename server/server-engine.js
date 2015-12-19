@@ -19,6 +19,8 @@ Meteor.startup(function(){
             var uId = userId || 'shared';
             var JSONData = '';
             try{
+
+                console.log('\n\nReading data for: '+ userId +'\n\n');
                 // Try to read file
                 // TODO implement functionality to read only files belonging to the logged in user
                 // Call on rendered;
