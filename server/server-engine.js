@@ -22,7 +22,7 @@ Meteor.startup(function(){
                 // Try to read file
                 // TODO implement functionality to read only files belonging to the logged in user
                 // Call on rendered;
-                JSONData = JSON.parse(Assets.getText(uId +'/'+ core.JSON_FILENAME)); //Get the current user folder
+                JSONData = JSON.parse(Assets.getText('userfiles/'+ userId +'-'+ core.JSON_FILENAME)); //Get the current user folder
                 console.log('Loading JSON file...');
 
                 // Iterate over
