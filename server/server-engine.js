@@ -39,13 +39,11 @@ Meteor.startup(function(){
 
                     // Add every record to the DB
                     // addEndpoint method checks for duplicates and validate the data
+                    // Also ping the endpoint to check the initial status
                     Meteor.call('addEndpoint', requestData, function(err, res){
                         log(err ? err : res);
                     });
                 }
-
-                // Init check
-                Meteor.call('checkServicesStatus');
 
             } catch(e){
                 console.log(e);
