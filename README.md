@@ -1,6 +1,9 @@
 ## Service Health Check
 MeteorJS app to keep track of services/endpoints availability
 
+App deployed on: http://service-report.herokuapp.com/
+- PLEASE NOTE: Even though the app is attached to a CI, its still in development and can be malfunctioning at any point in time.
+
 #### Description
 ***
 This is application is meant to be used mainly by developers that are implementing APIs/API calls or any work that is related to Service Oriented Architecture. The Meteor's server layer provides the ability to call all endpoints without worring about the Cross-Origin policy. It is also initiating the external calls into a asynchronous manner, so the UI doesn't get freezed while the backend is waiting for the services response.
