@@ -13,6 +13,7 @@ This is application is meant to be used mainly by developers that are implementi
 - Auto calling of the services every minute
 - Ability to quickly filter the service list
 - Ability to manually set status, e.g - "In maintenance" or similar
+- Modular, configurable pagination
 - Mobile device optimised
 - Password protected
 
@@ -25,6 +26,7 @@ This is application is meant to be used mainly by developers that are implementi
 - Create UI to give the ability to enable/disable the previous feature
 - Create UI to give the ability to export the service list
 - Login with Google/Github/Twitter/Facebook
+- Settings page
 
 
 #### Package list
