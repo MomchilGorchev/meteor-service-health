@@ -22,7 +22,8 @@ Meteor.startup(function(){
 
                 console.log('\n\nReading data for: '+ userId +'\n\n');
                 // Try to read file
-                // TODO implement functionality to read only files belonging to the logged in user
+                // TODO Find a way to save new uploaded files without reloading the app
+                // Probably need implementation with the FS npm package
                 // Call on rendered;
                 JSONData = JSON.parse(Assets.getText('.userfiles/'+ userId +'-'+ core.JSON_FILENAME)); //Get the current user folder
                 console.log('Loading JSON file...');
