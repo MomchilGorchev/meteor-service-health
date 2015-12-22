@@ -37,5 +37,13 @@
   
   .settings__field{
     width: 150px;
+
+    label{
+
+      & .label__focus{
+        font-size:1.2em;
+      }
+
+    }
   }
 }
