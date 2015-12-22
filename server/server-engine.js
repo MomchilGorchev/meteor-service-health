@@ -13,10 +13,11 @@ Meteor.startup(function(){
          * Only if there is user logged in as the
          * endpoints requires userID as owner field
          */
-        readJSONFile:function(userId){
+        readJSONFile:function(){
 
-            console.log('Read file called with: ', userId);
-            var uId = userId || 'shared';
+            //console.log('Read file called with: ', );
+            //var uId = userId || 'shared';
+            var userId = Meteor.userId();
             var JSONData = '';
 
             try{
