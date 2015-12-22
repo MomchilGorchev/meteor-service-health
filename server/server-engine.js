@@ -5,8 +5,6 @@
 
 Meteor.startup(function(){
 
-
-
     Meteor.methods({
 
         /**
@@ -16,16 +14,16 @@ Meteor.startup(function(){
          * endpoints requires userID as owner field
          */
         readJSONFile:function(userId){
+
+            console.log('Read file called with: ', userId);
             var uId = userId || 'shared';
             var JSONData = '';
+
             try{
 
                 console.log('\n\nReading data for: '+ userId +'\n\n');
                 // Try to read file
-                // TODO Find a way to save new uploaded files without reloading the app
-                // Probably need implementation with the FS npm package
-                // Call on rendered;
-                JSONData = JSON.parse(Assets.getText('.userfiles/'+ userId +'-'+ core.JSON_FILENAME)); //Get the current user folder
+                JSONData = JSON.parse(fs.readFileSync(baseUrl + '/.uploads/userfiles/'+ userId +'-'+ core.JSON_FILENAME, 'utf8')); //Get the current user folder
                 console.log('Loading JSON file...');
 
                 // Iterate over
@@ -46,8 +44,11 @@ Meteor.startup(function(){
                     });
                 }
 
+                return true;
+
             } catch(e){
                 console.log(e);
+                return false;
             }
         },
 
