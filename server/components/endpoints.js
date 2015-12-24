@@ -30,6 +30,10 @@ Meteor.startup(function(){
             });
         },
 
+        getEpsCount: function(){
+            return Endpoints.find().count();
+        },
+
         /**
          * Add endpoint to the DB
          * @param service - object containing the new service data
