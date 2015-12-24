@@ -96,7 +96,7 @@ Template.quickControls.events({
         } else {
 
             // Get fresh DB count
-            var eps = Meteor.call('getEpsCount');
+            //var eps = Meteor.call('getEpsCount');
 
             // We know we are not on the first page
             // as we going forward
@@ -104,18 +104,18 @@ Template.quickControls.events({
 
             // Do the math
             newFirst = last;
-            // FIXME this is buggy when the next page doenst have full list
-            // e.g less items than the ItemsPerPage setting
-            // the formula should be something like this
-            //
-            // newLastItem = dbcount - itemsperpage < itemsperpage ? dbcount - itemsperpage : itemsperpage
-            //
-            //
-            // This is all wrong
-            //newLast = eps - Session.get('paginationItemsPerPage') < Session.get('paginationItemsPerPage')
-            //    ? eps - Session.get('paginationItemsPerPage')
-            //    : Session.get('paginationItemsPerPage');
-            newLast = last + Session.get('paginationItemsPerPage');
+
+            // [DEBUG]
+            //console.log(typeof last);
+            //console.log(typeof Session.get('EpsCount'));
+            //console.log(Math.abs(last - Session.get('EpsCount')));
+
+            // Still buggy:
+            // 1. On initial load, the calculations are right and the pages
+            // are properly paginated no matter whats the DB count and the itemsPerPage setting
+            // 2. If after initially loaded the itemsPerPage settings got changed, it breaks
+            // Maybe missing to recalculate a dependency somewhere... Need more time.
+            newLast = Math.abs(last - Session.get('EpsCount')) + Session.get('paginationItemsPerPage');
 
             // Do the math and set the right indexes
             Session.set('paginationFirstIndex', newFirst);
@@ -123,7 +123,7 @@ Template.quickControls.events({
 
             // If we reached the last page
             // set the flag to disable right arrow
-            if(newLast === eps){
+            if(newLast >= Session.get('EpsCount')){
                 Session.set('lastPage', true);
             }
         }
@@ -142,7 +142,7 @@ Template.quickControls.events({
         log(trigger.val());
 
         Session.set('paginationItemsPerPage', +trigger.val());
-        Session.set('paginationLastIndex', +trigger.val());
+        //Session.set('paginationLastIndex', +trigger.val());
 
     }
 });
