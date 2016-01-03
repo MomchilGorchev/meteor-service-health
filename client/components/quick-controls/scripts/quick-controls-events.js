@@ -127,23 +127,6 @@ Template.quickControls.events({
                 Session.set('lastPage', true);
             }
         }
-    },
-
-    /**
-     * Quick and dirty pagination items per page picker
-     * Needs to be 'ondrag' not change
-     * @param e
-     * @param t
-     */
-    'change #items-per-page': function(e, t){
-
-        var trigger = $(e.currentTarget);
-
-        log(trigger.val());
-
-        Session.set('paginationItemsPerPage', +trigger.val());
-        //Session.set('paginationLastIndex', +trigger.val());
-
     }
 });
 
