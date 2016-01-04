@@ -40,6 +40,8 @@ Meteor.startup(function(){
          * @returns {*} - _id of the newly created entry
          */
         addEndpoint: function(requestData){
+
+            this.unblock();
             if(requestData){
                 var service = requestData.data;
                 // Validate the service URL
@@ -77,7 +79,7 @@ Meteor.startup(function(){
                 }
             }
             // Empty input
-            return false;
+            throw new Meteor.Error(500, 'Not a valid input');
         },
 
         /**
