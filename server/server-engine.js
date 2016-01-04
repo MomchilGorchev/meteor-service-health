@@ -17,8 +17,13 @@ Meteor.startup(function(){
 
             //console.log('Read file called with: ', );
             //var uId = userId || 'shared';
-            var userId = Meteor.userId();
-            var JSONData = '';
+            var userId = Meteor.userId(),
+                JSONData = '',
+                processedFileEntries = {
+                    created: 0,
+                    existing: 0,
+                    invalid:0
+                };
 
             try{
 
@@ -41,11 +46,19 @@ Meteor.startup(function(){
                     // addEndpoint method checks for duplicates and validate the data
                     // Also ping the endpoint to check the initial status
                     Meteor.call('addEndpoint', requestData, function(err, res){
-                        log(err ? err : res);
+                        if(err && err.reason === 'Service URL already exist'){
+                            processedFileEntries.existing++;
+                        } else if(err && err.reason === 'Not a valid URL: ['+ current.url +']'){
+                            processedFileEntries.invalid++;
+                        } else {
+                            processedFileEntries.created++;
+                        }
                     });
                 }
 
-                return true;
+                console.log(processedFileEntries);
+
+                return processedFileEntries;
 
             } catch(e){
                 console.log(e);

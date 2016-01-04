@@ -10,6 +10,7 @@ function Core(){
 
     var self = this;
     self.JSON_FILENAME = 'EP_DETAILS.json';
+    // FIXME -  https://df'g;df'gld'f.powa.com/jira validates ?!?
     self.VALID_URL = /\b((?:https?:\/\/|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/i;
 
 }
