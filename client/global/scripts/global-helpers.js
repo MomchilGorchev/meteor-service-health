@@ -11,7 +11,7 @@ Template.registerHelper('endpoints', function(){
     return Endpoints.find(
         {
             order: {
-                $gt: Session.get('paginationFirstIndex'),           // Looks at session var to make the query
+                $gt: Session.get('paginationFirstIndex') - 1,           // Looks at session var to make the query
                 $lt: Session.get('paginationLastIndex') + 1         // Looks at session var to make the query
             }
         },

@@ -103,7 +103,7 @@ Template.quickControls.events({
             Session.set('firstPage', false);
 
             // Do the math
-            newFirst = last;
+            newFirst = last + 1;
 
             // [DEBUG]
             //console.log(typeof last);
