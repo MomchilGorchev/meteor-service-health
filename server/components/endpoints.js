@@ -45,7 +45,7 @@ Meteor.startup(function(){
             if(requestData){
                 var service = requestData.data;
                 // Validate the service URL
-                if(service.url.match(core.VALID_URL) !== null){
+                if(service.url.match(core.VALID_URL)){
 
                     // Check for existing entry with that URL
                     var existingRecord = Endpoints.findOne({url: service.url, owner: requestData.owner});
