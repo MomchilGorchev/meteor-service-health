@@ -105,6 +105,10 @@ Template.quickControls.events({
             // Do the math
             newFirst = last + 1;
 
+
+            console.log('first is '+ first);
+            console.log('last is '+ last);
+
             // [DEBUG]
             //console.log(typeof last);
             //console.log(typeof Session.get('EpsCount'));
@@ -115,15 +119,23 @@ Template.quickControls.events({
             // are properly paginated no matter whats the DB count and the itemsPerPage setting
             // 2. If after initially loaded the itemsPerPage settings got changed, it breaks
             // Maybe missing to recalculate a dependency somewhere... Need more time.
-            newLast = Math.abs(last - Session.get('EpsCount')) + Session.get('paginationItemsPerPage');
+            newLast = (Math.abs(last - Session.get('EpsCount')) + Session.get('paginationItemsPerPage')) - 1;
 
             // Do the math and set the right indexes
             Session.set('paginationFirstIndex', newFirst);
             Session.set('paginationLastIndex', newLast);
 
+
+            console.log('paginationFirstIndex is: '+ Session.get('paginationFirstIndex'));
+            console.log('paginationLastIndex is: '+ Session.get('paginationLastIndex'));
+            console.log('paginationItemsPerPage is: '+ Session.get('paginationItemsPerPage'));
+            console.log('EpsCount is: '+ Session.get('EpsCount'));
+
+
             // If we reached the last page
             // set the flag to disable right arrow
             if(newLast >= Session.get('EpsCount')){
+                console.log('Last Page!');
                 Session.set('lastPage', true);
             }
         }

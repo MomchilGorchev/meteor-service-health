@@ -55,7 +55,7 @@ Meteor.startup(function(){
                         service.status = null;
                         // Find the next available id
                         var existingEntries = Endpoints.find({owner: requestData.owner}).count();
-                        service.order = existingEntries + 1;
+                        service.order = service.order === undefined ? existingEntries + 1 : service.order;
                         service.owner = Meteor.userId();
                         // And insert to DB
                         // log('Before insert', service);
