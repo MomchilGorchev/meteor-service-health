@@ -59,6 +59,7 @@ Template.statusCard.events({
                     Materialize.toast('[Error] operation unsuccessful', 3000);
                 } else {
                     Materialize.toast('[ '+ serviceName +' ] deleted!', 3000);
+                    Session.set('EpsCount', Endpoints.find().count());
                 }
             });
         }

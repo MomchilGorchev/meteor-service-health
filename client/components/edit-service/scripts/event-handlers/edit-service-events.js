@@ -38,6 +38,7 @@ Template.editServiceEndpoint.events({
 
         Meteor.call('dropDB', function(err, res){
             err ? log(err) : Materialize.toast(res + ' categories removed!', 3000);
+            Session.set('EpsCount', Endpoints.find().count());
         });
 
     }

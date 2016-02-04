@@ -45,6 +45,7 @@ Template.addServiceEndpoint.events({
                 // Display message based on the response
                 err ? Materialize.toast('Error: '+ err.message , 3000)
                     : Materialize.toast('Service '+ newService.name + ' successfully added!', 3000);
+                      Session.set('EpsCount', Endpoints.find().count());
             });
         }
     },
