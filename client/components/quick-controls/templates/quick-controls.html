@@ -5,24 +5,6 @@
             <span class="status status--red">Down: {{endpointsCount.red}}</span>
             <span class="status status--orange">Intermittent: {{endpointsCount.orange}}</span>
         </div>
-        {{#if currentUser}}
-            <div id="save__order" class="fixed-action-btn horizontal click-to-toggle">
-                <a class="btn btn-flat">
-                    Save new order?
-                </a>
-                <ul>
-                    <li><a id="yes-save" class="btn-floating green">YES</a></li>
-                    <li><a id="no-save" class="btn-floating red">NO</a></li>
-                </ul>
-            </div>
-        {{else}}
-            <div id="save__order" class="fixed-action-btn horizontal click-to-toggle">
-                <p>
-                    <i class="card__reveal-more material-icons">info</i>
-                    You need to login to save the new order.
-                </p>
-            </div>
-        {{/if}}
 
         {{#unless equals endpointsCount.total 0}}
 

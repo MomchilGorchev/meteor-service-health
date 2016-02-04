@@ -149,26 +149,32 @@ Meteor.startup(function(){
         },
 
         /**
-         * Set new order to endpoints after client side rearrange (drag and drop)
-         * @param endpoints -
-         * Array of objects containing the ID to be updated
-         * and the new order numerical value
+         * Set new order to endpoints after endpoint is being deleted
+         * on the client. This ensures correct pagination indexes.
          */
-        updateEndpointsOrder: function(endpoints){
+        updateEndpointsOrder: function(){
 
-            // Check input
-            check(endpoints, Array);
+            // If there is no parameter array of service objects
+            // Reset all entries order value
+            var eps = Endpoints.find({owner: currentUser}).fetch();
 
-            // Iterate and update
-            for(var i = 0, count = endpoints.length; i < count; i++){
+            // Iterate
+            for(var j = 0, iterations = eps.length; j < iterations; j++){
 
-                var current = endpoints[i];
+                //console.log('Setting order '+ (j + 1) +' to item number '+ j);
 
-                // Select by ID and update the order field
-                Endpoints.update({_id: current.itemId, owner: Meteor.userId()},
+                // Grab mongo id
+                var currentItemId = eps[j]._id;
+
+                // Set new order relative to the current iteration
+                Endpoints.update(
                     {
+                        _id: currentItemId
+                    },
+                    {
+                        // Set new order
                         $set: {
-                            order: current.newOrder
+                            order: j + 1
                         }
                     }
                 );
