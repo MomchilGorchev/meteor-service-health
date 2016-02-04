@@ -58,6 +58,10 @@ Template.quickControls.events({
         });
     },
 
+    /**
+     * Pagination controls
+     * Use real DB data to calculate active (viewed) items
+     */
     'click .pagination__control:not(".disabled")': function(e, t){
 
         // Cache all elements needed
@@ -68,10 +72,7 @@ Template.quickControls.events({
             last = +$(cards.pop()).attr('data-order'),
             newFirst, newLast;
 
-        //console.log('first -> ', first);
-        //console.log('last -> ', last);
-
-        // Going back
+        // Going back - e.g. LEFT arrow clicked
         if(trigger.hasClass('prev')){
 
             // We are sure we are not on the last page
@@ -82,6 +83,8 @@ Template.quickControls.events({
             newFirst = first - Session.get('paginationItemsPerPage');
             newLast = first - 1;
 
+            // Check if the newly calculated first index is not 1
+            // e.g on the first page
             if(newFirst <= 1){
                 Session.set('firstPage', true);
                 newFirst = 1;
@@ -91,17 +94,8 @@ Template.quickControls.events({
             Session.set('paginationFirstIndex', newFirst);
             Session.set('paginationLastIndex', newLast);
 
-            // If we are on the first page
-            // set the flag to disable the left arrow
-            //if(newFirst === 0){
-            //    Session.set('firstPage', true);
-            //}
-
-        // Going forward
+        // Going forward - e.g RIGHT arrow clicked
         } else {
-
-            // Get fresh DB count
-            //var eps = Meteor.call('getEpsCount');
 
             // We know we are not on the first page
             // as we going forward
@@ -110,39 +104,33 @@ Template.quickControls.events({
             // Do the math
             newFirst = last + 1;
 
-            if(newFirst === +Session.get('EpsCount')){
+            // If the new first item is the last item in the collection
+            if(newFirst >= +Session.get('EpsCount')){
                 newLast = newFirst;
 
+            // Else try to build full page
             } else {
                 newLast = last + Session.get('paginationItemsPerPage');
             }
 
+            // If not enough items for a full page
+            // We are on the last page
             if(newLast >= Session.get('EpsCount')) {
-                console.log('Last Page!');
                 Session.set('lastPage', true);
                 newLast = Session.get('EpsCount');
-
             }
 
-            // Do the math and set the right indexes
+            // Set the right indexes
             Session.set('paginationFirstIndex', newFirst);
             Session.set('paginationLastIndex', newLast);
 
-
-            console.log('first is '+ first);
-            console.log('last is '+ last);
-
-            // [DEBUG]
-            //console.log(typeof last);
-            //console.log(typeof Session.get('EpsCount'));
-            //console.log(Math.abs(last - Session.get('EpsCount')));
-
-            console.log('paginationFirstIndex is: '+ Session.get('paginationFirstIndex'));
-            console.log('paginationLastIndex is: '+ Session.get('paginationLastIndex'));
-            console.log('paginationItemsPerPage is: '+ Session.get('paginationItemsPerPage'));
-            console.log('EpsCount is: '+ Session.get('EpsCount'));
-
         }
+
+        // [DEBUG]
+        //console.log('paginationFirstIndex is: '+ Session.get('paginationFirstIndex'));
+        //console.log('paginationLastIndex is: '+ Session.get('paginationLastIndex'));
+        //console.log('paginationItemsPerPage is: '+ Session.get('paginationItemsPerPage'));
+        //console.log('EpsCount is: '+ Session.get('EpsCount'));
     }
 });
 
