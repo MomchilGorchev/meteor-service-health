@@ -6,29 +6,32 @@
         <div class="upload col s12 option-section">
             <div class="split-wrapper">
                 <h5>Option 1 - upload a JSON file</h5>
-                <h6>The file needs to be called <span class="code">EP_DETAILS.json</span> and needs to have valid schema.</h6>
-
-                {{> dropzone url=currentUserIdDir id='uploadJSON' maxFiles=1 method="POST"}}
-
-                {{!-- <br/>
-                <h6>NOTE: This process will not overwrite any existing records, it will simply add everything from the file to the
-                database.</h6>
-                <pre class="code">
+                <h6>The file needs to be called <span class="code">EP_DETAILS.json</span> and needs to have valid schema.
+                    <br /><br/>
+                    <a href="/download/examples/EP_DETAILS.json">download example file</a>
+                </h6>
+<pre class="code">
 [
   ...
   {
     url: 'http://example.com',
     name: 'My website',
     info: 'This is my website info',
-    categories: ['Personal', '...'], // optional
-    lastStatusCode: 200,             // optional
-    method: 'get'                    // GET or POST. Default is GET
-    status: 'green'                  // optional
+    categories: ['Personal', '...'],    // optional
+    lastStatusCode: 200,                // optional
+    method: 'get',                      // GET or POST. Default is GET
+    status: 'green',                    // optional
+    order: 1                            // optional
   }
   ...
 ]
                 </pre>
-                {{> upload_bootstrap }} --}}
+                <br/>
+
+                <h6>NOTE: This process will not overwrite any existing records, it will simply add everything from the file to the
+                    database. It will also ignore any duplicate URLs</h6>
+                {{> dropzone url=currentUserIdDir id='uploadJSON' maxFiles=1 method="POST"}}
+
             </div>
         </div>
         <div class="add-service-form col s12 option-section">
