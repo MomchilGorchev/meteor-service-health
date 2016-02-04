@@ -79,8 +79,13 @@ Template.quickControls.events({
             Session.set('lastPage', false);
 
             // Do the math
-            newFirst = first - 1 - Session.get('paginationItemsPerPage');
+            newFirst = first - Session.get('paginationItemsPerPage');
             newLast = first - 1;
+
+            if(newFirst <= 1){
+                Session.set('firstPage', true);
+                newFirst = 1;
+            }
 
             // And set the right indexes
             Session.set('paginationFirstIndex', newFirst);
@@ -88,9 +93,9 @@ Template.quickControls.events({
 
             // If we are on the first page
             // set the flag to disable the left arrow
-            if(newFirst === 0){
-                Session.set('firstPage', true);
-            }
+            //if(newFirst === 0){
+            //    Session.set('firstPage', true);
+            //}
 
         // Going forward
         } else {
@@ -105,6 +110,24 @@ Template.quickControls.events({
             // Do the math
             newFirst = last + 1;
 
+            if(newFirst === +Session.get('EpsCount')){
+                newLast = newFirst;
+
+            } else {
+                newLast = last + Session.get('paginationItemsPerPage');
+            }
+
+            if(newLast >= Session.get('EpsCount')) {
+                console.log('Last Page!');
+                Session.set('lastPage', true);
+                newLast = Session.get('EpsCount');
+
+            }
+
+            // Do the math and set the right indexes
+            Session.set('paginationFirstIndex', newFirst);
+            Session.set('paginationLastIndex', newLast);
+
 
             console.log('first is '+ first);
             console.log('last is '+ last);
@@ -114,30 +137,11 @@ Template.quickControls.events({
             //console.log(typeof Session.get('EpsCount'));
             //console.log(Math.abs(last - Session.get('EpsCount')));
 
-            // Still buggy:
-            // 1. On initial load, the calculations are right and the pages
-            // are properly paginated no matter whats the DB count and the itemsPerPage setting
-            // 2. If after initially loaded the itemsPerPage settings got changed, it breaks
-            // Maybe missing to recalculate a dependency somewhere... Need more time.
-            newLast = (Math.abs(last - Session.get('EpsCount')) + Session.get('paginationItemsPerPage')) - 1;
-
-            // Do the math and set the right indexes
-            Session.set('paginationFirstIndex', newFirst);
-            Session.set('paginationLastIndex', newLast);
-
-
             console.log('paginationFirstIndex is: '+ Session.get('paginationFirstIndex'));
             console.log('paginationLastIndex is: '+ Session.get('paginationLastIndex'));
             console.log('paginationItemsPerPage is: '+ Session.get('paginationItemsPerPage'));
             console.log('EpsCount is: '+ Session.get('EpsCount'));
 
-
-            // If we reached the last page
-            // set the flag to disable right arrow
-            if(newLast >= Session.get('EpsCount')){
-                console.log('Last Page!');
-                Session.set('lastPage', true);
-            }
         }
     }
 });
