@@ -2,7 +2,7 @@
 MeteorJS app to keep track of services/endpoints availability
 
 App deployed on: http://service-report.herokuapp.com/
-- PLEASE NOTE: Even though the app is attached to a CI, its still in development and can be malfunctioning at any point in time.
+- PLEASE NOTE: This is CI URL and can be malfunctioning at any point in time.
 
 #### Description
 ***
