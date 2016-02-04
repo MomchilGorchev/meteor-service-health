@@ -28,12 +28,12 @@ ejson
 spacebars
 check
 ecmascript
-materialize:materialize@=0.97.0
 meteorhacks:aggregate
-ahref:dragula
 meteorhacks:npm
 dbarrett:dropzonejs
 
 
 npm-container
 simple:reactive-method
+materialize:materialize
+ahref:dragula
