@@ -13,15 +13,4 @@ Template.home.rendered = function(){
         }
 
     });
-
-    // Events of the dragging process
-    dnd.on('drag', function(el, source){
-
-        // Show the "save" button
-        var saveOrderBtn = $('#save__order');
-        if(!saveOrderBtn.hasClass('enabled')){
-            saveOrderBtn.addClass('enabled');
-        }
-
-    });
 };

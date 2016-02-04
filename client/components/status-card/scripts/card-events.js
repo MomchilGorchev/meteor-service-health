@@ -61,27 +61,9 @@ Template.statusCard.events({
                     Materialize.toast('[ '+ serviceName +' ] deleted!', 3000);
                     Session.set('EpsCount', Endpoints.find().count());
 
-                    // Save new order of elements
-                    //
-                    // Cache elements
-                    var cards = $('.card'),
-                        newOrderList = [];
-
-                    // Iterate and match the store the itemId with the
-                    // corresponding position
-                    for(var i = 0, count = cards.length; i < count; i++){
-
-                        var current = cards[i];
-
-                        // Push to an array to be sent to the server
-                        newOrderList.push({
-                            itemId: current.getAttribute('data-itemid'),
-                            newOrder: count - i
-                        });
-                    }
-
-                    // Call the service with the prepared data
-                    Meteor.call('updateEndpointsOrder', newOrderList, function(err, res){
+                    // Call the service with no data - tis will trigger
+                    // Server side order replacement
+                    Meteor.call('updateEndpointsOrder', function(err, res){
 
                         // Display the result in a toast and hide the buttons
                         if(err || res.error){
