@@ -10,7 +10,7 @@ Template.login.events({
             var pass = t.firstNode.querySelector('#login-password').value;
             Meteor.loginWithPassword(email, pass, function(err){
                 if(err){
-                    Materialize.toast('Error: '+ err.message , 3000);
+                    Bert.alert('Error: '+ err.message , 'danger');
                 }
             });
         }

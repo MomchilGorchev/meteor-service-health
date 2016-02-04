@@ -13,8 +13,8 @@ Template.header.events({
         icon.addClass('rotating');
         console.log('Services check initiated...');
         Meteor.call('checkServicesStatus', function (err, res) {
-            err ? Materialize.toast('Error: '+ err.message , 3000)
-                : Materialize.toast('Services list successfully reloaded!', 3000);
+            err ? Bert.alert('Error: '+ err.message , 'danger')
+                : Bert.alert('Services list successfully reloaded!', 'success');
 
             icon.removeClass('rotating');
         });

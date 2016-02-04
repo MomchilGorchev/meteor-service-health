@@ -31,9 +31,9 @@ Template.statusCard.events({
         // Call the server and handle response
         Meteor.call('checkSingleService', reqData, function(err, res){
             if(err){
-                Materialize.toast('Error: '+ err.message , 3000);
+                Bert.alert('Error: '+ err.message , 'danger');
             } else {
-                Materialize.toast('Service was successfully refreshed' , 3000);
+                Bert.alert('Service was successfully refreshed' , 'success');
                 icon.removeClass('rotating');
             }
         });
@@ -56,9 +56,9 @@ Template.statusCard.events({
             // Call server and handle result
             Meteor.call('deleteEndpoint', cardId, function(err, res){
                 if(err){
-                    Materialize.toast('[Error] operation unsuccessful', 3000);
+                    Bert.alert('[Error] operation unsuccessful', 'danger');
                 } else {
-                    Materialize.toast('[ '+ serviceName +' ] deleted!', 3000);
+                    Bert.alert('[ '+ serviceName +' ] deleted!', 'success');
                     Session.set('EpsCount', Endpoints.find().count());
 
                     // Call the service with no data - tis will trigger
@@ -67,9 +67,9 @@ Template.statusCard.events({
 
                         // Display the result in a toast and hide the buttons
                         if(err || res.error){
-                            Materialize.toast('Error: '+ err.message , 3000);
+                            Bert.alert('Error: '+ err.message , 'danger');
                         } else {
-                            Materialize.toast('Services order saved!' , 3000);
+                            Bert.alert('Services order saved!' , 'success');
                         }
                     });
                 }

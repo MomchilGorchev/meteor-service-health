@@ -37,7 +37,7 @@ Template.editServiceEndpoint.events({
     'click #reset-db': function(){
 
         Meteor.call('dropDB', function(err, res){
-            err ? log(err) : Materialize.toast(res + ' categories removed!', 3000);
+            err ? log(err) : Bert.alert(res + ' categories removed!', 'success');
             Session.set('EpsCount', Endpoints.find().count());
         });
 

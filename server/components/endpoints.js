@@ -154,6 +154,8 @@ Meteor.startup(function(){
          */
         updateEndpointsOrder: function(){
 
+            // Cache current user
+            var currentUser = Meteor.userId();
             // If there is no parameter array of service objects
             // Reset all entries order value
             var eps = Endpoints.find({owner: currentUser}).fetch();

@@ -32,7 +32,7 @@ Template.addServiceEndpoint.events({
 
         //   Simple validation
         if(newService.name.length < 1 || newService.url.length < 1){
-            Materialize.toast('You need to fill all the fields!', 3000);
+            Bert.alert('You need to fill all the fields!', 'warning');
         } else {
             // If all good, include the current user ID
             var requestData = {
@@ -43,8 +43,8 @@ Template.addServiceEndpoint.events({
             // And call the server
             Meteor.call('addEndpoint', requestData, function(err, res){
                 // Display message based on the response
-                err ? Materialize.toast('Error: '+ err.message , 3000)
-                    : Materialize.toast('Service '+ newService.name + ' successfully added!', 3000);
+                err ? Bert.alert('Error: '+ err.message, 'danger')
+                    : Bert.alert('Service '+ newService.name + ' successfully added!', 'success');
                       Session.set('EpsCount', Endpoints.find().count());
             });
         }
@@ -140,7 +140,7 @@ Template.addServiceEndpoint.events({
 
         // Validate the inut
         if(!value || value.length < 2){
-            Materialize.toast('Please specify at least one category', 3000);
+            Bert.alert('Please specify at least one category', 'info');
         } else {
 
             // Read the list from the text area
@@ -148,8 +148,8 @@ Template.addServiceEndpoint.events({
 
            Meteor.call('saveNewCategories', catList, function(err, res){
                // Show message toast based on the response
-               err ? Materialize.toast('Error: '+ err.message , 3000)
-                   : Materialize.toast('Categories saved!', 3000);
+               err ? Bert.alert('Error: '+ err.message , 'danger')
+                   : Bert.alert('Categories saved!', 'success');
                      $('#reset_category_list').trigger('click');
            });
 

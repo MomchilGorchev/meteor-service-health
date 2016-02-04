@@ -38,8 +38,8 @@ Template.editModal.events({
         //issue: !!(data.status === 'red' || data.status === 'orange')
         console.log(data);
         Meteor.call('updateEndpointInfo', data, function(err, res){
-            err ? Materialize.toast('Error: '+ err.message , 3000)
-                : Materialize.toast('Service '+ data.name + ' successfully saved!', 3000);
+            err ? Bert.alert('Error: '+ err.message , 'danger')
+                : Bert.alert('Service '+ data.name + ' successfully saved!', 'success');
         });
 
         modal.closeModal();
