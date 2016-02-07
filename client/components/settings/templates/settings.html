@@ -1,5 +1,35 @@
 <template name="settings">
+
+    {{> pageTitle title="Settings"}}
+
     <div class="row">
-        <p>Hai!</p>
+        <div class="col s12">
+
+            <div class="page__content">
+
+                <div class="row">
+                    <div class="col s6">
+
+                        <p>Hai! <em>{{userInfo}}</em></p>
+                        <p></p>
+
+                        <form id="changeReloadTime">
+                            <h6>
+                                <i class="material-icons">alarm</i>
+                                Change the frequency of call to the services.
+                                Default is 1 min.
+                            </h6>
+                            <div class="row">
+                                <div class="input-field col s12">
+                                    <i class="material-icons prefix">time</i>
+                                    <input id="time" type="range" min="1" max="15" class="validate">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
