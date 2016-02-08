@@ -5,11 +5,16 @@
 
 Template.quickControls.events({
 
+    /**
+     * Manual refresh of all services
+     */
     'click .refresh-list': function(e, t) {
+
         var trigger = $(e.currentTarget),
             icon = trigger.find('.material-icons');
         icon.addClass('rotating');
-        console.log('Services check initiated...');
+
+        // Call server method
         Meteor.call('checkServicesStatus', function (err, res) {
             err ? Bert.alert('Error: '+ err.message , 'danger')
                 : Bert.alert('Services list successfully reloaded!', 'success');
@@ -18,12 +23,27 @@ Template.quickControls.events({
         });
     },
 
+    /**
+     * Quick and dirty filter,
+     * checks only the name and URL
+     */
     'keyup #search': function(e, t){
         var filter = $(e.currentTarget).val();
         var items = $('.card');
+
+        // For each element
         $.each(items, function(){
-            var current = $(this);
-            if(current.text().search(new RegExp(filter, 'i')) < 0){
+
+            // Find name and url and push to array
+            var current = $(this),
+                tag = current.find('.search-tag'),
+                searchTags = [
+                    tag.attr('href'),
+                    tag.text()
+                ];
+
+            // Look for match and/remove class
+            if(searchTags.join(' ').search(new RegExp(filter, 'i')) < 0){
                 current.addClass('card--filtered');
             } else {
                 current.removeClass('card--filtered');
@@ -31,6 +51,9 @@ Template.quickControls.events({
         });
     },
 
+    /**
+     * Click on magnifier glass icon to show the search input
+     */
     'click #search__toggle': function(e, t){
         e.preventDefault();
 
@@ -38,11 +61,9 @@ Template.quickControls.events({
             parent = trigger.closest('li'),
             input = parent.find('.search__field');
 
-        log(input);
-
+        // Show and focus the input
         input.toggleClass('search__field--expanded');
-
-
+        input.focus();
     },
 
     /**
