@@ -11,6 +11,9 @@ footer{
   padding-top:15px;
 
   & .footer__text{
+
+    margin: 0;
+    
     a{
 
       color: darken(white, 20%);
