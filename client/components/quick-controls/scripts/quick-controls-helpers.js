@@ -4,12 +4,24 @@
 
 Template.quickControls.helpers({
 
-    isFirstPage: function(){
+    isFirstPage(){
         return Session.get('firstPage');
     },
 
-    isLastPage: function(){
+    isLastPage(){
         return Session.get('lastPage');
+    },
+
+    paginationPages(){
+
+        var pages = +Session.get('paginationPages'),
+            buffer = [];
+
+        for(var i = 0; i < pages; i++){
+            buffer.push(i + 1);
+        }
+
+        return buffer;
     }
 
 });

@@ -43,6 +43,9 @@
                                     <i class="material-icons">keyboard_arrow_left</i>
                                 </a>
                             </li>
+                            {{#each paginationPages}}
+                                <li class="pagination__page-marker"><i class="material-icons">album</i></li>
+                            {{/each}}
                             <li>
                                 <a href="#" class="pagination__control next btn-flat
                                 {{#if isLastPage}} disabled {{else}} {{/if}}">

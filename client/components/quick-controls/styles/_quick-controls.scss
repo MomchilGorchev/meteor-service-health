@@ -33,6 +33,15 @@
   .pagination{
     float:right;
     margin-top: -7px;
+
+    &__page-marker{
+
+      i{
+
+        font-size: 0.7em;
+      }
+
+    }
   }
   
   .settings__field{
