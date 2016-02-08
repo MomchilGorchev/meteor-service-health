@@ -62,6 +62,14 @@
 // SINGLE CARD
 .card{
   height:120px;
+  opacity:1;
+
+  // TODO optimise with mixins
+  -webkit-transition: opacity 0.5s;
+  -moz-transition:  opacity 0.5s;
+  -ms-transition:  opacity 0.5s;
+  -o-transition:  opacity 0.5s;
+  transition:  opacity 0.5s;
 
   &__wrapper{
 
@@ -166,6 +174,18 @@
           border: 1px solid black;
         }
       }
+  }
+
+  &--filtered{
+
+    opacity: 0.2;
+    pointer-events: none;
+    -webkit-transition: opacity 0.5s;
+    -moz-transition:  opacity 0.5s;
+    -ms-transition:  opacity 0.5s;
+    -o-transition:  opacity 0.5s;
+    transition:  opacity 0.5s;
+
   }
 
   &--success{

@@ -1,36 +1,62 @@
 <template name="quickControls">
     <div class="row">
-        <div class="quick__info col s12 m4 sl4">Total: {{endpointsCount.total}}
+
+        <div class="quick__info col s12 m4 l4">Total: {{endpointsCount.total}}
             <span class="status status--green">Up: {{endpointsCount.green}}</span>
             <span class="status status--red">Down: {{endpointsCount.red}}</span>
             <span class="status status--orange">Intermittent: {{endpointsCount.orange}}</span>
         </div>
 
-        {{#unless equals endpointsCount.total 0}}
+        <div class="quick__info col s12 m4 l4">
 
-            {{#unless equals endpointsCount.total paginationItemsPerPage}}
+            <ul class="quick__settings">
+                <li>
+                    <a id="search__toggle" class="waves-effect main-icon-menu search__toggle" href="#" data-tooltip="Search list">
+                        <i class="material-icons">search</i>
+                    </a>
+                    <div class="search__field">
+                        <input id="search" type="search" class="search__input" placeholder="Search" required>
+                        <label class="search-label" for="search"></label>
+                    </div>
+                </li>
+                <li class="refresh-list desktop-menu">
+                    <a class="waves-effect main-icon-menu" href="#" data-tooltip="Refresh list">
+                        <i class="material-icons">cached</i>
+                    </a>
+                </li>
+            </ul>
 
-                {{#unless greaterThan paginationItemsPerPage endpointsCount.total}}
-                    <!--PAGINATION-->
-                    <ul class="pagination">
-                        <li>
-                            <a href="#" class="pagination__control prev btn-flat
-                            {{#if isFirstPage}} disabled {{else}} {{/if}}">
-                                <i class="material-icons">keyboard_arrow_left</i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="pagination__control next btn-flat
-                            {{#if isLastPage}} disabled {{else}} {{/if}}">
-                                <i class="material-icons">keyboard_arrow_right</i>
-                            </a>
-                        </li>
-                    </ul>
+        </div>
+
+        <div class="quick__info col s12 m4 l4">
+
+            {{#unless equals endpointsCount.total 0}}
+
+                {{#unless equals endpointsCount.total paginationItemsPerPage}}
+
+                    {{#unless greaterThan paginationItemsPerPage endpointsCount.total}}
+                        <!--PAGINATION-->
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" class="pagination__control prev btn-flat
+                                {{#if isFirstPage}} disabled {{else}} {{/if}}">
+                                    <i class="material-icons">keyboard_arrow_left</i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" class="pagination__control next btn-flat
+                                {{#if isLastPage}} disabled {{else}} {{/if}}">
+                                    <i class="material-icons">keyboard_arrow_right</i>
+                                </a>
+                            </li>
+                        </ul>
+                    {{/unless}}
+
                 {{/unless}}
 
             {{/unless}}
 
-        {{/unless}}
+        </div>
 
     </div>
 </template>

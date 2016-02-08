@@ -47,3 +47,27 @@
     }
   }
 }
+
+.quick{
+
+  &__settings{
+
+    margin-top: 0;
+
+    li{
+
+      display: inline-block;
+      vertical-align: top;
+
+      #search{
+
+        margin: 0;
+        height: 25px;
+
+      }
+
+    }
+
+  }
+
+}
