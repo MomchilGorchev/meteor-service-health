@@ -3,7 +3,7 @@
  */
 
 
-Meteor.startup(function(){
+Meteor.startup(() => {
 
     return Meteor.methods({
 
@@ -14,7 +14,7 @@ Meteor.startup(function(){
          * @param subject
          * @param text
          */
-        sendEmail: function (to, from, subject, text) {
+        sendEmail (to, from, subject, text) {
 
             check([to, from, subject, text], [String]);
 
@@ -23,23 +23,27 @@ Meteor.startup(function(){
             this.unblock();
 
             Email.send({
-                to: to,
-                from: from,
-                subject: subject,
-                text: text
+                to,
+                from,
+                subject,
+                text
             });
         },
 
-        getEpsCount: function(){
-            return Endpoints.find().count();
+        /**
+         * Get DB records count for the current user
+         * @returns {*}
+         */
+        getEpsCount(){
+            return Endpoints.find({owner: Meteor.userId()}).count();
         },
 
         /**
          * Add endpoint to the DB
-         * @param service - object containing the new service data
+         * @param requestData - object containing the new service data and the user that own it
          * @returns {*} - _id of the newly created entry
          */
-        addEndpoint: function(requestData){
+        addEndpoint(requestData){
 
             this.unblock();
             if(requestData){
@@ -53,16 +57,16 @@ Meteor.startup(function(){
 
                         // Reset status
                         service.status = null;
-                        // Find the next available id
+                        // Find the next available order
                         var existingEntries = Endpoints.find({owner: requestData.owner}).count();
                         service.order = service.order === undefined ? existingEntries + 1 : service.order;
-                        service.owner = Meteor.userId();
+                        service.owner = requestData.owner;
                         // And insert to DB
                         // log('Before insert', service);
                         var newEntry = Endpoints.insert(service);
                         if(newEntry){
                             service._id = newEntry;
-                            Meteor.call('checkSingleService', service, function(err, res){
+                            Meteor.call('checkSingleService', service, (err, res) => {
                                 return !err;
                             });
 
@@ -75,7 +79,7 @@ Meteor.startup(function(){
 
                 } else {
                     // Throw an error for not valid URL
-                    throw new Meteor.Error(500, 'Not a valid URL: ['+ service.url +']');
+                    throw new Meteor.Error(500, `Not a valid URL: [ ${service.url} ]`);
                 }
             }
             // Empty input
@@ -87,7 +91,7 @@ Meteor.startup(function(){
          * @param id
          * @returns {*|any}
          */
-        deleteEndpoint: function(id){
+        deleteEndpoint(id){
 
             // If valid input return the result of the DB operation
             // Else false
@@ -99,7 +103,7 @@ Meteor.startup(function(){
          * @param data
          * @returns {boolean}
          */
-        updateEndpointInfo: function(data){
+        updateEndpointInfo(data){
             // This will be an existing service every time
             // But its a good measure as this method call
             // is coming from the client
@@ -128,7 +132,7 @@ Meteor.startup(function(){
          * Updates endpoint status
          * @param service - endpoint to update
          */
-        updateEndpointStatus: function(service){
+        updateEndpointStatus(service){
 
             if(service){
                 try{
@@ -150,9 +154,9 @@ Meteor.startup(function(){
 
         /**
          * Set new order to endpoints after endpoint is being deleted
-         * on the client. This ensures correct pagination indexes.
+         * on the client. This method ensures correct pagination indexes.
          */
-        updateEndpointsOrder: function(){
+        updateEndpointsOrder(){
 
             // Cache current user
             var currentUser = Meteor.userId();
@@ -191,7 +195,7 @@ Meteor.startup(function(){
          * @param service - Object containing the service details
          * @returns {any} - Returns the result of updateEndpointStatus method
          */
-        checkSingleService: function(service){
+        checkSingleService(service){
 
             // Validate the input
             // This is necessary as this method is used by the client as well
@@ -199,11 +203,14 @@ Meteor.startup(function(){
 
             // Request the db entry and compare urls
             // This is necessary as this method is used by the client as well
-            var dbEntry = Endpoints.findOne({_id: service._id, owner: Meteor.userId()}),
+            let dbEntry = Endpoints.findOne({_id: service._id, owner: Meteor.userId()}),
                 result, actualStatus;
 
             // If everything match
             if(service.url === dbEntry.url){
+
+                // [DEBUG]
+                //console.log('service is: ', service);
 
                 // Init check call
                 try{
@@ -258,12 +265,12 @@ Meteor.startup(function(){
          * Run HTTP call for each entry in the DB
          * @returns {boolean}
          */
-        checkServicesStatus: function(){
+        checkServicesStatus(){
 
             // Allow other messages to use the DDP
             this.unblock();
             // Get the DB data
-            var allServices = Endpoints.find({owner: Meteor.userId()}).fetch(),
+            let allServices = Endpoints.find({owner: Meteor.userId()}).fetch(),
                 error = false;
 
             // Iterate over all entries
@@ -276,16 +283,20 @@ Meteor.startup(function(){
                 //log('Calling '+ current.url);
 
                 // Call method to check single service
-                Meteor.call('checkSingleService', current, function(err, res){
+                Meteor.call('checkSingleService', current, (err, res) => {
                     //log(err ? err : res);
                 });
             }
             return !error;
         },
 
-
-        dropDB: function(){
-            return Endpoints.remove({});
+        /**
+         * Remove all records from the DB
+         * for the current user only
+         * @returns {*}
+         */
+        dropDB(){
+            return Endpoints.remove({owner: Meteor.userId()});
         }
     });
 

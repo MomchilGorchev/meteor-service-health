@@ -1,0 +1,63 @@
+[
+    {
+        "url": "https://youtube.com",
+        "name": "YouTube",
+        "info": "YouTube website",
+        "category": "Public",
+        "lastStatusCode": 200,
+        "status": "green",
+        "method": "get",
+        "order": 1
+    },
+    {
+        "url": "https://google.com",
+        "name": "Google",
+        "info": "This is google website",
+        "category": "Public",
+        "lastStatusCode": 200,
+        "status": "green",
+        "method": "get",
+        "order": 2
+    },
+    {
+        "url": "https://facebook.com",
+        "name": "Facebook",
+        "info": "Facebook website",
+        "category": "Public",
+        "lastStatusCode": 200,
+        "status": "green",
+        "method": "get",
+        "order": 3
+    },
+    {
+        "url": "https://github.com",
+        "name": "GitHub",
+        "info": "GitHub website",
+        "category": "Private",
+        "lastStatusCode": 200,
+        "status": "green",
+        "method": "get",
+        "order": 4
+    },
+    {
+        "url": "https://google.co.uk",
+        "name": "Google UK",
+        "info": "This is google UK",
+        "category": "Public",
+        "lastStatusCode": 200,
+        "status": "green",
+        "method": "get",
+        "order": 5
+    },
+    {
+        "url": "https://twitter.com",
+        "name": "Twitter",
+        "info": "Twitter website",
+        "category": "Public",
+        "lastStatusCode": 200,
+        "status": "green",
+        "method": "get",
+        "order": 6
+    }
+
+]
