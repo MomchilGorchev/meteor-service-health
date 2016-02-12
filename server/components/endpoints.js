@@ -47,23 +47,23 @@ Meteor.startup(() => {
 
             this.unblock();
             if(requestData){
-                var service = requestData.data;
+                let service = requestData.data;
                 // Validate the service URL
                 if(service.url.match(core.VALID_URL)){
 
                     // Check for existing entry with that URL
-                    var existingRecord = Endpoints.findOne({url: service.url, owner: requestData.owner});
+                    let existingRecord = Endpoints.findOne({url: service.url, owner: requestData.owner});
                     if(existingRecord === undefined){
 
                         // Reset status
                         service.status = null;
                         // Find the next available order
-                        var existingEntries = Endpoints.find({owner: requestData.owner}).count();
+                        let existingEntries = Endpoints.find({owner: requestData.owner}).count();
                         service.order = service.order === undefined ? existingEntries + 1 : service.order;
                         service.owner = requestData.owner;
                         // And insert to DB
                         // log('Before insert', service);
-                        var newEntry = Endpoints.insert(service);
+                        let newEntry = Endpoints.insert(service);
                         if(newEntry){
                             service._id = newEntry;
                             Meteor.call('checkSingleService', service, (err, res) => {
@@ -107,7 +107,7 @@ Meteor.startup(() => {
             // This will be an existing service every time
             // But its a good measure as this method call
             // is coming from the client
-            var service = Endpoints.find({_id: data.id}, {}).fetch();
+            let service = Endpoints.find({_id: data.id}, {}).fetch();
             if(service.length){
                 // Select by _id and update
                 Endpoints.update(
@@ -159,18 +159,18 @@ Meteor.startup(() => {
         updateEndpointsOrder(){
 
             // Cache current user
-            var currentUser = Meteor.userId();
+            let currentUser = Meteor.userId();
             // If there is no parameter array of service objects
             // Reset all entries order value
-            var eps = Endpoints.find({owner: currentUser}).fetch();
+            let eps = Endpoints.find({owner: currentUser}).fetch();
 
             // Iterate
-            for(var j = 0, iterations = eps.length; j < iterations; j++){
+            for(let j = 0, iterations = eps.length; j < iterations; j++){
 
                 //console.log('Setting order '+ (j + 1) +' to item number '+ j);
 
                 // Grab mongo id
-                var currentItemId = eps[j]._id;
+                let currentItemId = eps[j]._id;
 
                 // Set new order relative to the current iteration
                 Endpoints.update(
@@ -276,8 +276,8 @@ Meteor.startup(() => {
             // Iterate over all entries
             // This needs to be updated when pagination is implemented
             // Right now it doesn't scale
-            for(var i = 0, count = allServices.length; i < count; i++){
-                var current = allServices[i];
+            for(let i = 0, count = allServices.length; i < count; i++){
+                let current = allServices[i];
 
                 // [DEBUG]
                 //log('Calling '+ current.url);
