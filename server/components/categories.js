@@ -2,9 +2,7 @@
  * Created by momchillgorchev on 15/11/15.
  * Categories related server methods
  */
-
-
-Meteor.startup(function() {
+Meteor.startup(() => {
 
     return Meteor.methods({
 
@@ -12,19 +10,19 @@ Meteor.startup(function() {
          * Saves newly-passed category to the DB
          * @param categories
          */
-        saveNewCategories: function(categories){
+        saveNewCategories(categories){
 
             // Validates the input
             check(categories, Array);
 
             // Iterate over the result
-            for(var i = 0, count = categories.length; i < count; i++){
+            for(let i = 0, count = categories.length; i < count; i++){
 
                 // [DEBUG]
                 //log(categories[i]);
 
                 // Build the new record
-                var newC = {
+                let newC = {
                     name: categories[i],
                     created: Date.now(),
                     owner: Meteor.userId()

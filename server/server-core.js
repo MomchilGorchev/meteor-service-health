@@ -8,29 +8,34 @@
  */
 function Core(){
 
-    var self = this;
+    let self = this;
     self.JSON_FILENAME = 'EP_DETAILS.json';
     self.VALID_URL = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+
+    /**
+     * Publish functions block
+     */
+    self.publishData = function(){
+        Meteor.publish('endpoints', function(){
+            return Endpoints.find({owner: this.userId});
+        });
+
+        Meteor.publish('categories', function(){
+            return Categories.find({owner: this.userId});
+        });
+    };
+
+    /**
+     * Init the instance
+     */
+    self.init = function(){
+        self.publishData();
+    };
+
+    self.init();
 
 }
 // Instantiate
 core = new Core;
 
 
-if(Meteor.isServer){
-
-    Meteor.publish('endpoints', function(){
-        return Endpoints.find({owner: this.userId});
-    });
-
-    Meteor.publish('categories', function(){
-        return Categories.find({owner: this.userId});
-    });
-
-}
-
-// TODO Specify method when creating endpoint
-// FIX the issue with file upload on Heroku
-// Remove the autologin
-// Update README
-// Change layout of 'Save new order' functionality

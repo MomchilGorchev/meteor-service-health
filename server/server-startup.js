@@ -4,14 +4,14 @@
  * Server startup script
  */
 
-Meteor.startup(function(){
+Meteor.startup(() => {
 
     // ---> TEMP
     // Always add admin user
     if (Meteor.users.findOne({'emails.address': 'admin@admin.com'})) {
         //console.log('Admin account already activated...');
     } else {
-        var users = [
+        let users = [
             {
                 name: "Admin User",
                 email: "admin@admin.com",
@@ -19,8 +19,8 @@ Meteor.startup(function(){
             }
         ];
 
-        _.each(users, function (user) {
-            var id;
+        _.each(users, (user) => {
+            let id;
 
             //console.log('Creating admin account...');
 
@@ -40,7 +40,7 @@ Meteor.startup(function(){
     Future = Npm.require('fibers/future');
 
 
-    var uid = Meteor.call('getUserId');
+    let uid = Meteor.call('getUserId');
     log(uid);
 
 });
