@@ -2,30 +2,21 @@
 
     {{> pageTitle title="Edit endpoints"}}
 
-    <div class="row">
+    <div class="row no-collapse">
         <div id="main__content" class="col s12">
 
-            {{> quickControls}}
+            {{#if equals endpointsCount.total 0}}
+                <p class="no__service-placeholder">No services here. <a href="/addServiceEndpoint">Try to create one</a></p>
+            {{else}}
+                {{> quickControls}}
 
-            <div id="edit-cards-holder" class="row cards__holder">
-                {{#if equals endpointsCount.total 0}}
-                    <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
-                {{else}}
+                <div id="index-cards-holder" class="row cards__holder">
                     {{#each endpoints}}
                         {{> statusCard editMode=true}}
                     {{/each}}
-                {{/if}}
-            </div>
+                </div>
+            {{/if}}
         </div>
     </div>
-    {{#unless equals endpointsCount.total 0}}
-        <div class="row split-wrapper">
-            <h5>Delete all endpoints</h5>
-            <button id="reset-db" class="btn waves-effect waves-light left red" name="reset">
-                <i class="material-icons">delete</i>DROP DB
-            </button>
-        </div>
-    {{/unless}}
-    <br />
 
 </template>

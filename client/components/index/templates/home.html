@@ -4,22 +4,21 @@
 
         {{> pageTitle title="Endpoints"}}
 
-        <div class="row">
+        <div class="row no-collapse">
 
             <div id="main__content" class="col s12">
 
-                {{> quickControls}}
+                {{#if equals endpointsCount.total 0}}
+                    <p class="no__service-placeholder">No services here. <a href="/addServiceEndpoint">Try to create one</a></p>
+                {{else}}
+                    {{> quickControls}}
 
-                <div id="index-cards-holder" class="row cards__holder">
-                    {{#if equals endpointsCount.total 0}}
-                        <p class="no__service-placeholder">No services in this category. <a href="/addServiceEndpoint">Try to create one</a></p>
-                    {{else}}
-
+                    <div id="index-cards-holder" class="row cards__holder">
                         {{#each endpoints}}
                             {{> statusCard editMode=false}}
                         {{/each}}
-                    {{/if}}
-                </div>
+                    </div>
+                {{/if}}
             </div>
         </div>
 
@@ -27,7 +26,9 @@
 
         {{> pageTitle title="Please login"}}
 
-        <div class="row">
+        <div class="row no-collapse">
+
+
 
             <div id="main__content" class="col s12">
                 Once you log in, you'll be able to <strong>create and manage</strong> your endpoints list

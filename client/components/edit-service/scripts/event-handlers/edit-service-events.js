@@ -31,15 +31,5 @@ Template.editServiceEndpoint.events({
 
         form.openModal();
 
-    },
-
-    // Drop DB
-    'click #reset-db': function(){
-
-        Meteor.call('dropDB', function(err, res){
-            err ? log(err) : Bert.alert(res + ' categories removed!', 'success');
-            Session.set('EpsCount', Endpoints.find().count());
-        });
-
     }
 });
