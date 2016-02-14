@@ -37,11 +37,11 @@ span.page-name{
 header{
   padding:20px;
   &.inner-header{
-    float:left;
-    @include breakpoint(tbl){
+    //float:left;
+    //@include breakpoint(tbl){
       float:none;
       text-align: center;
-    }
+    //}
   }
 }
 

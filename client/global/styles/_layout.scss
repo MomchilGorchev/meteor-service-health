@@ -17,6 +17,18 @@ body{
 
 }
 
+.welcome-page{
+
+  background: url(https://unsplash.it/1200/800?image=941) no-repeat center center white;
+  background-size: cover;
+
+  & .row{
+
+    width: 600px;
+
+  }
+
+}
 
 .row.no-collapse{
 

@@ -3,11 +3,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
+
+
 <template name="mainLayout">
 
     {{> header}}
 
-    <section class="container-fullwidth">
+    <section class="container-fullwidth
+        {{#unless currentUser}}
+            {{#if equals currentRouteName 'home'}}
+                welcome-page center
+            {{/if}}
+        {{/unless}}
+    ">
 
         {{> yield}}
 

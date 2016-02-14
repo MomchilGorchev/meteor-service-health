@@ -67,6 +67,10 @@ Template.registerHelper('currentUserIdDir', function(){
     return b;
 });
 
+Template.registerHelper('currentRouteName', () => {
+   return Router.current().route.getName();
+});
+
 Template.registerHelper('paginationItemsPerPage', function(){
     return Session.get('paginationItemsPerPage');
 });
