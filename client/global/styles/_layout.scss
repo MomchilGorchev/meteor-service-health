@@ -6,6 +6,8 @@
 // Page specific vars
 $ringWidth: 100px;
 $ringColor: #143754;
+$sub-header-color: #797C80;
+$sub-header-size: 1.345em;
 
 html, body{
   height: 100%;
@@ -19,13 +21,23 @@ body{
 
 .welcome-page{
 
-  background: url(https://unsplash.it/1200/800?image=941) no-repeat center center white;
+  background: url(/home1.jpeg) no-repeat center center white;
   background-size: cover;
   height: 100%;
 
+  &__sub-header{
+    margin-top: -15px;
+    color: $sub-header-color;
+    font-size: $sub-header-size;
+  }
+
+  &__btn{
+    width: 90%;
+  }
+
   & .row{
 
-    width: 600px;
+    max-width: 600px;
 
   }
 
