@@ -25,8 +25,7 @@ This is application is meant to be used mainly by developers that are implementi
 ***
 - Set alarm if service reports status different than 200
 - ~~Be able to dynamically create categories~~
-- Lazy load/Lazy service call - Paginate the service list and call only the services that are visible on the page.
-- Create UI to give the ability to enable/disable the previous feature
+- ~~Lazy load/Lazy service call - Paginate the service list and call only the services that are visible on the page.~~
 - Create UI to give the ability to export the service list
 - Login with Google/Github/Twitter/Facebook
 - Settings page
